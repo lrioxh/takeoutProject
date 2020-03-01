@@ -1,0 +1,123 @@
+/* pages/ordersuccess/ordersuccess.wxss */
+
+/* 状态图片外view */
+.view-status{
+  margin-top: 80rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* 状态图片 */
+.image-status{
+  width: 320rpx;
+  height: 320rpx;
+}
+/* 成功文字 */
+.view-success{
+  margin-top: 60rpx;
+  width: 320rpx;
+  font-size: 55rpx;
+  text-align: start;
+}
+/* 预计xx:xx到达 */
+.view-time{
+  margin: 10rpx;
+  width: 320rpx;
+  /* font-size: 40rpx; */
+  text-align: start;
+}
+/* 请留意消息提醒 */
+.view-notice{  
+  width: 320rpx;
+  font-size: 40rpx;
+}
+
+/* 详情、返回 */
+.view-go{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40rpx;
+}
+
+.view-detail{
+  margin-top: 80rpx;
+  margin-right: 40rpx;
+}
+.view-detail view{
+  padding: 10rpx;
+  text-align: center;
+  height: 50rpx;
+  width: 200rpx;
+  border: 1px solid black;
+  border-radius: 15rpx;
+}
+
+.view-back{
+  margin-top: 80rpx;
+  margin-left: 40rpx;
+}
+.view-back view{
+  color: white;
+  background: red;
+  text-align: center;
+  padding: 10rpx;
+  height: 50rpx;
+  width: 200rpx;
+  border: 1px solid black;
+  border-radius: 15rpx;
+}
+/* 推荐列表 */
+
+.view-recommend-list{
+  margin: 30rpx;
+  border: 1px dotted black;
+  padding: 5rpx;
+  border-radius: 20rpx;
+}
+
+.view-dish{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  padding-bottom: 15rpx;
+  margin-top: 20rpx;
+  border: 1px solid gray;
+  border-radius: 20rpx;
+  background: #eee;
+}
+
+.view-store-detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 订单详情 */
+.view-order-detail{
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* 推荐列表 */
+.image-dish{
+  width: 140rpx;
+  height: 140rpx;
+  margin-left: 10rpx;
+  margin-top: 20rpx;
+  margin-right: 30rpx;
+}
+
+.view-order-operate{
+  font-size: 36rpx;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.view-order-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

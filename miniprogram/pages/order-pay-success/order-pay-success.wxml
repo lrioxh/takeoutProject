@@ -1,0 +1,40 @@
+<!--pages/ordersuccess/ordersuccess.wxml-->
+<view>
+  <view class="view-status">
+    <image class="image-status" src="../../picture/xl.jpg"></image>
+    <view class="view-success">成功！</view>
+    <view class="view-time">预计 <text style="color:skyblue">{{time}}</text> 到达，</view>
+    <view class="view-notice">请留意消息提醒</view>
+  </view>
+  <view class="view-go">
+    <view class="view-detail"><view>详情</view></view>
+    <view class="view-back"><view>返回</view></view>
+  </view>
+<!-- 推荐列表 -->
+  <view class="view-recommend-list">
+    <view style="margin-left:30rpx;margin-top:10rpx;">推荐</view>
+    <block wx:for="{{orderlist}}"> 
+      <!-- 菜品i -->
+      <view class="view-dish">
+        <view class="view-store-detail">
+          <text>商家 >{{item.name}}</text>
+        </view>
+        <!-- 下划线 -->
+        <view class="viewline"></view>
+        <!-- 订单详情 -->
+        <view class="view-order-detail">
+          <view>
+            <image class="image-dish" src="../../img/food.jpg"></image>
+          </view>
+          <view class="view-order-operate">
+            <text>价格：{{}}￥</text>
+            <text>评价：{{}}</text>
+            <text>自描述：{{value}}</text>
+            <view class="view-order-btn">
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

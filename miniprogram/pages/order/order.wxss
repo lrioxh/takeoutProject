@@ -1,0 +1,99 @@
+/* pages/order/order.wxss */
+.swiper-tab{  
+  width: 100%;
+  text-align: center;  
+  line-height: 80rpx;
+  background: #FF893B;
+}  
+.swiper-tab-list{
+  width: 25%;
+  display: inline-block;
+  line-height: 70rpx;
+  color: white;
+  font-size: 34rpx;
+  font-weight: 600;
+}  
+.on{
+  border-bottom: 5rpx solid white;
+  padding-bottom: 1rpx;
+}  
+.swiper-box{ 
+  width: 100%;
+  height: 85%; 
+}  
+
+/*  搜索  */
+.text-search_view{
+  display: flex;
+  font-size: 38rpx;
+  justify-content: space-between;
+  background: rgb(235, 231, 229);
+  width: 100%;
+  padding-left: 5rpx;
+  padding-top: 15rpx;
+  padding-right: 15rpx;
+}
+
+/* 菜品列表 */
+.scroll-dish{
+  height: 100%;
+}
+
+.view-dish{
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  margin: 20rpx;
+  margin-top: 30rpx;
+  border: 1px solid gray;
+  border-radius: 20rpx;
+  background: #eee
+}
+
+.view-store-detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 订单详情 */
+.view-order-detail{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.image-dish{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 15rpx;
+}
+
+.view-order-operate{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rpx;
+  width: 100%
+}
+
+.view-order-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.bottom-list-view{
+  background: #FF893B;
+  bottom: 0;   
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+.bottom-list-view view{
+  display: inline-block;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  width: 25%;
+  color: white;
+  font-size: 34rpx;
+  font-weight: 600;
+}

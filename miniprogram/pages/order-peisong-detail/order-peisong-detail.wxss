@@ -1,0 +1,122 @@
+/* pages/order-peisong-detail/order-peisong-detail.wxss */
+.view-total{
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+.view-order{
+  border: 1px dashed #444;
+  padding-bottom: 50rpx;
+}
+
+/* 配送状态 */
+.view-status-location{
+  border: 1px dashed #444;
+  margin-top: 25rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 10rpx;
+  padding-bottom: 40rpx;
+}
+
+.view-order-poccess-detail{
+  display: flex;
+  font-size: 32rpx;
+} 
+
+/* 状态图片外view */
+.view-status{
+  border: 1px dashed #666;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+/* 预计xx:xx到达 */
+.view-time{
+  margin-bottom: 40rpx;
+  font-size: 44rpx;
+  width: 100%;
+  text-align: start;
+}
+.view-time text{
+  color:rgb(0, 153, 255)
+}
+.view-order-config{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.view-order-config view{
+  border: 1px solid black;
+  border-radius: 12rpx;
+  margin-right: 30rpx;
+  padding: 5rpx;
+}
+
+/* 订单列表 */
+.view-dish-list{
+  border: 1px dashed #666;
+  border-bottom: 1px dotted #aaa;
+  padding: 12rpx;
+}
+.view-dish-word{
+  font-size: 36rpx;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+}
+
+.view-dish-detail{
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.image-dish{
+  width: 150rpx;
+  height: 150rpx;
+}
+/* 菜品描述和价格 */
+.view-dish-value{
+  padding-left: 5rpx;
+  font-size: 34rpx;
+  margin: 20rpx;
+  width: 430rpx;
+  display: flex;
+  justify-content: space-between;
+}
+/* 菜品数量 */
+.view-dish-num{
+  padding: 5rpx;
+  color: #888;
+  margin: 20rpx;
+  font-size: 36rpx
+}
+
+
+/* 包装、配送、优惠 */
+.view-wrap{
+  border: 1px dashed #666;
+  border-top: none;
+  padding: 12rpx;
+  display: flex;
+  flex-direction: column;
+  /* background: gold */
+}
+
+.view-wrap-detail{
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background: skyblue */
+}
+
+/* 小计 */
+.view-value-total{
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,145 @@
+/* pages/unpaid-detail/unpaid-detail.wxss */
+.title{
+  font-size: 50rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin: 10rpx;
+}
+
+/* 到店自取   &&   外卖配送  */
+.view-top-btn{
+  display: flex;
+  justify-content: center;
+  height: 60rpx;
+}
+.view-top-btn view:nth-child(1){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: red;
+  border: 1px solid #555;
+  border-right: none;
+  width: 250rpx;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+  text-align: center;
+  color: white;
+  font-size: 32rpx;
+}
+.view-top-btn view:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #eee;
+  border: 1px solid #555;
+  border-left: none;
+  width: 250rpx;
+  border-top-right-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+/* 菜品详情 */
+.view-dish{
+  padding: 10rpx;
+  margin: 30rpx;
+}
+.view-dish-list{
+  border: 1px dashed #666;
+  padding: 10rpx;
+}
+
+.view-dish-detail{
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.image-dish{
+  width: 150rpx;
+  height: 150rpx;
+}
+/* 菜品描述和价格 */
+.view-dish-value{
+  padding-left: 5rpx;
+  font-size: 34rpx;
+  margin: 20rpx;
+  width: 430rpx;
+  display: flex;
+  justify-content: space-between;
+}
+/* 菜品数量 */
+.view-dish-num{
+  padding: 5rpx;
+  color: #888;
+  margin: 20rpx;
+  font-size: 36rpx
+}
+
+/* 包装、配送、优惠 */
+.view-wrap{
+  border: 1px dashed #666;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-wrap-detail{
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 小计 */
+.view-total{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 付款 */
+.view-payment{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #bbb;
+  height: 140rpx;
+  border: 1px solid black;
+  position: fixed;
+  bottom: 0;
+  width: 100%
+}
+
+
+
+.view-kindofpay{
+  width: 51%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-friendpay{
+  width: 180rpx;
+  height: 70rpx;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  background: #666;
+  border-radius: 38rpx;
+  text-align: center;
+}
+
+.view-submit{
+  width: 180rpx;
+  height: 70rpx;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  background:red;
+  border-radius: 38rpx;
+  text-align: center;
+}
