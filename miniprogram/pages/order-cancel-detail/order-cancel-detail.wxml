@@ -1,17 +1,21 @@
 <!--pages/ordercancel/ordercancel.wxml-->
 <view>
   <view class="view-status">
-    <image class="image-status" src="../../picture/ng.jpg"></image>
+    <image class="image-status" src="../../img/picture/ng.jpg"></image>
     <view class="view-success">您的订单已取消！</view>
   </view>
   <view class="view-go">
-    <view class="view-detail"><view>订单详情</view></view>
-    <view class="view-back"><view>重新下单</view></view>
+    <view class="view-detail">
+      <view bindtap="gotodetail">订单详情</view>
+    </view>
+    <view class="view-back">
+      <view bindtap="gotoorder">重新下单</view>
+    </view>
   </view>
-<!-- 推荐列表 -->
+  <!-- 推荐列表 -->
   <view class="view-recommend-list">
     <view style="margin-left:30rpx;margin-top:10rpx;">推荐</view>
-    <block wx:for="{{orderlist}}"> 
+    <block wx:for="{{recmmendlists}}">
       <!-- 菜品i -->
       <view class="view-dish">
         <view class="view-store-detail">
@@ -25,10 +29,19 @@
             <image class="image-dish" src="../../img/food.jpg"></image>
           </view>
           <view class="view-order-operate">
-            <text>价格：{{}}￥</text>
+            <text style="font-size:46rpx;margin-bottom:10rpx;">{{item.dish[0].name}}</text>
+            <view class="view-dish-introduce">
+              <text>价格：{{item.dish[0].price}}￥</text>
+              <text>月售{{item.dish[0].sale}}份</text>
+            </view>
             <text>评价：{{}}</text>
-            <text>自描述：{{value}}</text>
-            <view class="view-order-btn">
+            <view class="view-swiper">
+              <view style="width:100%">自描述：</view>
+              <swiper style="width:100%;height:120rpx;" display-multiple-items="2" interval="2000" autoplay="true" circular="true" vertical="true">
+                <block wx:for="{{item.cuxiao}}">
+                  <swiper-item>{{item}}</swiper-item>
+                </block>
+              </swiper>
             </view>
           </view>
         </view>

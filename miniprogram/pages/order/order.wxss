@@ -80,20 +80,3 @@
   flex-direction: row;
   justify-content: flex-end;
 }
-
-.bottom-list-view{
-  background: #FF893B;
-  bottom: 0;   
-  position: absolute;
-  width: 100%;
-  text-align: center;
-}
-.bottom-list-view view{
-  display: inline-block;
-  padding-top: 15rpx;
-  padding-bottom: 15rpx;
-  width: 25%;
-  color: white;
-  font-size: 34rpx;
-  font-weight: 600;
-}

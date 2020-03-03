@@ -1,8 +1,17 @@
 <!--pages/order-peisong-detail/order-peisong-detail.wxml-->
 <view class="view-total">
   <!-- <view class="view-order"> -->
-    <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" 
-    markers="{{markers}}" scale="13" show-location 
+    <map 
+    id="map" 
+    longitude="{{longitude}}" 
+    latitude=" {{latitude}}" 
+    show-compass="{{true}}"
+    markers="{{markers}}"
+    scale="13" 
+    show-location="{{true}}"
+    enable-rotate	="{{true}}"
+    bindcallouttap="{{true}}"
+    enable-3D="{{true}}"
     style="width: 100%; height: 450rpx;border:1px solid black;"></map>
     <!-- <map style="width:100%;height450rpx;border:1px solid black;"></map> -->
   <!-- </view> -->
@@ -18,7 +27,7 @@
   <view class="view-status">
     <view class="view-time">预计 <text>{{time}}</text> 到达</view>
     <view class="view-order-config">
-      <view>取消订单</view>
+      <view bindtap="logfsdf">取消订单</view>
       <!-- <view>立即支付</view> -->
       <view>修改地址等信息</view>
     </view>

@@ -1,47 +1,59 @@
 /* pages/ordercancel/ordercancel.wxss */
+
 /* 状态图片外view */
-.view-status{
+
+.view-status {
   margin-top: 80rpx;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+
 /* 状态图片 */
-.image-status{
+
+.image-status {
   width: 320rpx;
   height: 320rpx;
 }
+
 /* 您的订单已经取消 */
-.view-success{
+
+.view-success {
   margin-top: 60rpx;
   width: 460rpx;
   font-size: 55rpx;
   text-align: start;
 }
+
 /* 预计xx:xx到达 */
-.view-time{
+
+.view-time {
   margin: 10rpx;
   width: 320rpx;
   /* font-size: 40rpx; */
   text-align: start;
 }
+
 /* 请留意消息提醒 */
-.view-notice{  
+
+.view-notice {
   width: 320rpx;
   font-size: 40rpx;
 }
 
 /* 详情、返回 */
-.view-go{
+
+.view-go {
   display: flex;
   justify-content: center;
 }
 
-.view-detail{
+.view-detail {
   margin-top: 80rpx;
   margin-right: 30rpx;
 }
-.view-detail view{
+
+.view-detail view {
   padding: 10rpx;
   text-align: center;
   height: 50rpx;
@@ -50,11 +62,12 @@
   border-radius: 15rpx;
 }
 
-.view-back{
+.view-back {
   margin-top: 80rpx;
   margin-left: 30rpx;
 }
-.view-back view{
+
+.view-back view {
   color: white;
   background: red;
   text-align: center;
@@ -65,14 +78,16 @@
   border-radius: 15rpx;
 }
 
-.view-recommend-list{
+/* 推荐 */
+
+.view-recommend-list {
   margin: 30rpx;
   border: 1px dotted black;
   padding: 5rpx;
   border-radius: 20rpx;
 }
 
-.view-dish{
+.view-dish {
   display: flex;
   flex-direction: column;
   padding: 20rpx;
@@ -83,29 +98,38 @@
   background: #eee;
 }
 
-.view-store-detail{
+.view-store-detail {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 /* 订单详情 */
-.view-order-detail{
+
+.view-order-detail {
   display: flex;
   justify-content: flex-start;
 }
 
+.view-dish-introduce {
+  display: flex;
+}
+
+.view-dish-introduce text {
+  margin-right: 60rpx;
+}
 
 /* 推荐列表 */
-.image-dish{
+
+.image-dish {
   width: 140rpx;
   height: 140rpx;
   margin-left: 10rpx;
-  margin-top: 20rpx;
+  margin-top: 50rpx;
   margin-right: 30rpx;
 }
 
-.view-order-operate{
+.view-order-operate {
   font-size: 36rpx;
   display: flex;
   flex-direction: column;
@@ -113,8 +137,8 @@
   margin-top: 20rpx;
 }
 
-.view-order-btn{
+.view-swiper {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  /* justify-content: space-between; */
+  padding-right: 40rpx;
 }

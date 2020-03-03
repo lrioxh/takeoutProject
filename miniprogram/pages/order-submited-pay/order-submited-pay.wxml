@@ -6,8 +6,8 @@
   <view class="view-choose-pay-method">请选择支付方式:</view>
   <view class="view-kind-of-pay">
     <view class="view-icon">
-      <image src="../../picture/wx.jpg" class="image-icon"></image>
-      <image src="../../picture/zfb.jpg" class="image-icon"></image>
+      <image src="../../img/picture/wx.jpg" class="image-icon"></image>
+      <image src="../../img/picture/zfb.jpg" class="image-icon"></image>
     </view>
     <view class="view-name"> 
       <view>微信</view>
@@ -20,7 +20,7 @@
       </radio-group>
     </view>
   </view>
-  <view class="view-pay-now"><view>立即支付</view></view>
+  <view class="view-pay-now"><view bindtap="fidngsd">立即支付</view></view>
   <view class="view-adjust">
     <view>取消订单</view>
     <view>查看详情</view>

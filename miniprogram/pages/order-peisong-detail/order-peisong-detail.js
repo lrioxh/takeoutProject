@@ -1,4 +1,6 @@
 // pages/order-peisong-detail/order-peisong-detail.js
+const db = wx.cloud.database();
+const rider = db.collection("rider")
 Page({
 
   /**
@@ -13,8 +15,35 @@ Page({
       latitude: null,
       longitude: null,
       width: 30,
-      height: 30
-    }],
+      height: 30, 
+      title:'aaa'
+      // callout: {
+      //   content: " 无锡 \n 12000元/㎡",
+      //   padding: 10,
+      //   display: 'ALWAYS',
+      //   textAlign: 'center',
+      //   // borderRadius: 10,
+      //   // borderColor:'#ff0000',
+      //   // borderWidth: 2,
+      // }
+    },
+    {
+      id: 1,
+      latitude: 35,
+      longitude: 140,
+      width: 30,
+      height: 30,
+      callout: {
+        content: " 无锡区政府 \n 12000元/㎡",
+        padding: 10,
+        display: 'ALWAYS',
+        textAlign: 'center',
+        // borderRadius: 10,
+        // borderColor:'#ff0000',
+        // borderWidth: 2,
+      }
+    }
+    ],
     time: '14:10',
     orderlist: [
       {
@@ -47,6 +76,30 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    db.collection('articles')
+      .aggregate()
+      .match({
+        author: 'stark'
+      })
+      .end().then(res=>{
+        
+      })
+    rider.get().then(res=>{
+      var rider_latitude = res.data[0].location.latitude;
+      var rider_longitude = res.data[0].location.latitude;
+      console.log(res.data[0].location.latitude)
+      console.log(res.data[0].location.longitude)
+      // that.setData({
+      //   latitude: latitude,
+      //   longitude: longitude,
+      //   markers: [{
+      //     latitude: latitude,
+      //     longitude: longitude
+      //   }]
+      // })
+    })
+
+
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
@@ -60,6 +113,7 @@ Page({
             longitude: longitude
           }]
         })
+
       }
     })
   },
@@ -111,5 +165,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  logfsdf:function(){
+    console.log(this.data.markers)
   }
 })

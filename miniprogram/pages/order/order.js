@@ -1,94 +1,64 @@
 // pages/order/order.js
-
-// order = db.collection('dish')
+const db = wx.cloud.database();
+const order = db.collection('order')
 var app = getApp()
 Page({
   data: {
-    // 页面配置
-    winWidth: 0,
-    winHeight: 0,
     // tab切换  
     currentTab: 0,
-
-    orderlist: [
-      {
-        "id": 55172,
-        "name": `王八生煎`,
-        "time": '2020-2-22',
-        "image": "../../img/food.jpg",
-        value: 60,
-      },
-      {
-        "id": 57039,
-        "name": `王八生煎`,
-        "time": '2020-2-23',
-        "image": "../../img/food.jpg", 
-        value: 70,
-      },
-      {
-        "id": 14336,
-        "name": `王八生煎`,
-        "time": '2020-2-24',
-        "image": "../../img/food.jpg", 
-        value: 10,
-      },
-      {
-        "id": 56817,
-        "name": `王八生煎`,
-        "time": '2020-2-24',
-        "image": "../../img/food.jpg",
-        value: 20,
-      },
-      {
-        "id": 57256,
-        "name": `王八生煎`,
-        "time": '2020-2-25',
-        "image": "../../img/food.jpg",
-        value: 50,
-      },
-      {
-        "id": 57253,
-        "name": `王八生煎`,
-        "time": '2020-2-29',
-        "image": "../../img/food.jpg",
-        value: 50,
-      }
-
-    ]
+    orders: null,
+    dialogShow: false,
+    buttons: [{ text: '取消' }, { text: '确定' }]
   },
+  
 
+  p(s) {
+    return s < 10 ? '0' + s : s
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取系统信息 
-    wx.getSystemInfo({
-      success: function (res) {
-        this.setData({
-          winWidth: res.windowWidth,
-          winHeight: res.windowHeight
-        });
+    // 获取所有订单信息
+    order.get().then(res =>{
+      var that = this;
+      let key = "value";
+      let value = 0;
+      let orderTime ='orderTime';
+      for (let i = 0; i < res.data.length; i++) {
+        // 计算菜品总价
+        res.data[i].price.forEach(ele => { value += ele })
+        res.data[i][key] = value
+        value=0;
+        // 计算时间，表示成xx-xx-xx形式
+        let d = res.data[i].orderTime
+        let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
+        // let resTime = this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
+        res.data[i][orderTime]=resDate
       }
-    });
+      that.setData({
+        orders:res.data
+      })
+    })
   },
   /** 
-   * 滑动切换tab 
-   */
+     * 滑动切换tab 
+     */
   bindChange: function (e) {
     this.setData({
       currentTab: e.detail.current
     });
   },
-
   /** 
    * 点击tab切换 
    */
   swichNav: function (e) {
+    var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     }
     else {
-      this.setData({
+      that.setData({
         currentTab: e.target.dataset.current
       })
     }
@@ -156,5 +126,17 @@ Page({
     wx.redirectTo({
       url: '../order-cancel-detail/order-cancel-detail',
     })
-  }
+  },
+  openConfirm: function () {
+    this.setData({
+      dialogShow: true
+    })
+  },
+  tapDialogButton(e) {
+    this.setData({
+      dialogShow: false,
+      showOneButtonDialog: false
+    })
+  },
+
 })

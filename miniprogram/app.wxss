@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "/components/dialog/dialog.wxss";
 .container {
   height: 100%;
   display: flex;

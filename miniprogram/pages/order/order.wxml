@@ -1,4 +1,10 @@
 <!--pages/order/order.wxml-->
+<view class="page">
+  <mp-dialog title="取消订单并申请退款" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+      <view>您确定要取消您的订单,</view>
+      <view>并申请退款吗？</view>
+  </mp-dialog>
+</view>
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
@@ -7,17 +13,17 @@
 </view>
 <view class="text-search_view">
   <input placeholder="请输入你想要的菜品" style="width:100%;"></input>
-  <icon type="search" size="26"></icon>
+  <icon type="search" size="26" bindtap="search"></icon>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
   <!-- 全部 -->
-    <swiper-item>
-      <scroll-view scroll-y="true" class="scroll-dish">
-      <block wx:for="{{orderlist}}"> 
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scroll-dish">
+      <block wx:for="{{orders}}"> 
         <!-- 菜品i -->
         <view class="view-dish">
           <view class="view-store-detail">
-            <text>商家 >{{item.name}}</text>
+            <text>商家 > {{item.store}}</text>
             <text>待付款</text>
           </view>
           <!-- 下划线 -->
@@ -25,10 +31,40 @@
           <!-- 订单详情 -->
           <view class="view-order-detail">
             <view>
-              <image class="image-dish" src="{{item.image}}"></image>
+              <image class="image-dish" src="../../imgs/food.jpg"></image>
             </view>
             <view class="view-order-operate">
-              <text>下单时间：{{item.time}}</text>
+              <text>下单时间：{{item.orderTime}}</text>
+              <text>消费：{{item.value}}￥</text>
+              <view class="view-order-btn">
+                <button size="mini" bindtap="openConfirm">取消订单</button>
+                <button size="mini">立即支付</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </swiper-item>
+  <!-- 待付款 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scroll-dish">
+      <block wx:for="{{orders}}"> 
+        <!-- 菜品i -->
+        <view class="view-dish">
+          <view class="view-store-detail">
+            <text>商家 > {{item.store}}</text>
+            <text>待付款</text>
+          </view>
+          <!-- 下划线 -->
+          <view class="viewline"></view>
+          <!-- 订单详情 -->
+          <view class="view-order-detail">
+            <view>
+              <image class="image-dish" src="../../imgs/food.jpg"></image>
+            </view>
+            <view class="view-order-operate">
+              <text>下单时间：{{item.orderTime}}</text>
               <text>消费：{{item.value}}￥</text>
               <view class="view-order-btn">
                 <button size="mini" bindtap="gotocanceldetail">取消订单</button>
@@ -40,26 +76,26 @@
       </block>
     </scroll-view>
   </swiper-item>
-  <!-- 待付款 -->
-    <swiper-item>
-      <scroll-view scroll-y="true" class="scroll-dish">
-      <block wx:for="{{orderlist}}"> 
+  <!-- 未完成 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scroll-dish">
+      <block wx:for="{{orders}}"> 
         <!-- 菜品i -->
         <view class="view-dish">
           <view class="view-store-detail">
-            <text>商家 >{{item.name}}</text>
-            <text>待付款</text>
+            <text>商家 > {{item.store}}</text>
+            <text>待完成</text>
           </view>
           <!-- 下划线 -->
           <view class="viewline"></view>
           <!-- 订单详情 -->
           <view class="view-order-detail">
             <view>
-              <image class="image-dish" src="{{item.image}}"></image>
+              <image class="image-dish" src="../../imgs/food.jpg"></image>
             </view>
             <view class="view-order-operate">
-              <text>下单时间：{{item.time}}</text>
-              <text>消费：{{value}}￥</text>
+              <text>下单时间：{{item.orderTime}}</text>
+              <text>消费：{{item.value}}￥</text>
               <view class="view-order-btn">
                 <button size="mini" bindtap="gotocanceldetail">取消订单</button>
                 <button size="mini">立即支付</button>
@@ -70,44 +106,14 @@
       </block>
     </scroll-view>
   </swiper-item>
-  <!-- 未完成 -->
-    <swiper-item>
-      <scroll-view scroll-y="true" class="scroll-dish">
-      <block wx:for="{{orderlist}}"> 
-        <!-- 菜品i -->
-        <view class="view-dish" bindtap="gotopeisongdetail">
-          <view class="view-store-detail">
-            <text>商家 >{{item.name}}</text>
-            <text>未完成</text>
-          </view>
-          <!-- 下划线 -->
-          <view class="viewline"></view>
-          <!-- 订单详情 -->
-          <view class="view-order-detail">
-            <view>
-              <image class="image-dish" src="{{item.image}}"></image>
-            </view>
-            <view class="view-order-operate">
-              <text>下单时间：{{item.time}}</text>
-              <text>消费：{{value}}￥</text>
-              <view class="view-order-btn">
-                <button size="mini">取消订单</button>
-                <button size="mini">立即支付</button>
-              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </scroll-view>
-  </swiper-item>
   <!-- 待评价 -->
-    <swiper-item>
-      <scroll-view scroll-y="true" class="scroll-dish">
-      <block wx:for="{{orderlist}}"> 
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scroll-dish">
+      <block wx:for="{{orders}}"> 
         <!-- 菜品i -->
         <view class="view-dish">
           <view class="view-store-detail">
-            <text>商家 >{{item.name}}</text>
+            <text>商家 > {{item.store}}</text>
             <text>待评价</text>
           </view>
           <!-- 下划线 -->
@@ -115,13 +121,13 @@
           <!-- 订单详情 -->
           <view class="view-order-detail">
             <view>
-              <image class="image-dish" src="{{item.image}}"></image>
+              <image class="image-dish" src="../../imgs/food.jpg"></image>
             </view>
             <view class="view-order-operate">
-              <text>下单时间：{{item.time}}</text>
-              <text>消费：{{value}}￥</text>
+              <text>下单时间：{{item.orderTime}}</text>
+              <text>消费：{{item.value}}￥</text>
               <view class="view-order-btn">
-                <button size="mini">取消订单</button>
+                <button size="mini" bindtap="gotocanceldetail">取消订单</button>
                 <button size="mini">立即支付</button>
               </view>
             </view>
@@ -131,9 +137,3 @@
     </scroll-view>
   </swiper-item>
 </swiper>
-<view class="bottom-list-view">
-  <view>主页</view>
-  <view>订单</view>
-  <view>社区</view>
-  <view>个人</view>
-</view>

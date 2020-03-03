@@ -1,29 +1,15 @@
 // pages/ordercancel/ordercancel.js
+const db = wx.cloud.database();
+const xy = db.collection('xinyuan')
+const ty = db.collection('taiyuan')
+const db_store = db.collection('store')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    time: '14:10',
-    orderlist: [
-      {
-        "id": 55172,
-        "name": `王八生煎`,
-        "time": '2020-2-22',
-      },
-      {
-        "id": 57039,
-        "name": `王八生煎`,
-        "time": '2020-2-23',
-      },
-      {
-        "id": 14336,
-        "name": `王八生煎`,
-        "time": '2020-2-24',
-      },
-
-    ]
+    recmmendlists: null,
   },
 
   /**
@@ -31,6 +17,26 @@ Page({
    */
   onLoad: function (options) {
 
+    let key = "value";
+    let value = 0;
+    let orderTime = 'orderTime';
+    
+    
+    xy.get().then(res=>{
+
+      for (let i = 0; i < res.data.length; i++) {
+        let cuxiao = "cuxiao"
+        console.log(res.data[0].mes)
+        // let a = res.data[0].mes.split("；");
+
+        res.data[i][cuxiao] = res.data[0].mes.split("；");
+        console.log(res.data[i][cuxiao])
+      }
+      this.setData({
+        recmmendlists:res.data,
+        // sales:a
+      })
+    })
   },
 
   /**

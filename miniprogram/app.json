@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/order/order",
+    "pages/index/index",
+    "pages/forum/forum",
+    "pages/mine/mine",
     "pages/order-peisong-detail/order-peisong-detail",
     "pages/order-pay-success/order-pay-success",
     "pages/order-submited-pay/order-submited-pay",
@@ -18,6 +21,37 @@
     "scope.userLocation": {
       "desc": "授权当前位置"
     }
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ff893b",
+    "backgroundColor": "#F6F6F6",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "imgs/tabBar/home-default.png",
+        "selectedIconPath": "imgs/tabBar/home-active.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "论坛",
+        "iconPath": "imgs/tabBar/home-default.png",
+        "selectedIconPath": "imgs/tabBar/home-active.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "imgs/tabBar/buy-list-default.png",
+        "selectedIconPath": "imgs/tabBar/buy-list-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "imgs/tabBar/my-default.png",
+        "selectedIconPath": "imgs/tabBar/my-active.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
