@@ -1,7 +1,8 @@
 <!--pages/ordercancel/ordercancel.wxml-->
+<view>商家取消订单</view>
 <view>
   <view class="view-status">
-    <image class="image-status" src="../../img/picture/ng.jpg"></image>
+    <image class="image-status" src="../../imgs/picture/ng.jpg"></image>
     <view class="view-success">您的订单已取消！</view>
   </view>
   <view class="view-go">
@@ -26,7 +27,7 @@
         <!-- 订单详情 -->
         <view class="view-order-detail">
           <view>
-            <image class="image-dish" src="../../img/food.jpg"></image>
+            <image class="image-dish" src="../../imgs/food.jpg"></image>
           </view>
           <view class="view-order-operate">
             <text style="font-size:46rpx;margin-bottom:10rpx;">{{item.dish[0].name}}</text>

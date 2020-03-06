@@ -7,8 +7,8 @@
     "pages/order-peisong-detail/order-peisong-detail",
     "pages/order-pay-success/order-pay-success",
     "pages/order-submited-pay/order-submited-pay",
-    "pages/order-cancel-detail/order-cancel-detail",
-    "pages/order-cancel/order-cancel",
+    "pages/order-cancel-store/order-cancel-store",
+    "pages/order-cancel-cus/order-cancel-cus",
     "pages/order-unpaid-detail/order-unpaid-detail"
   ],
   "window": {

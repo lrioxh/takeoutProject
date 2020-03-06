@@ -14,6 +14,7 @@
 	"libVersion": "2.10.2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -51,16 +52,52 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/order-submited-pay/order-submited-pay",
 					"pathName": "pages/order-submited-pay/order-submited-pay",
+					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/order-cancel-store/order-cancel-store",
+					"pathName": "pages/order-cancel-store/order-cancel-store",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/order-cancel-detail/order-cancel-detail",
-					"pathName": "pages/order-cancel-detail/order-cancel-detail",
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/order",
+					"pathName": "index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/order-cancel-cus/order-cancel-cus",
+					"pathName": "pages/order-cancel-cus/order-cancel-cus",
+					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-unpaid-detail/order-unpaid-detail",
+					"pathName": "pages/order-unpaid-detail/order-unpaid-detail",
+					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/order",
+					"pathName": "index/index",
+					"query": "",
 					"scene": null
 				}
 			]

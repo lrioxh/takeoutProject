@@ -1,11 +1,8 @@
 // pages/order-peisong-detail/order-peisong-detail.js
 const db = wx.cloud.database();
 const rider = db.collection("rider")
+const order = db.collection("order")
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     longitude: null,
     latitude: null,
@@ -29,8 +26,8 @@ Page({
     },
     {
       id: 1,
-      latitude: 35,
-      longitude: 140,
+      latitude: null,
+      longitude: null,
       width: 30,
       height: 30,
       callout: {
@@ -38,82 +35,65 @@ Page({
         padding: 10,
         display: 'ALWAYS',
         textAlign: 'center',
-        // borderRadius: 10,
-        // borderColor:'#ff0000',
-        // borderWidth: 2,
       }
     }
     ],
     time: '14:10',
-    orderlist: [
-      {
-        "id": 55172,
-        "name": `王八生煎`,
-        "time": '2020-2-22',
-        "number": 1,
-        price: 15
-      },
-      {
-        "id": 57039,
-        "name": `王八生煎`,
-        "time": '2020-2-23',
-        "number": 2,
-        price: 30
-      },
-      {
-        "id": 14336,
-        "name": `王八生煎`,
-        "time": '2020-2-24',
-        number: 3,
-        price: 45
-      },
-
-    ]
+    orders:null,
+  },
+  // 把数字 x 格式化为 0x
+  p(s) {
+    return s < 10 ? '0' + s : s
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 生命周期函数--监听页面加载
   onLoad: function (options) {
     var that = this;
-    db.collection('articles')
-      .aggregate()
-      .match({
-        author: 'stark'
+    // 获取订单信息
+    order.get().then(res=>{
+      var that = this;
+      let key = "value";
+      let value = 0;
+      let orderTime = 'orderTime';
+      for (let i = 0; i < res.data.length; i++) {
+        // 计算菜品总价
+        res.data[i].price.forEach(ele => { value += ele })
+        res.data[i][key] = value
+        value = 0;
+        // 计算时间，表示成xx-xx-xx形式
+        let d = res.data[i].orderTime
+        let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
+        // let resTime = this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
+        res.data[i][orderTime] = resDate
+      }
+      console.log(res.data[0])
+      that.setData({
+        orders: res.data[0]
       })
-      .end().then(res=>{
-        
-      })
-    rider.get().then(res=>{
-      var rider_latitude = res.data[0].location.latitude;
-      var rider_longitude = res.data[0].location.latitude;
-      console.log(res.data[0].location.latitude)
-      console.log(res.data[0].location.longitude)
-      // that.setData({
-      //   latitude: latitude,
-      //   longitude: longitude,
-      //   markers: [{
-      //     latitude: latitude,
-      //     longitude: longitude
-      //   }]
-      // })
     })
-
 
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
-        that.setData({
-          latitude: latitude,
-          longitude: longitude,
-          markers: [{
+        rider.get().then(res => {
+          var rider_latitude = res.data[0].location.latitude;
+          var rider_longitude = res.data[0].location.longitude;
+          that.setData({
             latitude: latitude,
-            longitude: longitude
-          }]
+            longitude: longitude,
+            markers: [{
+              latitude: latitude,
+              longitude: longitude
+            },
+            {
+              latitude: rider_latitude,
+              longitude: rider_longitude
+            }
+            ]
+          })
         })
-
       }
     })
   },
@@ -167,7 +147,8 @@ Page({
 
   },
 
-  logfsdf:function(){
+  // 测试使用
+  logfsdf: function(){
     console.log(this.data.markers)
   }
 })

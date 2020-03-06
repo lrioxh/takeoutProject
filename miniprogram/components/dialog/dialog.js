@@ -151,9 +151,8 @@ Component({
             var index = e.currentTarget.dataset.index;
             console.log(index)
             if(index==1){
-              wx.redirectTo({
-                url: '../order-cancel-detail/order-cancel-detail',
-              })
+              const myEventDetail = {} // detail对象，提供给事件监听函数
+              this.triggerEvent("run", myEventDetail)
             }
             else{
               this.triggerEvent('buttontap', { index: index, item: this.data.buttons[index] }, {});

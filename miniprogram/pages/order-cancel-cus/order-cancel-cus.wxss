@@ -1,0 +1,150 @@
+/* pages/ordercanceldetail/ordercanceldetail.wxss */
+.view-total{
+  background: rgb(228,228,228);
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+.view-order{
+  border: 1px dotted #444;
+  padding-bottom: 25rpx;
+}
+/* 订单已取消 */
+.view-order-cancel{
+  padding-top: 30rpx;
+  margin-left: 50rpx;
+  margin-bottom: 30rpx;
+  font-size: 48rpx;
+  /* font-weight: 500; */
+}
+/* 返回、重新下单 */
+.view-order-list{
+  display: flex;
+  width: 530rpx;
+  margin-left: 10rpx;
+}
+.view-order-list view{
+  margin-left: 40rpx;
+  color: white;
+  background: red;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-radius: 20rpx;
+  width: 150rpx;
+  font-size: 36rpx;
+  text-align: center;
+}
+/* 配送状态 */
+.view-status{
+  border: 1px dotted #444;
+  margin-top: 25rpx;
+  height: 200rpx;
+}
+
+
+
+/* 推荐菜品 */
+.view-recommend{
+  background: rgb(228,228,228);
+  border: 1px dotted #444;
+  margin-top: 25rpx;
+  display: flex;
+  flex-direction: column;
+}
+/* “推荐”字样 */
+.view-recommend-word{
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  margin-bottom: 40rpx;
+}
+/* 推荐菜品的包装 */
+.view-recommend-dish{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 30rpx;
+}
+/* 推荐菜品详情 */
+.view-recommend-dish-detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.view-recommend-dish-detail view{
+  margin-left: 30rpx;
+}
+.image-dish{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 订单详情 */
+.view-order-detail{
+  margin-top: 25rpx;
+}
+.view-dish-list{
+  border: 1px dotted #444;
+}
+/* 商家文字 */
+.view-store{
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.view-dish-detail{
+  padding: 20rpx;
+  background: rgb(225,225,225);
+  margin-bottom: 15rpx;
+  display: flex;
+}
+
+.image-dish{
+  width: 150rpx;
+  height: 150rpx;
+}
+
+/* 菜品描述和价格 */
+.view-dish-value{
+  padding-left: 5rpx;
+  font-size: 34rpx;
+  margin: 20rpx;
+  width: 430rpx;
+  display: flex;
+  justify-content: space-between;
+}
+/* 菜品数量 */
+.view-dish-num{
+  padding: 5rpx;
+  color: #888;
+  margin: 20rpx;
+  font-size: 36rpx
+}
+
+/* 包装、配送、优惠 */
+.view-wrap{
+  border: 1px dotted #666;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-wrap-detail{
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 小计 */
+.view-value-total{
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20rpx;
+  margin-top: 20rpx;
+}
+.view-value-total view{
+  margin: 15rpx;
+}

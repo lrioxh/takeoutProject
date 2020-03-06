@@ -92,9 +92,14 @@
 }
 
 /* 小计 */
-.view-total{
+.view-value-total{
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 20rpx;
+  margin-top: 20rpx;
+}
+.view-value-total view{
+  margin: 15rpx;
 }
 
 /* 付款 */

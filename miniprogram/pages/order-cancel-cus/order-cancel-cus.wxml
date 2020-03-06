@@ -1,0 +1,73 @@
+<!--pages/ordercanceldetail/ordercanceldetail.wxml-->
+<view class="view-total">
+  <view class="view-order">
+    <view class="view-order-cancel">订单已取消</view>
+    <view class="view-order-list">
+      <view bindtap="goToOrder">返回</view>
+      <view bindtap="gotounpaiddetail">重新下单</view>
+    </view>
+  </view>
+
+  <view class="view-status">
+  客户主动取消订单
+    订单状态\n1
+  </view>
+
+  <view class="view-recommend">
+    <view class="view-recommend-word">推荐</view>
+    <view class="view-recommend-dish">
+      <view class="view-recommend-dish-detail">
+        <image class="image-dish" src="../../imgs/food.jpg"></image>
+        <view style="font-size:33rpx;">只要998</view>
+      </view>
+      <view class="view-recommend-dish-detail">
+        <image class="image-dish" src="../../imgs/food2.jpg"></image>
+        <view style="font-size:33rpx;">KFC代吃</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="view-order-detail">
+    <view class="view-dish-list">
+      <view class="view-store">商家 >{{order.store}}</view>
+      <!-- dish-datail -->
+      <block wx:for="{{order.dishID}}">
+        <view class="view-dish-detail">
+          <image class="image-dish" src="../../imgs/food.jpg"></image>
+          <view>
+            <view class="view-dish-value">
+              <text>描述：{{item}}</text>
+              <text>￥{{order.price[index]}}</text>
+            </view>
+            <view class="view-dish-num">x{{order.dishnum[index]}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="view-wrap">
+      <view class="view-wrap-detail">
+        <text>包装费</text>
+        <text>￥{{order.wrapPrice==null?'0' : order.wrapPrice}}</text>
+      </view>
+      <view class="view-wrap-detail">
+        <text>配送费</text>
+        <text>￥{{order.sendPrice==null?'0' : order.sendPrice}}</text>
+      </view>
+      <view class="view-wrap-detail">
+        <text>优惠></text>
+        <text>-￥{{order.youhui==null?'0' : order.youhui}}</text>
+      </view>
+    </view>
+    <!-- 分割线 -->
+    <view class="viewline"></view>
+
+    <!-- 合计 -->
+    <view class="view-value-total">
+      <view style="font-size:42rpx;">
+        <text>已优惠</text>
+        <text>￥{{order.youhui==null?'0' : order.youhui}}</text>
+      </view>
+      <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
+    </view>
+  </view>
+</view>
