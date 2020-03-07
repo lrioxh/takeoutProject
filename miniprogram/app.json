@@ -9,7 +9,8 @@
     "pages/order-submited-pay/order-submited-pay",
     "pages/order-cancel-store/order-cancel-store",
     "pages/order-cancel-cus/order-cancel-cus",
-    "pages/order-unpaid-detail/order-unpaid-detail"
+    "pages/order-unpaid-detail/order-unpaid-detail",
+    "pages/order-detail/order-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

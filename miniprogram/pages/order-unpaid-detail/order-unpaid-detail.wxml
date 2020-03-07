@@ -1,52 +1,60 @@
 <!--pages/unpaid-detail/unpaid-detail.wxml-->
-<view>
+<scroll-view scroll-y class="srcoll-total">
+<view style="height:100%;">
   <view class="title">待付款</view>
-  <view class="view-top-btn">
-    <view>
-      <text>到店自取</text>
+  <view class="view-btn-location">
+    <view class="view-top-btn">
+      <view style="background:{{view1st}};color:{{view1Color}}" bindtap="choose1st">
+        <text>到店自取</text>
+      </view>
+      <view style="background:{{view2nd}};color:{{view2Color}}" bindtap="choose2nd">
+        <text>外卖配送</text>
+      </view>
     </view>
-    <view>
-      <text>外卖配送</text>
+    <view class="view-loaction">
+    <view class="view-location-view" bindtap="getLocation" hidden="{{isLocation}}">
+      <image src="../../imgs/ico-addr.png" style="height:45rpx; width:45rpx"></image>
+      <view style="font-size:36rpx">{{orderlocation==null? "请选择收货地址 >" : [orderlocation.name]}}</view>
+      </view>
     </view>
   </view>
   <!-- 自取 -->
-  <scroll-view>
-    <view class="view-dish">
-      <!-- dish list -->
-      <view class="view-dish-list">
-        <view>商家 ></view>
-        <!-- dish-datail -->
-        <block wx:for="{{order.dishID}}">
-          <view class="view-dish-detail">
-            <image class="image-dish" src="../../imgs/food.jpg"></image>
-            <view>
-              <view class="view-dish-value">
-                <text>描述：{{item}}</text>
-                <text><text style="font-weight:600;font-size:36rpx">￥</text>{{order.price[index]}}</text>
-              </view>
-              <view class="view-dish-num">x{{order.dishnum[index]}}</view>
+<view class="view-dish">
+    <!-- dish list -->
+    <view class="view-dish-list">
+      <view>商家 ></view>
+      <!-- dish-datail -->
+      <block wx:for="{{order.dishID}}">
+        <view class="view-dish-detail">
+          <image class="image-dish" src="../../imgs/food.jpg"></image>
+          <view>
+            <view class="view-dish-value">
+              <text>描述：{{item}}</text>
+              <text><text style="font-weight:600;font-size:36rpx">￥</text>{{order.price[index]}}</text>
             </view>
+            <view class="view-dish-num">x{{order.dishnum[index]}}</view>
           </view>
-        </block>
+        </view>
+      </block>
+    </view>
+    <!-- 包装费 -->
+    <view class="view-wrap">
+      <view class="view-wrap-detail">
+        <text>包装费</text>
+        <text>￥{{order.wrapPrice==null?'0' : order.wrapPrice}}</text>
       </view>
-      <!-- 包装费 -->
-      <view class="view-wrap">
-        <view class="view-wrap-detail">
-          <text>包装费</text>
-          <text>￥{{order.wrapPrice==null?'0' : order.wrapPrice}}</text>
-        </view>
-        <view class="view-wrap-detail">
-          <text>配送费</text>
-          <text>￥{{order.sendPrice==null?'0' : order.sendPrice}}</text>
-        </view>
-        <view class="view-wrap-detail">
-          <text>优惠></text>
-          <text>-￥{{order.youhui==null?'0' : order.youhui}}</text>
-        </view>
+      <view class="view-wrap-detail" style="text-decoration: {{textdecration}}">
+        <text>配送费</text>
+        <text>￥{{order.sendPrice==null?'0' : order.sendPrice}}</text>
       </view>
-      <!-- 分割线 -->
-      <view class="viewline"></view>
-      <!-- 合计 -->
+      <view class="view-wrap-detail">
+        <text style="color:red;font-weight:550" bindtap="gotoCoupin">优惠 ></text>
+        <text>-￥{{order.youhui==null?'0' : order.youhui}}</text>
+      </view>
+    </view>
+    <!-- 分割线 -->
+    <view class="viewline"></view>
+    <!-- 合计 -->
     <view class="view-value-total">
       <view style="font-size:42rpx;">
         <text>已优惠</text>
@@ -54,8 +62,7 @@
       </view>
       <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
     </view>
-    </view>
-  </scroll-view>
+  </view>
   <!-- 付款栏 -->
   <view class="view-payment">
     <!-- 应付价格，已优惠价格 -->
@@ -74,7 +81,8 @@
         <text>提交订单</text>
       </view>
     </view>
-  </view>
+</view>
 
 
 </view>
+</scroll-view>

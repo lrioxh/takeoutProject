@@ -7,24 +7,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order:null,
-    id:null,
+    order: null,
     // 确认取消订单
     dialogShow: false,
-    tempid: null,// 选中点单的id
-    buttons: [{ text: '取消' }, { text: '确定' }],
+    tempid: null, // 选中点单的id
+    buttons: [{
+      text: '取消'
+    }, {
+      text: '确定'
+    }],
   },
   // 生命周期函数--监听页面加载
   p(s) {
     return s < 10 ? '0' + s : s
   },
   //防止出现24：xx
-  h(s){
-    return s == 24 ? s-'24' :s
+  h(s) {
+    return s == 24 ? s - '24' : s
   },
-
-  pageData:{
-    id:null
+  pageData: {
+    id: null
   },
   onLoad: function(options) {
     this.pageData.id = options.id
@@ -42,58 +44,9 @@ Page({
         })
       })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-//--------------------------------------------------------------------------------------------------------
-// 弹窗dialog确认是否取消订单
-  openConfirm: function (e) {
+  //--------------------------------------------------------------------------------------------------------
+  // 弹窗dialog确认是否取消订单
+  openConfirm: function(e) {
     this.setData({
       tempid: e.target.id,
       dialogShow: true
@@ -111,14 +64,50 @@ Page({
       title: '加载中',
     })
     const id = this.data.tempid
-    setTimeout(function () {
+    setTimeout(function() {
       wx.redirectTo({
         url: '../order-cancel-cus/order-cancel-cus?id=' + [id],
       })
-      setTimeout(function () {
+      setTimeout(function() {
         wx.hideLoading()
       }, 100)
     }, 100)
-
   },
+
+  updateOrder: function() {
+    var _this = this
+    if (_this.data.order.addr == null) {
+      wx.showToast({
+        title: '您已选择自取！',
+        image: "../../imgs/img1/about_us.png",
+        duration: 1500
+      })
+    } else {
+      wx.chooseLocation({
+        success: function(res) {
+          wx.showLoading({
+            title: '修改地址中',
+          })
+          order.doc(_this.pageData.id).update({
+            data: {
+              addr: res
+            },
+            success: console.log,
+          })
+          wx.hideLoading()
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      })
+    }
+  },
+  gotoDetali: function() {
+    console.log()
+    wx.navigateTo({
+      url: '../order-detail/order-detail?id=' + [this.pageData.id],
+    })
+  }
 })

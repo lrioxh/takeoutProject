@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -55,7 +55,7 @@
 					"id": 2,
 					"name": "pages/order-submited-pay/order-submited-pay",
 					"pathName": "pages/order-submited-pay/order-submited-pay",
-					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
+					"query": "id=1583559290974_0.08225279938707653_33558037",
 					"scene": null
 				},
 				{
@@ -73,31 +73,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/order/order",
-					"pathName": "index/index",
-					"query": "",
+					"id": 5,
+					"name": "pages/order-cancel-cus/order-cancel-cus",
+					"pathName": "pages/order-cancel-cus/order-cancel-cus",
+					"query": "id=1583559290974_0.08225279938707653_33558037",
 					"scene": null
 				},
 				{
 					"id": 6,
-					"name": "pages/order-cancel-cus/order-cancel-cus",
-					"pathName": "pages/order-cancel-cus/order-cancel-cus",
-					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/order-unpaid-detail/order-unpaid-detail",
 					"pathName": "pages/order-unpaid-detail/order-unpaid-detail",
-					"query": "id=be7327e2-283b-4583-9551-e51c468ada5a",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order/order",
-					"pathName": "index/index",
-					"query": "",
+					"query": "id=1583559290974_0.08225279938707653_33558037",
 					"scene": null
 				}
 			]
