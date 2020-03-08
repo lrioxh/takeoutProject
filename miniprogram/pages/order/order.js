@@ -58,14 +58,18 @@ Page({
         refreshLoading: false,
       })
       order.get().then(res => {
+        // console.log(res)
         var that = this;
         let key = "value";
         let value = 0;
         let orderTime = 'orderTime';
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.data.length ; i++) {
+          // res.data.length
           // 计算菜品总价
-          res.data[i].price.forEach(ele => { value += ele })
-          res.data[i][key] = value
+          for(let j=0; j<res.data[i].dish.length ; j++){
+            value += res.data[i].dish[j].price
+            res.data[i][key] = value
+          }
           value = 0;
           // 计算时间，表示成xx-xx-xx形式
           let d = res.data[i].orderTime
@@ -87,15 +91,18 @@ Page({
   },
   loadmore: function () {
     let _this = this;
-    if (this.data.haveLoadAll===true){
+    if (this.data.haveLoadAll===true&&this.data.orders.length==20){
       wx.vibrateShort()
-
       wx.showLoading({
         title: '玩命加载中…'
       })
     }
+    if (_this.data.orders.length <20 ){
+      _this.pageData.skip = _this.data.orders.length
+    }
     order.skip(_this.pageData.skip).get().then(res => {
-      if (res.data.length===0){
+      console.log(res)
+      if (res.data.length==0){
         console.log("alldone")
         this.setData({
           haveLoadAll:false
@@ -104,30 +111,34 @@ Page({
         wx.hideLoading();
       }
       else{
-      var that = this;
-      let key = "value";
-      let value = 0;
-      let orderTime = 'orderTime';
-      for (let i = 0; i < res.data.length; i++) {
-        // 计算菜品总价
-        res.data[i].price.forEach(ele => { value += ele })
-        res.data[i][key] = value
-        value = 0;
-        // 计算时间，表示成xx-xx-xx形式
-        let d = res.data[i].orderTime
-        let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
-        // let resTime = this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
-        res.data[i][orderTime] = resDate
-      }
-      let oldData = _this.data.orders;
-      var order = oldData.concat(res.data)
-      _this.setData({
-        orders: order
-      }, res => {
-        _this.pageData.skip = _this.pageData.skip + 20
-        console.log(_this.pageData.skip)
-        wx.hideLoading();
-      })
+        console.log("432")
+        var that = this;
+        let key = "value";
+        let value = 0;
+        let orderTime = 'orderTime';
+        for (let i = 0; i < res.data.length; i++) {
+          // res.data.length
+          // 计算菜品总价
+          for (let j = 0; j < res.data[i].dish.length; j++) {
+            value += res.data[i].dish[j].price
+            res.data[i][key] = value
+          }
+          value = 0;
+          // 计算时间，表示成xx-xx-xx形式
+          let d = res.data[i].orderTime
+          let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
+          // let resTime = this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
+          res.data[i][orderTime] = resDate
+          }
+        let oldData = _this.data.orders;
+        var order = oldData.concat(res.data)
+        _this.setData({
+          orders: order
+        }, res => {
+          _this.pageData.skip = _this.pageData.skip + 20
+          console.log(_this.pageData.skip)
+          wx.hideLoading();
+        })
       }
     })
   },
@@ -175,14 +186,9 @@ Page({
     })
   },
 
-  // 取消订单
-  gotocanceldetail:function(){
-    wx.redirectTo({
-      url: '../order-cancel-cus/order-cancel-cus',
-    })
-  },
   // 立即支付
   gotosubmitedpay:function(e){
+    console.log(e)
     wx.redirectTo({
       url: '../order-submited-pay/order-submited-pay?id=' + [e.target.id],
     })
@@ -208,7 +214,7 @@ Page({
   },
   // 跳过20个开始加载菜品
   pageData: {
-    skip: 0
+    skip: 20
   },
   // x >>>>>>>>0x
   p(s) {
@@ -229,28 +235,15 @@ Page({
         wx.hideLoading()
       },100)
     }, 100)
-
-  }
+  },
+  // 订单详情
+  gotoDetail:function(e){
+    console.log(e)
+    wx.redirectTo({
+      url: '../order-peisong-detail/order-peisong-detail?id=' + [e.currentTarget.id],
+    })
+  },
 
 
 })
-/*<view class="view-store-detail">
-            <text>商家 > {{item.store}}</text>
-            <text>{{item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment ?'已评价':'待评价'}}</text>
-          </view>
-          <!-- 下划线 -->
-          <view class="viewline"></view>
-          <!-- 订单详情 -->
-          <view class="view-order-detail">
-            <view>
-              <image class="image-dish" src="../../imgs/food.jpg"></image>
-            </view>
-            <view class="view-order-operate">
-              <text>下单时间：{{item.orderTime}}</text>
-              <text>消费：{{item.value}}￥</text>
-              <view class="view-order-btn">
-                <button size="mini" bindtap="openConfirm" id="{{item._id}}">取消订单</button>
-                <button size="mini">立即支付</button>
-              </view>
-            </view>
-          </view>*/
+

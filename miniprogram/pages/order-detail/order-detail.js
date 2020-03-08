@@ -28,10 +28,10 @@ Page({
     order.doc(this.pageData.id).get().then(res => {
       let key = "totalPrice"
       let totalPrice = 0;
-      res.data.price.forEach(ele => {
-        totalPrice += ele
-      })
-      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.youhui)
+      for (let j = 0; j < res.data.dish.length; j++) {
+        totalPrice += res.data.dish[j].price
+      }
+      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
       res.data[key] = totalPrice
       this.setData({
         order: res.data
@@ -80,7 +80,7 @@ Page({
         stuID: "4cgdfg325htg8ct8sfgcvtc834hc8",
         rate: 4,
         tel: 15725055202,
-        youhui: 4
+        coupon: 4
       },
     }).then(res => {
       wx.showToast({
@@ -122,7 +122,7 @@ Page({
     order.price.forEach(ele => {
       totalPrice += ele
     })
-    totalPrice = totalPrice + this.money(order.wrapPrice) - this.money(order.youhui)
+    totalPrice = totalPrice + this.money(order.wrapPrice) - this.money(order.coupon)
     order[key] = totalPrice
     this.setData({
       order: order,
@@ -146,7 +146,7 @@ Page({
     order.price.forEach(ele => {
       totalPrice += ele
     })
-    totalPrice = totalPrice + this.money(order.wrapPrice) + this.money(order.sendPrice) - this.money(order.youhui)
+    totalPrice = totalPrice + this.money(order.wrapPrice) + this.money(order.sendPrice) - this.money(order.coupon)
     order[key] = totalPrice
     this.setData({
       order: order,

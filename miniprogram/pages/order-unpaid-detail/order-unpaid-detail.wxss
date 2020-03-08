@@ -61,6 +61,7 @@
 .view-dish{
   padding: 10rpx;
   margin: 30rpx;
+  margin-top: 5rpx;
   margin-bottom: 10rpx;
   padding-bottom: 0rpx;
 }

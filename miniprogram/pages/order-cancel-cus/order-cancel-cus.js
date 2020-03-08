@@ -20,11 +20,10 @@ Page({
       .then(res => {
         let key = "totalPrice"
         let totalPrice = 0;
-        console.log(res.data)
-        res.data.price.forEach(ele => {
-          totalPrice += ele
-        })
-        totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.youhui)
+        for (let j = 0; j < res.data.dish.length; j++) {
+          totalPrice += res.data.dish[j].price
+        }
+        totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
         res.data[key] = totalPrice
         this.setData({
           order: res.data

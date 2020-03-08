@@ -55,7 +55,7 @@
 					"id": 2,
 					"name": "pages/order-submited-pay/order-submited-pay",
 					"pathName": "pages/order-submited-pay/order-submited-pay",
-					"query": "id=1583559290974_0.08225279938707653_33558037",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				},
 				{
@@ -66,24 +66,31 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 5,
+					"id": 4,
 					"name": "pages/order-cancel-cus/order-cancel-cus",
 					"pathName": "pages/order-cancel-cus/order-cancel-cus",
-					"query": "id=1583559290974_0.08225279938707653_33558037",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				},
 				{
 					"id": 6,
 					"name": "pages/order-unpaid-detail/order-unpaid-detail",
 					"pathName": "pages/order-unpaid-detail/order-unpaid-detail",
-					"query": "id=1583559290974_0.08225279938707653_33558037",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-detail/order-detail",
+					"pathName": "pages/order-detail/order-detail",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-peisong-detail/order-peisong-detail",
+					"pathName": "pages/order-peisong-detail/order-peisong-detail",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				}
 			]

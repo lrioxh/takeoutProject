@@ -13,14 +13,17 @@ Page({
     orderlocation: null,
     isLocation: false,
   },
-  pageData: { id: null },
+  pageData: {
+    id: null
+  },
   money(a) {
-    if (a == null) { return a = 0 } else {
+    if (a == null) {
+      return a = 0
+    } else {
       return a
     }
   },
-
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.showLoading({
       title: '数据加载中',
     })
@@ -28,10 +31,11 @@ Page({
     order.doc(this.pageData.id).get().then(res => {
       let key = "totalPrice"
       let totalPrice = 0;
-      res.data.price.forEach(ele => {
-        totalPrice += ele
-      })
-      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.youhui)
+      // 总价
+      for (let j = 0; j < res.data.dish.length; j++) {
+        totalPrice += res.data.dish[j].price
+      }
+      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
       res.data[key] = totalPrice
       this.setData({
         order: res.data
@@ -39,17 +43,10 @@ Page({
       wx.hideLoading()
     })
   },
-  onReady: function () { },
-  onShow: function () { },
-  onHide: function () { },
-  onUnload: function () { },
-  onPullDownRefresh: function () { },
-  onReachBottom: function () { },
-  onShareAppMessage: function () { },
   // 提交订单函数
-  update_set_Order: function () {
+  update_set_Order: function() {
     var _this = this;
-    var time111 = new Date();
+    var time1 = new Date();
     wx.showLoading({
       title: '订单提交中',
     })
@@ -58,71 +55,81 @@ Page({
     } else {
       var address = null
     }
-    order.doc(_this.pageData.id).set({
+    // order.doc(_this.pageData.id).set({
+    order.add({
       data: {
         addr: address,
-        arriveTime: time111,
-        fetchTime: time111,
-        orderTime: time111,
-        store: "泰园餐厅",
-        storeID: "fdfdsfdsgfdsg",
-        comment: "还行，米饭太软了",
-        storeID: null,
-        dishID: ["番茄炒蛋", "水煮牛蛙"],
-        dishnum: [1, 1],
-        price: [15, 50],
+        orderTime: time1,
         paid: false,
         done: false,
-        isTaken: false,
-        wrapPrice: 5,
+        isTaken: false, // 是否接单
+        cancel: false, // 订单未取消
+        wrapPrice: 4,
         sendPrice: 3,
-        stu: "孔可赛",
+        coupon: 5, // 优惠
+        store: "馨园餐厅",
+        storeID: "fdfdsfdsgfdsg",
+        stu: "丁焊月",
         stuID: "4cgdfg325htg8ct8sfgcvtc834hc8",
+        comment: null,
         rate: 4,
         tel: 15725055202,
-        youhui: 4
+        dish: [{
+            name: "牛鞭",
+            num: 5,
+            price: 75,
+          },
+          {
+            name: "水煮牛蛙",
+            num: 1,
+            price: 50,
+          },
+          {
+            name: "劲酒",
+            num: 1,
+            price: 100,
+          }
+        ],
+        // totalPrice: this.data.order.totalPrice,
       },
     }).then(res => {
       wx.showToast({
-        title: '提价成功',
+        title: '提交成功',
       })
-      setTimeout(function () {
-        wx.switchTab({
-          url: '../order/order',
-        })
+      setTimeout(function() {
+        // wx.switchTab({
+        //   url: '../order/order',
+        // })
       }, 100)
     })
   },
   // 提交订单
-  submitOrder: function () {
+  submitOrder: function() {
     if (this.data.isLocation == true || (this.data.isLocation == false && this.data.orderlocation != null)) {
       this.update_set_Order();
-      console.log("123")
-    }
-    else {
+    } else {
       wx.showToast({
-        title: ' 请选择地址！ ',
+        title: ' 请选择地址 ',
         image: "../../imgs/img1/about_us.png",
         duration: 1500
       })
     }
-
-
   },
   //--------------------------------------------------------------------------------------------------------------
   // 选择到店自取or外卖配送
   // 到店自取
-  choose1st: function () {
+  choose1st: function() {
     wx.showLoading({
       title: '切换中',
     })
+    // 计算总价
     let key = "totalPrice"
     let totalPrice = 0;
     let order = this.data.order;
-    order.price.forEach(ele => {
-      totalPrice += ele
-    })
-    totalPrice = totalPrice + this.money(order.wrapPrice) - this.money(order.youhui)
+    for (let j = 0; j < order.dish.length; j++) {
+      totalPrice += order.dish[j].price
+    }
+    totalPrice = totalPrice + this.money(order.wrapPrice) - this.money(order.coupon)
     order[key] = totalPrice
     this.setData({
       order: order,
@@ -136,16 +143,16 @@ Page({
     wx.hideLoading()
   },
   // 外卖配送
-  choose2nd: function () {
+  choose2nd: function() {
     wx.showLoading({
       title: '切换中',
     })
     let key = "totalPrice"
     let totalPrice = 0;
     let order = this.data.order;
-    order.price.forEach(ele => {
-      totalPrice += ele
-    })
+    for (let j = 0; j < order.dish.length; j++) {
+      totalPrice += order.dish[j].price
+    }
     totalPrice = totalPrice + this.money(order.wrapPrice) + this.money(order.sendPrice) - this.money(order.youhui)
     order[key] = totalPrice
     this.setData({
@@ -158,10 +165,11 @@ Page({
       isLocation: false,
     })
     wx.hideLoading()
+    console.log(this.data.order)
   },
   //--------------------------------------------------------------------------------------------------------------
   // 获取优惠券信息
-  gotoCoupin: function () {
+  gotoCoupin: function() {
     wx.showActionSheet({
       itemList: ['A', 'B', 'C', "d", "g", "g"],
       success(res) {
@@ -173,10 +181,10 @@ Page({
     })
   },
   // 获取地址
-  getLocation: function () {
+  getLocation: function() {
     var _this = this
     wx.chooseLocation({
-      success: function (res) {
+      success: function(res) {
         _this.setData({
           orderlocation: res
         })

@@ -61,7 +61,6 @@
 /* 订单列表 */
 .view-dish-list{
   border: 1px dashed #666;
-  border-bottom: 1px dotted #aaa;
   padding: 12rpx;
 }
 .view-dish-word{
@@ -99,8 +98,8 @@
 
 /* 包装、配送、优惠 */
 .view-wrap{
+  margin-top: 15rpx;
   border: 1px dashed #666;
-  border-top: none;
   padding: 12rpx;
   display: flex;
   flex-direction: column;
@@ -119,4 +118,9 @@
 .view-value-total{
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 20rpx;
+  margin-top: 20rpx;
+}
+.view-value-total view{
+  margin: 15rpx;
 }

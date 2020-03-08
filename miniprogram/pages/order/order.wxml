@@ -60,7 +60,7 @@
       <block wx:for="{{orders}}">
         <block wx:if="{{item.paid===false}}">
           <!-- 菜品i -->
-          <view class="view-dish">
+          <view class="view-dish" bindtap="gotoDetail" id="{{item._id}}">
             <list-item>
               <view class="view-store-detail">
                 <text>商家 > {{item.store}}</text>
@@ -77,7 +77,7 @@
                   <text>下单时间：{{item.orderTime}}</text>
                   <text>消费：{{item.value}}￥</text>
                   <view class="view-order-btn">
-                    <button size="mini" bindtap="gotocanceldetail">取消订单</button>
+                    <button size="mini" catchtap="openConfirm" id="{{item._id}}" bind>取消订单</button>
                     <button size="mini">立即支付</button>
                   </view>
                 </view>
@@ -96,7 +96,7 @@
       <block wx:for="{{orders}}">
         <block wx:if="{{item.paid===true && item.done===false}}">
           <!-- 菜品i -->
-          <view class="view-dish">
+          <view class="view-dish" bindtap="gotoDetail" id="dotodetal">
             <view class="view-store-detail">
               <text>商家 > {{item.store}}</text>
               <text>待完成</text>

@@ -31,15 +31,15 @@
     <view class="view-dish-list">
       <view class="view-store">商家 >{{order.store}}</view>
       <!-- dish-datail -->
-      <block wx:for="{{order.dishID}}">
+      <block wx:for="{{order.dish}}">
         <view class="view-dish-detail">
           <image class="image-dish" src="../../imgs/food.jpg"></image>
           <view>
             <view class="view-dish-value">
-              <text>描述：{{item}}</text>
-              <text>￥{{order.price[index]}}</text>
+              <text>描述：{{item.name}}</text>
+              <text>￥{{item.price}}</text>
             </view>
-            <view class="view-dish-num">x{{order.dishnum[index]}}</view>
+            <view class="view-dish-num">x{{item.num}}</view>
           </view>
         </view>
       </block>
@@ -55,7 +55,7 @@
       </view>
       <view class="view-wrap-detail">
         <text>优惠></text>
-        <text>-￥{{order.youhui==null?'0' : order.youhui}}</text>
+        <text>-￥{{order.coupon==null?'0' : order.coupon}}</text>
       </view>
     </view>
     <!-- 分割线 -->
@@ -65,7 +65,7 @@
     <view class="view-value-total">
       <view style="font-size:42rpx;">
         <text>已优惠</text>
-        <text>￥{{order.youhui==null?'0' : order.youhui}}</text>
+        <text>￥{{order.coupon==null?'0' : order.coupon}}</text>
       </view>
       <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
     </view>
