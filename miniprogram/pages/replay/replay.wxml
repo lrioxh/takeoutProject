@@ -1,0 +1,14 @@
+<!--pages/replay/replay.wxml-->
+<view class="content">
+  <view class="text-content">
+    <view class='input-content'>
+      <input bindinput="bindKeyInput" placeholder="Don't be shy~" />
+    </view>
+
+  </view>
+
+  <view class='btn-func'>
+    <button class="btn" bindtap='saveReplay' open-type="getUserInfo">发射评论</button>
+  </view>
+
+</view>

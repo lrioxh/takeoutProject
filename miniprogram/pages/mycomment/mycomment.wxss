@@ -1,0 +1,98 @@
+/* pages/mycomment/mycomment.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: #465461;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 16px;
+  margin: 0 auto;
+}
+
+.store {
+  display: flex;
+  /* flex-direction: row; */
+  background-color: #ecf3f4;
+  margin: 10rpx;
+  padding: 10rpx;
+  border: #ccc 2rpx solid;
+  border-radius: 20rpx;
+}
+
+.store-info {
+  display: flex;
+  /* flex-direction: column; */
+  /* width: 80%; */
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.coupon-info {
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.store-name {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin: auto;
+margin-left: 20rpx;
+
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+  margin-top: 14px;
+}
+
+.store-content {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 95%;
+}
+
+.store-img {
+  width: 100rpx;
+  height: 100rpx;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.store-rate {
+  font-size: 30rpx;
+  margin: 0 0 10rpx 130rpx;
+}
+
+
+.store-text {
+  margin: 0 0 0 30rpx;
+}
+
+.place {
+  float: right;
+ font-weight: 300;
+font-size: 26rpx;
+}
+.star{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+.right{
+  width: 80%;
+}
+.under{
+font-size: 26rpx;
+}

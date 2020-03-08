@@ -1,0 +1,83 @@
+/* pages/collectstore/collect.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: #465461;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 16px;
+  margin: 0 auto;
+}
+
+.store {
+  display: flex;
+  flex-direction: row;
+  background-color: #ecf3f4;
+  margin: 15rpx;
+  padding: 25rpx;
+  border: #ccc 2rpx solid;
+  border-radius: 20rpx;
+}
+
+.store-info {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.store-name {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+  margin-top: 14px;
+}
+
+.store-content {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 95%;
+}
+
+.store-img {
+  width: 180rpx;
+  height: 180rpx;
+  display: inline-block;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.store-text {
+  margin: 0 0 0 80rpx;
+}
+
+.place {
+  float: right;
+ font-weight: 300;
+font-size: 28rpx;
+}
+.store-rate{
+  font-size: 28rpx;
+  margin: 23rpx 0 10rpx 0;
+}
+.store-rate image{
+  width: 28rpx;
+  height: 28rpx;
+}
+.store-mes{
+  font-size: 26rpx;
+}

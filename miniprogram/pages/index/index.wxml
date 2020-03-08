@@ -1,64 +1,94 @@
-<wxs module="refresh">
-module.exports = {
-  onPulling: function(evt, instance) {
-    var p = Math.min(evt.detail.dy / 80, 1)
-    console.log(p)
-    var view = instance.selectComponent('.refresh-container')
-    view.setStyle({
-      opacity: p,
-      transform: "scale(" + p + ")"
-    })
-  }
-}
-
-</wxs>
-
-自定义交互动画：
-<scroll-view
-  scroll-y style="width: 100%; height: 400px;"
-  refresher-enabled="{{true}}"
-  refresher-threshold="{{80}}"
-  refresher-default-style="none"
-  refresher-background="#FF893B"
-  bindrefresherpulling="{{refresh.onPulling}}"
-  bindrefresherabort="{{}}"
->
-  <view slot="refresher" class="refresh-container"
-    style="display: block; width: 100%; height: 80px; background: #ddd; display: flex; align-items: center;"
-  >
-    <view class="view1" style="position: absolute; text-align: center; width: 100%;">
-      玩命加载中……
+<import src="../../template_d/windows/windows.wxml"></import>
+<view class="container">
+  <view class="header {{scrollDown?'scrolled':''}}">
+    <!-- 定位 -->
+    <view class="location ellipsis" bindtap="location">
+      <image class="icon" src="/imgs/index/icon_location.png" /> {{address}}
+    </view>
+    <!-- 搜索 -->
+    <view class="search">
+      <image class="icon" src="/imgs/index/icon_search.png" />
+      <input class="fa fa-home" bindblur="onBindblur" type="text"></input>
+      <button size="mini" plain="{{ture}}" bindtap="query">搜索</button>
     </view>
   </view>
 
-  <view wx:for="{{arr}}" style="display: flex; height: 100px;">
-    <image src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566402441483-c959946717ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566378955258-7633cb5c823e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566404394190-cda8c6209208?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=630&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566490595448-be523b4d2914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=958&q=80"></image>
+  <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
+    <!-- 轮播图 -->
+    <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+      <block wx:for="{{banners}}" wx:key="id">
+        <swiper-item>
+          <image bindtap="gotoWindows" data-id="{{index}}" src="{{item.img}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 餐厅 -->
+    <view class="section dinninghall">
+      <view class="dinninghall_icon" wx:for="{{dinninghall}}" wx:key="id">
+        <navigator url='/pages/windows/windows?id={{item.name1}}'>
+          <image src="{{item.img}}"></image>
+          <text>{{item.name2}}</text>
+        </navigator>
+      </view>
     </view>
-</scroll-view>
+
+    <!-- 分类 -->
+    <swiper class="section icons" indicator-dots="true" autoplay="" interval="" duration="500">
+      <swiper-item wx:for="{{icons}}" wx:for-item="list" wx:key="id">
+        <block wx:for="{{list}}" wx:for-item="icon" wx:key="id">
+          <navigator url='../dish/dish?id={{icon.category}}'>
+            <view class="icon">
+              <image src="{{icon.img}}" />
+              <text>{{icon.name}}</text>
+            </view>
+          </navigator>
+        </block>
+      </swiper-item>
+    </swiper>
+
+    <!-- 优惠专区 -->
+    <navigator url="../onsale/onsale">
+      <view class="section section-big discount">
+        <view class="title">优惠专区</view>
+        <image class="content" src="{{discount_img}}" />
+      </view>
+    </navigator>
 
 
-默认交互动画：
-<scroll-view
-  scroll-y style="width: 100%; height: 400px;"
-  refresher-enabled="{{true}}"
-  refresher-threshold="{{100}}"
-  refresher-default-style="white"
-  refresher-background="lightgreen"
-  refresher-triggered="{{triggered}}"
-  bindrefresherpulling="onPulling"
-  bindrefresherrefresh="onRefresh"
-  bindrefresherrestore="onRestore"
-  bindrefresherabort="onAbort"
->
-  <view wx:for="{{arr}}" style="display: flex; height: 100px;">
-    <image src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566402441483-c959946717ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566378955258-7633cb5c823e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566404394190-cda8c6209208?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=630&q=80"></image>
-    <image src="https://images.unsplash.com/photo-1566490595448-be523b4d2914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=958&q=80"></image>
+    <view class="section section-big preferred">
+      <view class="title">为你优选</view>
+      <image class="content" bindtap="gotoWindows" src="{{choice}}" />
     </view>
-</scroll-view>
+
+    <view class="section section-big special">
+      <view class="title">特色频道</view>
+      <image class="content" bindtap="gotoWindows" src="{{choice}}" />
+    </view>
+
+    <view id="nearby" class="section section-big nearby">
+      <view class="title">附近商家</view>
+      <view class="filters">
+        <view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">综合排序
+          <text class="v">↓</text>
+        </view>
+        <view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">销量最高
+          <text class="v">↓</text>
+        </view>
+        <view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">配送最快
+          <text class="v">↓</text>
+        </view>
+      </view>
+      <view>
+        <template is="abc" data="{{windows}}"></template>
+      </view>
+
+      <!-- <view class="shop" wx:for="{{shops}}" wx:key="id">
+				<navigator url="/page/shop/shop?id={{item.id}}">
+					<image src="{{item.img}}"/>
+				</navigator>
+			</view> -->
+    </view>
+    <view class="loading">努力加载中…</view>
+  </scroll-view>
+</view>

@@ -1,0 +1,75 @@
+
+/* 授权页面 */
+.authorize{
+  width: 100%;
+  height: 100%;
+  background: #eaebea;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 头像 */
+.authorize .header{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+
+  background: red;
+  /* 将益处的部分隐藏(实现圆头像) */
+  overflow: hidden;
+  margin:100rpx 0rpx; 
+}
+
+/* 分界线 */ 
+.authorize .line{
+  height: 2rpx;
+  width: 80%;
+  background: #cccccc;
+}
+
+.authorize .content{
+  width: 80%;
+  margin-top: 50rpx;
+  color: #4e4e4e;
+  font-size: 32rpx;
+}
+.authorize .desp{
+  width: 80%;
+  color: #9d9d9d;
+  font-size: 26rpx;
+  margin: 20rpx 0rpx;
+  /* background: pink; */
+  position: relative;
+}
+/* 点的样式( 定位 ) */
+.authorize .dot{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+
+  width: 5rpx;
+  height: 5rpx;
+  border-radius: 50%;
+  background: #9d9d9d;
+}
+
+/* 字体样式 */
+.authorize .desp text:nth-of-type(2){
+  margin-left: 40rpx;
+}
+
+/* 确认授权按钮 */
+.authorize .btn{
+  width: 80%;
+  height: 90rpx;
+  font-size: 36rpx;
+  background: #ff6802;
+  color: white;
+  margin: 50rpx;
+}
+
+.authorize .hover-class-style{
+  opacity: 0.9
+}

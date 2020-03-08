@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+			"windows":"../components/windows/windows"
+	}
+}

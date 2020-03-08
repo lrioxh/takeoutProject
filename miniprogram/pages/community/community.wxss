@@ -1,0 +1,154 @@
+/* pages/community/community.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.post {
+  margin: 70rpx 0 0 0;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 16px;
+  margin: 0 auto;
+}
+
+.container-line {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.user-head {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.user-name-time {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.user-name {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+.user-publish-time {
+  font-size: 15px;
+  color: #999;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+  margin-top: 14px;
+}
+
+.content-scroll {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.content-text {
+  font-size: 18px;
+  color: #666;
+  margin-left: 10px;
+}
+
+.content-img {
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: #999;
+}
+
+.search {
+  width: 100%;
+  height: 70rpx;
+  padding: 12.5rpx 0 12.5rpx 0;
+  background: #ff893b;
+  text-align: center;
+}
+
+.search .search-right image {
+  width: 80rpx;
+  height: 50rpx;
+  padding: 10rpx;
+}
+
+.userinfo-avatar {
+  flex: 1;
+  display: inline-block;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 0 0 20rpx;
+}
+
+.flex-item {
+  /* margin: auto; */
+  color: #eee;
+  font-weight: 600;
+  line-height: 70rpx;
+}
+
+.hover-class-style {
+  opacity: 0.8;
+}
+
+.add_icon {
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+
+.mine {
+  z-index: 99;
+  float: right;
+  background-color: #ccc;
+  margin: 15rpx 0 0 0;
+  position: fixed;
+  right: 1rpx;
+}
+
+.mine .selection {
+  margin: 2rpx;
+  background-color: #eee;
+  padding: 25rpx;
+}
+
+.mine .selection image {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.mine .selection text {
+  margin: auto;
+}

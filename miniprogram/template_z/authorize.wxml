@@ -1,0 +1,24 @@
+<template name="authorize">
+
+  <view class="authorize">
+
+    <!-- 头像 -->
+    <open-data class="header" type="userAvatarUrl" mode="aspectFit"></open-data>
+
+    <!-- 分界线 -->
+    <view class="line"></view>
+
+    <view class="content">该小程序由 ABBEY ROAD 开发，请提供以下授权，即可继续操作</view>
+
+    <view class="desp">
+      <!-- 点 -->
+      <text class="dot"></text>
+      <text >获取你的公开信息(昵称、头像等)</text> 
+    </view>
+
+    <button open-type="getUserInfo" bindgetuserinfo="{{btnClick}}" class="btn" hover-class="hover-class-style">确认授权</button>
+
+
+  </view> 
+
+</template>

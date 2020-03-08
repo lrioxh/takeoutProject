@@ -1,2 +1,90 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<import src="../../template_z/authorize.wxml"></import>
+<block wx:if="{{userInfo}}">
+  <view class="container more">
+    <view class="user flex-wrp">
+      <view class="avatar flex-item">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      </view>
+      <view class="user-info flex-item">
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="edit">Hi！你好呀~</text>
+      </view>
+    </view>
+
+    <view class="my">
+      <view class="my-item flex-wrp" bindtap="toCoupon">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/eye.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>代金券</text>
+
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toCollect">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/star.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>收藏商家</text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toOrder">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/recent.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>历史订单</text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="chooseAddress">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/live.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>配送地址</text>
+          <text class="addr">默认地址:{{addressInfo.detailInfo}}></text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toAnalysis">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/book.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>饮食分析</text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toComment">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/zhi.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>我的评价</text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toService">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/draft.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>联系客服</text>
+        </view>
+      </view>
+      <view class="my-item flex-wrp" bindtap="toFeedback">
+        <view class="myitem-icon flex-item">
+          <image src="../../imgs/draft.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+          <text>反馈</text>
+        </view>
+      </view>
+
+      <button bindtap="logout">退出登录</button>
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+  <!-- 使用授权页面 -->
+  <template is="authorize" data="{{btnClick: 'authorizeClick'}}" />
+</block>

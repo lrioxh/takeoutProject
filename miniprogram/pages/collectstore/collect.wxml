@@ -1,0 +1,26 @@
+<!--pages/collectstore/collect.wxml-->
+<view class="nomsg">什么也没有~</view>
+<view class='container' wx:if="{{stores.length > 0}}">
+  <view class='store-content'>
+
+    <block wx:for="{{stores}}" wx:for-index="idx">
+      <!-- <view class="reContainer"> -->
+      <view class="store" bindtap='onItemClick' data-storeId='{{item._id}}'>
+        <image src="{{item.img}}" class="store-img"></image>
+        <view class="store-info">
+          <view class="store-name" style="font-size:34rpx">{{item.name}}
+            <text class="place">{{item.place}}</text>
+          </view>
+          <view class="store-rate">
+            <image src="../../imgs/star3.png"></image>
+            {{item.rate}}
+            <text class="store-text">月售：{{item.sales}}</text>
+          </view>
+          <view class="store-mes">{{item.mes}}</view>
+        </view>
+      </view>
+
+      <!-- </view> -->
+    </block>
+  </view>
+</view>

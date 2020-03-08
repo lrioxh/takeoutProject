@@ -1,0 +1,31 @@
+<!--pages/mycomment/mycomment.wxml-->
+<view class="nomsg">什么也没有~</view>
+<view class='container' wx:if="{{comment.length > 0}}">
+  <view class='store-content'>
+
+    <block wx:for="{{comment}}" wx:for-index="idx">
+      <view class="store" bindtap='onItemClick' data-storeId='{{item.storeID}}'>
+        <view class="coupon-info">
+          <view class="store-info">
+            <image src="{{item.img}}" class="store-img"></image>
+            <view class="right">
+              <view class="store-name" style="font-size:34rpx">{{item.name}}
+                <text class="place">{{item.time}}</text>
+              </view>
+              <view class="under">
+                <image src="../../imgs/star3.png" class="star"></image>
+                {{item.rate}}/5
+                <text class="store-text">{{item.dishID}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="store-rate">
+            <view class="store-mes">"{{item.comment}}"</view>
+          </view>
+        </view>
+
+
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<!--pages/homeDetail/homeDetail.wxml-->
+<view class='container' bindtap='onItemClick'>
+  <view class='container-content'>
+    <view class='user-info'>
+      <image class='user-head' src='{{topic.user.avatarUrl}}' mode='aspectFill'></image>
+      <view class='user-name-time'>
+        <view class='user-name'>{{topic.user.nickName}}</view>
+        <view class='user-publish-time'>{{topic.date}}</view>
+      </view>
+    </view>
+    <view class='content'>
+      <!-- 显示文本 -->
+      <view wx:if="{{topic.content != ''}} && {{topic.images.length > 0}}">
+        <text class='content-text'>{{topic.content}}</text>
+        <block wx:for="{{topic.images}}" wx:for-index="idx">
+          <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
+        </block>
+      </view>
+      <!-- 显示图片 -->
+      <view wx:elif="{{topic.images.length > 0}}">
+        <block wx:for="{{topic.images}}" wx:for-index="idx">
+          <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
+        </block>
+      </view>
+      <!-- 显示文本 -->
+      <block wx:else>
+        <text class='content-text'>{{topic.content}}</text>
+      </block>
+    </view>
+  </view>
+  <!-- 显示回复列表 -->
+  <view class='replay_content' wx:if="{{replays.length > 0}}">
+    <view class='tip-text'></view>
+    <block wx:for="{{replays}}" wx:for-index="idx">
+      <!-- <view class="reContainer"> -->
+        <view class="user-info">
+          <image src="{{item.reuser.avatarUrl}}" class="avatarUrl"></image>
+          <view class="user-name-time">
+          <view class="user-name" style="font-size:24rpx">{{item.reuser.nickName}}</view>
+          <view class="user-publish-time" style="font-size:20rpx">{{item.date}}</view>
+          </view>
+        </view>
+        <view class="re-text">{{item.content}}</view>
+      <!-- </view> -->
+    </block>
+  </view>
+  <!-- <view class='line'>文末</view> -->
+  <view class='like-container' wx:if='{{isLike}}'>
+    <button class='btn-class' bindtap='onReplayClick'>评论</button>
+    <image class='like-icon' src='../../imgs/starRed.png' bindtap='onLikeClick'></image>
+  </view>
+  <view class='like-container' wx:else>
+    <button class='btn-class' bindtap='onReplayClick'>评论</button>
+    <image class='like-icon' src='../../imgs/star.png' bindtap='onLikeClick'></image>
+  </view>
+
+
+</view>

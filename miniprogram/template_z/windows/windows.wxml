@@ -1,0 +1,30 @@
+<template name="abc"> 
+<scroll-view scroll-y="{{true}}">
+	<block wx:for="{{windows}}" wx:key="index" class="blcok">
+		<navigator url="/page/shop/shop?id={{item.id}}">
+			<view class="view-style">
+				<!-- 窗口图片 -->
+				<image src="{{item.img}}" mode="aspectFit"></image>
+				<!-- 窗口介绍 -->
+				<view>
+					<view>{{item.name}}</view>
+					<view class="first_line">
+						<view>★{{item.rate}}</view>
+						<view>月售:{{item.sales}}</view>
+						<view>{{item.time}}min</view>
+					</view>
+					<view class="second_line">
+						<view>起送￥</view>
+						<view>配送￥</view>
+						<view>人均￥</view>
+					</view>
+					<view class="third_line">{{item.rank}}</view>
+					<view class="forth_line">{{item.desc}}</view>
+					<view></view>
+				</view>
+			</view>
+		</navigator>
+	</block>
+</scroll-view>
+</template>
+<template is="abc" data="{{windows}}"></template>

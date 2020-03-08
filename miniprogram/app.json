@@ -2,19 +2,39 @@
   "pages": [
     "pages/order/order",
     "pages/index/index",
-    "pages/forum/forum",
+    "pages/community/community",
     "pages/mine/mine",
+    
+            "pages/shop/shop",
+            "pages/windows/windows",
+            "pages/search/search",
+            "pages/dish/dish",
+            "pages/onsale/onsale",
+    
     "pages/order-peisong-detail/order-peisong-detail",
     "pages/order-pay-success/order-pay-success",
     "pages/order-submited-pay/order-submited-pay",
     "pages/order-cancel-store/order-cancel-store",
     "pages/order-cancel-cus/order-cancel-cus",
     "pages/order-unpaid-detail/order-unpaid-detail",
-    "pages/order-detail/order-detail"
+    "pages/order-detail/order-detail",
+
+            "pages/publish/publish",
+            "pages/homeDetail/homeDetail",
+            "pages/historyPo/history",
+            "pages/collectPo/collect",
+            "pages/replay/replay",
+            "pages/collectstore/collect",
+            "pages/analysis/analysis",
+            "pages/coupon/coupon",
+            "pages/mycomment/mycomment",
+            "pages/feedback/feedback",
+            "pages/service/service"
   ],
   "window": {
+    "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FF893B",
+    "navigationBarBackgroundColor": "#ff893b",
     "navigationBarTitleText": "山威食光",
     "navigationBarTextStyle": "white"
   },
@@ -35,8 +55,8 @@
         "selectedIconPath": "imgs/tabBar/home-active.png"
       },
       {
-        "pagePath": "pages/forum/forum",
-        "text": "论坛",
+        "pagePath": "pages/community/community",
+        "text": "社区",
         "iconPath": "imgs/tabBar/home-default.png",
         "selectedIconPath": "imgs/tabBar/home-active.png"
       },
