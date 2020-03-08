@@ -92,6 +92,13 @@
 					"pathName": "pages/order-peisong-detail/order-peisong-detail",
 					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
 				}
 			]
 		}

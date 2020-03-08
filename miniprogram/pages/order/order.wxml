@@ -25,7 +25,7 @@
       <block wx:for="{{orders}}">
         <!-- 菜品i -->
         <view class="view-dish">
-          <list-item>
+          <list-item>{{index}}
             <view class="view-store-detail">
               <text>商家 > {{item.store}}</text>
               <text>{{item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment ?'已评价':'待评价'}}</text>

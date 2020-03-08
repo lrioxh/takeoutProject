@@ -3,6 +3,15 @@ const db = wx.cloud.database();
 const order = db.collection('order')
 var app = getApp()
 Page({
+  search:function(){
+    console.log(app.globalData.openid)
+    order.limit(50).where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
+      console.log(res)
+    })
+  }
+  ,
   data: {
     loading: false, //上拉加载更多的loading
     refreshLoading: false, //下拉刷新页面的loading
@@ -20,6 +29,10 @@ Page({
   onLoad: function (options) {
     // 获取所有订单信息
     this.initorders()
+
+
+
+
   },
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -57,7 +70,9 @@ Page({
         orders: [],
         refreshLoading: false,
       })
-      order.get().then(res => {
+      order.where({
+        _openid: app.globalData.openid
+      }).get().then(res => {
         // console.log(res)
         var that = this;
         let key = "value";
@@ -100,7 +115,9 @@ Page({
     if (_this.data.orders.length <20 ){
       _this.pageData.skip = _this.data.orders.length
     }
-    order.skip(_this.pageData.skip).get().then(res => {
+    order.skip(_this.pageData.skip).where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
       console.log(res)
       if (res.data.length==0){
         console.log("alldone")
@@ -111,7 +128,6 @@ Page({
         wx.hideLoading();
       }
       else{
-        console.log("432")
         var that = this;
         let key = "value";
         let value = 0;
