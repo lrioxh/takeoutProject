@@ -82,12 +82,15 @@
   width: 100%;
 }
 
+/* 按钮（取消订单、立即支付、立即评价） */
 .view-order-btn {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
-.view-nomore{
+
+/* 没有更多订单了 */
+.view-nomore {
   text-align: center;
   font-size: 42rpx;
   padding: 15rpx;

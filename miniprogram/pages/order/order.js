@@ -101,7 +101,6 @@ Page({
         })
       })
     }, 1000
-
     )
   },
   loadmore: function () {

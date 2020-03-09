@@ -2,7 +2,7 @@ page {
 	height: 100%;
 	overflow: hidden;
 }
-.container {
+.container1 {
 	height: 100%;
 	overflow: hidden;
 }
@@ -245,4 +245,5 @@ page {
 	width: 200rpx;
 	height: 100%;
 	font-size: 36rpx;
+	background-color:#f45044
 }

@@ -113,7 +113,7 @@
                 <text>消费：{{item.value}}￥</text>
                 <view class="view-order-btn">
                   <button size="mini" bindtap="gotocanceldetail">取消订单</button>
-                  <button size="mini">立即支付</button>
+                  <button size="mini">查看详情</button>
                 </view>
               </view>
             </view>
@@ -145,8 +145,8 @@
               <text>下单时间：{{item.orderTime}}</text>
               <text>消费：{{item.value}}￥</text>
               <view class="view-order-btn">
-                <button size="mini" bindtap="gotocanceldetail">取消订单</button>
-                <button size="mini">立即支付</button>
+                <button size="mini">立即评价</button>
+                <button size="mini">再来一单</button>
               </view>
             </view>
           </view>
