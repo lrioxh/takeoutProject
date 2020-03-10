@@ -1,0 +1,61 @@
+/* pages/order-search/order-search.wxss */
+/* 订单详情 */
+.view-dish {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  margin: 20rpx;
+  margin-top: 30rpx;
+  border: 1px solid gray;
+  border-radius: 20rpx;
+  background: #eee;
+}
+
+.view-store-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 订单详情 */
+
+.view-order-detail {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.image-dish {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 15rpx;
+}
+
+.view-order-operate {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rpx;
+  width: 100%;
+}
+
+/* 按钮（取消订单、立即支付、立即评价） */
+.view-order-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+/* 找不到订单 */
+.radius{
+  margin: 30rpx;
+  height: 200px;
+  width: 200px;
+  border-radius: 200px;
+}
+.view-no{
+  margin-top: 80rpx;
+  font-size: 42rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

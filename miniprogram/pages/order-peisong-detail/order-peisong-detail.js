@@ -61,6 +61,7 @@ Page({
       })
       wx.hideLoading()
     })
+    // 获取位置信息
     wx.getLocation({
       type: "wgs84",
       success: function(res) {
@@ -76,6 +77,7 @@ Page({
                 latitude: latitude,
                 longitude: longitude
               },
+              // 第二个位置标点
               {
                 latitude: rider_latitude,
                 longitude: rider_longitude
@@ -86,58 +88,57 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
+  // 取消订单
+  cancelOrder:function(){
+    wx.showModal({
+      title: '取消订单',
+      content: '您确定要取消订单吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.showLoading({
+            title: '返回中'
+          })
+          wx.switchTab({
+            url: '../order/order',
+          })
+          wx.hideLoading()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
+  // 修改配送地址
+  updateOrder: function () {
+    var _this = this
+    if (_this.data.order.addr == null) {
+      wx.showToast({
+        title: '您已选择自取！',
+        image: "../../imgs/img1/about_us.png",
+        duration: 1500
+      })
+    } else {
+      wx.chooseLocation({
+        success: function (res) {
+          wx.showLoading({
+            title: '修改地址中',
+          })
+          order.doc(_this.pageData.id).update({
+            data: {
+              addr: res
+            },
+            success: console.log,
+          })
+          wx.hideLoading()
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-
-  // 测试使用
-  logfsdf: function() {
-    console.log(this.data.markers)
-  }
 })

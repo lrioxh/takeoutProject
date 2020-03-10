@@ -1,10 +1,4 @@
 <!--pages/order/order.wxml-->
-<view class="page">
-  <mp-dialog bind:run="sendToDialog" title="取消订单并申请退款" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
-    <view>您确定要取消您的订单,</view>
-    <view>并申请退款吗？</view>
-  </mp-dialog>
-</view>
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
@@ -13,9 +7,10 @@
 </view>
 
 <view class="text-search_view">
-  <input placeholder="请输入你想要的菜品" style="width:100%;"></input>
-  <icon type="search" size="26" bindtap="search"></icon>
+  <input placeholder="请输入商家或菜品名称" value='{{searchInfo}}' bindinput="searchInput" bindconfirm="search" style="width:100%;"></input>
+  <icon class="icon-style" type="search" size="32" bindtap="search"></icon>
 </view>
+
 
 <!----------------------------------全部------------------------------------------>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
@@ -25,7 +20,7 @@
       <block wx:for="{{orders}}">
         <!-- 菜品i -->
         <view class="view-dish">
-          <list-item>{{index}}
+          <list-item>
             <view class="view-store-detail">
               <text>商家 > {{item.store}}</text>
               <text>{{item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment ?'已评价':'待评价'}}</text>

@@ -5,11 +5,14 @@ const app = getApp();
 Page({
   data: {
     order: null,
+
+    // 选择送货方式
     view1st: "#eee",
     view2nd: "red",
     view1Color: "black",
     view2Color: "white",
     textdecration: "none",
+    // 是否有选择位置
     orderlocation: null,
     isLocation: false,
   },
@@ -27,21 +30,42 @@ Page({
     wx.showLoading({
       title: '数据加载中',
     })
-    this.pageData.id = options.id
-    order.doc(this.pageData.id).get().then(res => {
+    // 判断是否为再次下单
+    if (options.id != null) {
+      this.pageData.id = options.id
+      order.doc(this.pageData.id).get().then(res => {
+        let key = "totalPrice"
+        let totalPrice = 0;
+        // 总价
+        for (let j = 0; j < res.data.dish.length; j++) {
+          totalPrice += res.data.dish[j].price
+        }
+        totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
+        res.data[key] = totalPrice
+        this.setData({
+          order: res.data
+        })
+        wx.hideLoading()
+        console.log(this.data.order)
+      })
+    } else {
       let key = "totalPrice"
       let totalPrice = 0;
-      // 总价
-      for (let j = 0; j < res.data.dish.length; j++) {
-        totalPrice += res.data.dish[j].price
+      var orderList = {};
+      let dish = "dish"
+      var dishes = JSON.parse(options.data)
+      for (let i = 0; i < dishes.length; i++) {
+        // 总价
+        totalPrice += dishes[i].price
       }
-      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
-      res.data[key] = totalPrice
+      orderList[key] = totalPrice
+      orderList[dish] = dishes
       this.setData({
-        order: res.data
+        order: orderList
       })
       wx.hideLoading()
-    })
+      console.log(this.data.order)
+    }
   },
   // 提交订单函数
   update_set_Order: function() {
@@ -67,29 +91,14 @@ Page({
         wrapPrice: 4,
         sendPrice: 3,
         coupon: 5, // 优惠
-        store: "馨园餐厅",
-        storeID: "fdfdsfdsgfdsg",
+        store: this.data.store,
+        storeID: this.data.storeID,
         stu: "丁焊月",
         stuID: "4cgdfg325htg8ct8sfgcvtc834hc8",
         comment: null,
         rate: 4,
         tel: 15725055202,
-        dish: [{
-            name: "牛鞭",
-            num: 5,
-            price: 75,
-          },
-          {
-            name: "水煮牛蛙",
-            num: 1,
-            price: 50,
-          },
-          {
-            name: "劲酒",
-            num: 1,
-            price: 100,
-          }
-        ],
+        dish: this.data.order
         // totalPrice: this.data.order.totalPrice,
       },
     }).then(res => {
@@ -170,15 +179,24 @@ Page({
   //--------------------------------------------------------------------------------------------------------------
   // 获取优惠券信息
   gotoCoupin: function() {
-    wx.showActionSheet({
-      itemList: ['A', 'B', 'C', "d", "g", "g"],
-      success(res) {
-        console.log(res.tapIndex)
-      },
-      fail(res) {
-        console.log(res.errMsg)
-      }
+    wx.showLoading({
+      title: '加载中',
     })
+    wx.navigateTo({
+      url: '../coupon/coupon',
+    })
+    wx.hideLoading()
+
+
+    // wx.showActionSheet({
+    //   itemList: ['A', 'B', 'C', "d", "g", "g"],
+    //   success(res) {
+    //     console.log(res.tapIndex)
+    //   },
+    //   fail(res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
   },
   // 获取地址
   getLocation: function() {

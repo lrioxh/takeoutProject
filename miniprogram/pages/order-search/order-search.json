@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "searchHaveHistory": "../../components/wx-search-have-history"
+  }
+}

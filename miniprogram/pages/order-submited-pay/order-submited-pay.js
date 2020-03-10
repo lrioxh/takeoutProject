@@ -46,34 +46,29 @@ Page({
   },
   //--------------------------------------------------------------------------------------------------------
   // 弹窗dialog确认是否取消订单
-  openConfirm: function(e) {
-    this.setData({
-      tempid: e.target.id,
-      dialogShow: true
+  openConfirm: function (e) {
+    console.log(e)
+    wx.showModal({
+      title: '取消订单',
+      content: '您确定要取消订单，并申请退款吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.showLoading({
+            title: '返回中'
+          })
+          wx.redirectTo({
+            url: '../order-cancel-cus/order-cancel-cus?id=' + e.target.id,
+          })
+          wx.hideLoading()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
-  },
-  tapDialogButton(e) {
-    this.setData({
-      dialogShow: false,
-      showOneButtonDialog: false
-    })
-  },
-  //order-submited-pay页面的函数由component中的dialog执行
-  sendToDialog() {
-    wx.showLoading({
-      title: '加载中',
-    })
-    const id = this.data.tempid
-    setTimeout(function() {
-      wx.redirectTo({
-        url: '../order-cancel-cus/order-cancel-cus?id=' + [id],
-      })
-      setTimeout(function() {
-        wx.hideLoading()
-      }, 100)
-    }, 100)
   },
 
+// 修改订单地址
   updateOrder: function() {
     var _this = this
     if (_this.data.order.addr == null) {

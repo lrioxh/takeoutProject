@@ -1,13 +1,18 @@
-<view class="container1">
+<view class="containera">
   <!-- 顶部信息栏 -->
   <view class="header {{scrollDown?'hidden':''}}">
-    <image class="logo" src="{{shop.logo}}" />
-    <view class="name ellipsis">{{shop.name}}</view>
-    <view class="welcome ellipsis">公告：欢迎光临{{shop.name}}！</view>
+    <image class="logo" src="{{window.img}}" />
+    <view class="name ellipsis">{{window.name}}</view>
+    <view class="welcome ellipsis"><text>欢迎光临本店铺</text></view>
     <view class="follow" bindtap="follow">{{followed?'已收藏':'收藏'}}</view>
     <view class="line"></view>
     <view class="desc">{{shop.desc}}</view>
   </view>
+	<view class="swiper-tab">
+		<view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">菜品</view>
+		<view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">商家信息</view>
+		<view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">评价</view>
+	</view>
   <!-- 左右滚动栏 -->
   <view class="content-container">
     <!-- 左边分类栏 -->
@@ -30,6 +35,8 @@
             <image src="/imgs/shop/plus.png"></image>
         		</view>
 					</block>
+          
+
         </view>
       </view>
     </scroll-view>
@@ -42,7 +49,7 @@
         <view class="name ellipsis">{{goods[id].name}}</view>
         <view class="total">￥{{goods[id].price*cart.list[id]}}</view>
         <view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">-</view>
-        <view class="num">{{num==null?"0":num}}</view>
+        <view class="num">{{num==null?'0':num}}</view>
         <view class="add" data-id="{{id}}" bindtap="tapAddCart">+</view>
       </view>
     </view>
@@ -56,9 +63,8 @@
       </view>
       <view class="total">￥{{cart.total}}</view>
     </view>
-    <form bindsubmit="submit" report-submit="true">
       <!--<view formType="submit" class="submit">去结算</view>-->
-      <button class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}">去结算</button>
-    </form>
+      <button class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}" bindtap="submit">去结算</button>
+
   </view>
 </view>

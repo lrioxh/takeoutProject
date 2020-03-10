@@ -15,9 +15,9 @@
     <view class="view-time">预计
       <text>{{time}}</text> 到达</view>
     <view class="view-order-config">
-      <view bindtap="logfsdf">取消订单</view>
+      <view bindtap="cancelOrder">取消订单</view>
       <!-- <view>立即支付</view> -->
-      <view>修改地址等信息</view>
+      <view bindtap="updateOrder">修改地址等信息</view>
     </view>
   </view>
   <!-- <view class="view-order-detail"> -->

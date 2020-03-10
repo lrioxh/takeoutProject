@@ -3,36 +3,47 @@ const db = wx.cloud.database();
 const order = db.collection('order')
 var app = getApp()
 Page({
+  // 搜索历史订单
+  searchInput:function(e){
+    this.setData({
+      searchInfo:e.detail.value
+    })
+  },
   search:function(){
+    wx.showLoading({
+      title: '搜索中',
+    })
     console.log(app.globalData.openid)
-    order.limit(50).where({
+    order.where({
       _openid: app.globalData.openid
+    }).where({
     }).get().then(res => {
       console.log(res)
     })
-  }
-  ,
+    wx.hideLoading()
+    wx.navigateTo({
+      url: '../order-search/order-search?info='+this.data.searchInfo,
+    })
+    this.setData({
+      searchInfo:null
+    })
+  },
   data: {
+    searchInfo:null,
+    // 搜索信息
     loading: false, //上拉加载更多的loading
     refreshLoading: false, //下拉刷新页面的loading
     orders: null,
-    // 确认取消订单
-    dialogShow: false,
-    tempid: null,// 选中点单的id
-    buttons: [{ text: '取消' }, { text: '确定' }],
     // tab切换  
     currentTab: 0,
     // 加载全部
     haveLoadAll: true,
+    // 搜索后
   },
   
   onLoad: function (options) {
     // 获取所有订单信息
     this.initorders()
-
-
-
-
   },
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -211,18 +222,26 @@ Page({
   // 弹窗确认取消订单
   // js得去components的dialog改！！
   openConfirm: function (e) {
-    this.setData({
-      tempid: e.target.id,
-      dialogShow: true
+    console.log(e)
+    wx.showModal({
+      title: '取消订单',
+      content: '您确定要取消订单，并申请退款吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.showLoading({
+            title: '返回中'
+          })
+          wx.redirectTo({
+            url: '../order-cancel-cus/order-cancel-cus?id='+e.target.id,
+          })
+          wx.hideLoading()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   },
-  tapDialogButton(e) {
-    this.setData({
-      dialogShow: false,
-      showOneButtonDialog: false
-    })
-  },
-
   // 查询有多少菜品
   queryOrder: function () {
     order.where()
@@ -258,7 +277,5 @@ Page({
       url: '../order-peisong-detail/order-peisong-detail?id=' + [e.currentTarget.id],
     })
   },
-
-
 })
 

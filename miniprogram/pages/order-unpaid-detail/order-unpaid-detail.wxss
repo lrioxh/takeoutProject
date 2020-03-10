@@ -115,8 +115,8 @@
 .view-value-total{
   display: flex;
   justify-content: flex-end;
-  padding-bottom: 20rpx;
-  margin-top: 20rpx;
+  padding-bottom: 10rpx;
+  margin-top: 5rpx;
 }
 .view-value-total view{
   margin: 15rpx;

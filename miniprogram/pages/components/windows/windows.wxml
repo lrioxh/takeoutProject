@@ -1,6 +1,6 @@
 <scroll-view scroll-y="{{true}}">
 	<block wx:for="{{windows}}" wx:key="index" class="blcok">
-		<navigator url="/pages/shop/shop?id={{item.name}}">
+		<navigator url="/pages/shop/shop?id={{item._id}}">
 			<view class="view-style">
 				<!-- 窗口图片 -->
 				<image src="{{item.img}}" mode="aspectFit"></image>

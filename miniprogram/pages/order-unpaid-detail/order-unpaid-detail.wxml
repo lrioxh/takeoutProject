@@ -51,16 +51,32 @@
           <text style="color:red;font-weight:550" bindtap="gotoCoupin">优惠 ></text>
           <text>-￥{{order.coupon==null?'0' : order.coupon}}</text>
         </view>
-      </view>
-      <!-- 分割线 -->
-      <view class="viewline"></view>
-      <!-- 合计 -->
-      <view class="view-value-total">
-        <view style="font-size:42rpx;">
-          <text>已优惠</text>
-          <text>￥{{order.coupon==null?'0' : order.coupon}}</text>
+        <!-- 分割线 -->
+        <view class="viewline" style="background:#ccc"></view>
+        <!-- 合计 -->
+        <view class="view-value-total">
+          <view style="font-size:42rpx;">
+            <text>已优惠</text>
+            <text>￥{{order.coupon==null?'0' : order.coupon}}</text>
+          </view>
+          <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
         </view>
-        <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
+      </view>
+      <!-- 多余信息 -->
+      <view class="view-wrap">
+        <view class="view-wrap-detail">
+          <text>备注</text>
+          <text>点击添加备注 ></text>
+        </view>
+        <view class="view-wrap-detail" style="text-decoration: {{textdecration}}">
+          <text>餐具数量</text>
+          <text>未选择 ></text>
+        </view>
+        <view class="view-wrap-detail">
+          <text style="color:red;font-weight:550" bindtap="gotoCoupin">支付方式</text>
+          <text>在线支付</text>
+        </view>
+
       </view>
     </view>
     <!-- 付款栏 -->
@@ -70,7 +86,6 @@
         <view style="font-size:40rpx">￥{{order.totalPrice}}</view>
         <view>已优惠￥{{order.coupon==null?'0' : order.coupon}}</view>
       </view>
-
       <view class="view-kindofpay">
         <!-- 找人付按钮 -->
         <view class="view-friendpay">
@@ -82,7 +97,5 @@
         </view>
       </view>
     </view>
-
-
   </view>
 </scroll-view>

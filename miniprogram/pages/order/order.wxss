@@ -31,12 +31,16 @@
 .text-search_view {
   display: flex;
   font-size: 38rpx;
+  align-items: center;
   justify-content: space-between;
   background: rgb(235, 231, 229);
   width: 100%;
   padding-left: 5rpx;
   padding-top: 15rpx;
   padding-right: 15rpx;
+}
+.icon-style{
+  margin-right: 20rpx;
 }
 
 /* 菜品列表 */

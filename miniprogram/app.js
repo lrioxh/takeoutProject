@@ -37,6 +37,7 @@ App({
     }
 
     this.globalData = {
+      windowName:null,
       openid: null,
       userInfo: null,
       isLogin: false,
