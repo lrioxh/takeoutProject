@@ -6,7 +6,7 @@
   <!-- </view> -->
   <view class="view-status-location">
     <view class="view-order-poccess-detail">
-      <image style="width:40rpx;height:40rpx;margin-right:15rpx;" src="../../imgs/img2/Ar.png"></image>
+      <image style="width:40rpx;height:40rpx;margin-right:15rpx;" src="../../imgs/Ar.png"></image>
       <view style="margin-right:15rpx;">预计{{time}}</view>
       <view>外卖送达学{{}}外卖柜，请注意消息</view>
     </view>
@@ -26,7 +26,7 @@
     <!-- dish-datail -->
     <block wx:for="{{order.dish}}">
       <view class="view-dish-detail">
-        <image class="image-dish" src="../../imgs/food.jpg"></image>
+        <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
         <view>
           <view class="view-dish-value">
             <text>描述：{{item.name}}</text>

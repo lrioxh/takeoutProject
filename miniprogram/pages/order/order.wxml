@@ -30,7 +30,7 @@
             <!-- 订单详情 -->
             <view class="view-order-detail">
               <view>
-                <image class="image-dish" src="../../imgs/food.jpg"></image>
+                <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
               </view>
               <view class="view-order-operate">
                 <text>下单时间：{{item.orderTime}}</text>
@@ -66,7 +66,7 @@
               <!-- 订单详情 -->
               <view class="view-order-detail">
                 <view>
-                  <image class="image-dish" src="../../imgs/food.jpg"></image>
+                  <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
                 </view>
                 <view class="view-order-operate">
                   <text>下单时间：{{item.orderTime}}</text>
@@ -101,7 +101,7 @@
             <!-- 订单详情 -->
             <view class="view-order-detail">
               <view>
-                <image class="image-dish" src="../../imgs/food.jpg"></image>
+                <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
               </view>
               <view class="view-order-operate">
                 <text>下单时间：{{item.orderTime}}</text>
@@ -134,7 +134,7 @@
           <!-- 订单详情 -->
           <view class="view-order-detail">
             <view>
-              <image class="image-dish" src="../../imgs/food.jpg"></image>
+              <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
             </view>
             <view class="view-order-operate">
               <text>下单时间：{{item.orderTime}}</text>

@@ -17,11 +17,11 @@
     <view class="view-recommend-word">推荐</view>
     <view class="view-recommend-dish">
       <view class="view-recommend-dish-detail">
-        <image class="image-dish" src="../../imgs/food.jpg"></image>
+        <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
         <view style="font-size:33rpx;">只要998</view>
       </view>
       <view class="view-recommend-dish-detail">
-        <image class="image-dish" src="../../imgs/food2.jpg"></image>
+        <image class="image-dish" src="../../imgs/dish/food2.jpg"></image>
         <view style="font-size:33rpx;">KFC代吃</view>
       </view>
     </view>
@@ -33,7 +33,7 @@
       <!-- dish-datail -->
       <block wx:for="{{order.dish}}">
         <view class="view-dish-detail">
-          <image class="image-dish" src="../../imgs/food.jpg"></image>
+          <image class="image-dish" src="../../imgs/dish/food.jpg"></image>
           <view>
             <view class="view-dish-value">
               <text>描述：{{item.name}}</text>
