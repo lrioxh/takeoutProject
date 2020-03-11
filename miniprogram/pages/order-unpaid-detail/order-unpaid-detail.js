@@ -203,6 +203,7 @@ Page({
     var _this = this
     wx.chooseLocation({
       success: function(res) {
+        console.log(res)
         _this.setData({
           orderlocation: res
         })

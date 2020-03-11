@@ -3,21 +3,22 @@
 .swiper-tab {
   width: 100%;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 75rpx;
   background: #ff893b;
 }
 
 .swiper-tab-list {
   width: 25%;
   display: inline-block;
-  line-height: 70rpx;
+  line-height: 60rpx;
   color: white;
   font-size: 34rpx;
   font-weight: 600;
 }
 
 .on {
-  border-bottom: 5rpx solid white;
+  color: rgb(255, 238, 0)  ;
+  border-bottom: 5rpx solid #FFD700  ;
   padding-bottom: 1rpx;
 }
 
@@ -33,11 +34,18 @@
   font-size: 38rpx;
   align-items: center;
   justify-content: space-between;
-  background: rgb(235, 231, 229);
+  background: white;
   width: 100%;
-  padding-left: 5rpx;
-  padding-top: 15rpx;
+  padding-left: 8rpx;
+  padding-top: 8rpx;
   padding-right: 15rpx;
+}
+.view-input{
+  padding-left: 20rpx;
+  width:100%;
+  background:#eee;
+  height: 60rpx;
+  border-radius: 15rpx;
 }
 .icon-style{
   margin-right: 20rpx;
@@ -52,47 +60,86 @@
 .view-dish {
   display: flex;
   flex-direction: column;
-  padding: 30rpx;
+  padding: 25rpx;
+  padding-right: 15rpx;
+  padding-top: 20rpx;
   margin: 20rpx;
-  margin-top: 30rpx;
-  border: 1px solid gray;
   border-radius: 20rpx;
-  background: #eee;
+  background: white;
 }
-
+/* 商家详情 */
 .view-store-detail {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25rpx;
+}
+/* 商家名称 */
+.view-storename{
+  width: 83%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/* 商家logo */
+.image-storeLogo{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+/* 订单状态 */
+.view-row{
+  display: flex;
+  justify-content: space-between
 }
 
 /* 订单详情 */
-
+.view-order-detail1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .view-order-detail {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
 }
-
-.image-dish {
-  width: 150rpx;
-  height: 150rpx;
-  margin: 15rpx;
-}
-
-.view-order-operate {
+/* 菜品图片和名称 */
+.view-dish-src_name{
   display: flex;
   flex-direction: column;
-  margin-top: 15rpx;
-  width: 100%;
 }
+.image-dish {
+  border-radius: 15rpx;
+  width: 170rpx;
+  height: 140rpx;
+  margin-top: 10rpx;
+  margin-bottom: 8rpx;
+  margin-right: 15rpx;
+}
+/* 商品的总价和数量 */
+.valueandnum{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 
 /* 按钮（取消订单、立即支付、立即评价） */
 .view-order-btn {
+  margin-top: 25rpx;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
+.view-order-btn view {
+border-radius: 12rpx;
+padding: 10rpx;
+border: 1px solid rgb(148, 148, 148);
+margin-left: 30rpx;
+}
 /* 没有更多订单了 */
 .view-nomore {
   text-align: center;

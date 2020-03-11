@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/order/order",
     "pages/index/index",
     "pages/community/community",
@@ -11,7 +10,11 @@
             "pages/search/search",
             "pages/dish/dish",
             "pages/onsale/onsale",
-
+            
+    "pages/cancelorder/applyRefund",
+    "pages/orderDetail/orderDetail",
+    "pages/submitOrder/submitOrder",
+    "pages/evaluate/evaluate",
     "pages/order-search/order-search",
     "pages/order-peisong-detail/order-peisong-detail",
     "pages/order-pay-success/order-pay-success",
