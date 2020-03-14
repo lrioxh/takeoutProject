@@ -1,0 +1,100 @@
+/* pages/ordersubmited/ordersubmited.wxss */
+.view-total{
+  margin-top: 80rpx;
+  margin-left: 90rpx;
+  margin-right: 90rpx;
+}
+/* 订单已提交 */
+.view-submited{
+  margin-bottom: 40rpx;
+  font-size: 50rpx;
+}
+/* 支付时间 */
+.view-paytime{
+  font-size: 40rpx;
+}
+
+.view-notice{
+  font-size: 40rpx;
+  margin-bottom: 120rpx;
+}
+/* 选择支付方式 */
+.view-choose-pay-method{
+  margin-bottom: 30rpx;
+}
+
+/* 微信、支付宝 */
+.view-kind-of-pay{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 两个图标 */
+.view-icon{
+  margin-bottom: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.image-icon{
+  width: 100rpx;
+  height: 100rpx;
+}
+/* 文字 */
+.view-name{
+  display: flex;
+  flex-direction: column;
+}
+.view-name view{
+  display: flex;
+  align-items: center;
+  width: 120rpx;
+  height: 100rpx;
+}
+/* 单选表单 */
+radio-group{
+  display: flex;
+  flex-direction: column;
+}
+radio{
+  width: 120rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+/* 立即支付 */
+.view-pay-now{
+  display: flex;
+  justify-content: center;
+  font-size: 42rpx;
+  color: white;  
+  margin-bottom: 20rpx;
+}
+
+.view-pay-now view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  width: 560rpx;
+  background: red;
+  text-align: center;
+  border-radius: 20rpx;
+}
+
+/* 取消订单、查看详情、修改地址 */
+.view-adjust{
+  display: flex;
+  justify-content: center;
+}
+
+.view-adjust view{
+  width: 180rpx;
+  height: 50rpx;
+  padding: 4rpx;
+  font-size: 36rpx;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10rpx;
+  margin: 15rpx;
+}

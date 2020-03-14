@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 2,
-					"name": "pages/order-submited-pay/order-submited-pay",
-					"pathName": "pages/order-submited-pay/order-submited-pay",
+					"name": "pages/order-pay/order-pay",
+					"pathName": "pages/order-pay/order-pay",
 					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				},
@@ -93,23 +93,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "pages/order-detail/order-detail",
 					"pathName": "pages/order-detail/order-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order-peisong-detail/order-peisong-detail",
-					"pathName": "pages/order-peisong-detail/order-peisong-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
 					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				},
@@ -135,9 +121,31 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "pages/evaluate/evaluate",
 					"pathName": "pages/evaluate/evaluate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-submit/order-submit",
+					"pathName": "pages/order-submit/order-submit",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-peisong-detail/order-peisong-detail",
+					"pathName": "pages/order-peisong-detail/order-peisong-detail",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-cancel-cus/order-cancel-cus",
+					"pathName": "pages/order-cancel-cus/order-cancel-cus",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
 					"scene": null
 				}
 			]

@@ -15,7 +15,6 @@ Page({
     this.getOrder();
   },
   searchEvent(e) {
-    console.log(e.detail)
     this.setData({
       reciveInfo: e.detail
     })
@@ -39,6 +38,12 @@ Page({
         option: 'i'
       })
     },
+    {
+      hall: db.RegExp({
+        regexp: this.data.reciveInfo,
+        option: 'i'
+      })
+    }
     ])).get().then(res => {
       if (res.data.length == 0) {
         this.setData({

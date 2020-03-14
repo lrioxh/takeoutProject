@@ -21,6 +21,11 @@ Component({
     });
   },
   methods: {
+    bindblur(){
+      this.setData({
+        StorageFlag: false
+      })
+    },
     bindFocus() {
       this.setData({
         StorageFlag: true

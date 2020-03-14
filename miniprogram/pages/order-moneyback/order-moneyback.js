@@ -1,38 +1,37 @@
+const bd = wx.cloud.database();
+const order = bd.collection("order")
+const app = getApp();
 Page({
   data:{
-    flag: '', //退款原因
+    flag: null, // 退款原因
     show: false,
-    imgPath: '../../img/pic.png',
+    imgPath: '../../imgs/pic.png',
     imgPath2: '',
     imgPath3: '',
     imgLen: 0,
     temp: [],
     totalMoney: 0,
-    arr: [
-      { id: 0, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "3", price: "51.66", selected: false },
-      { id: 1, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "3", price: "61.77", selected: false },
-      { id: 2, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "3", price: "71.44", selected: false },
-      { id: 3, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "3", price: "81.44", selected: false },
-      { id: 4, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "3", price: "81.65", selected: false }
-    ],
+    order:null,// 订单
   },
-  onLoad: function() {
-    var arr = this.data.arr;
-    var totalMoney = this.data.totalMoney;
-    for(var i=0;i<arr.length;i++) {
-      totalMoney = Number(totalMoney) + Number(arr[i].price * arr[i].num)
-    }
-    totalMoney = Number(totalMoney).toFixed(2);
-    this.setData({
-      totalMoney: totalMoney
+  onLoad: function(e) {
+    console.log(e.id)
+    order.doc(e.id).get().then(res => {
+      console.log(res)
+      this.setData({
+        order: res.data
+      })
     })
   },
+
+// 选择退款原因
   chooseReason: function(e) {
+    console.log(e)
     var type = e.currentTarget.dataset.id;
     this.setData({
       flag: type,
       show: false
     })
+    console.log(this.data.flag)
   },
   toShow: function() {
     this.setData({
@@ -119,7 +118,6 @@ Page({
       filePath: this.data.imgPath,
       name: 'file',
       formData: {
-        
       },
       success: function (res) {
         console.log(res);

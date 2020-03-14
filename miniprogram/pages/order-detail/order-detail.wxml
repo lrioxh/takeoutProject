@@ -1,57 +1,155 @@
-<!--pages/unpaid-detail/unpaid-detail.wxml-->
-<scroll-view scroll-y class="srcoll-total">
-  <view style="height:100%;">
-    <view class="view-loaction">
-      <view class="view-location-view" bindtap="getLocation" hidden="{{isLocation}}">
-        <image src="../../imgs/ico-addr.png" style="height:45rpx; width:45rpx"></image>
-        <view style="font-size:36rpx">{{orderlocation==null? [order.addr.address] : "您已选择到店自取"}}</view>
+<view class="ordercancel"  wx:if="{{orderStatus==4}}">您的订单已取消!</view>
+<view class="orderType" wx:if="{{orderStatus==3}}">
+  订单已完成
+</view>
+<view class="Map" wx:if="{{orderStatus==1 || orderStatus==2 || orderStatus==0}}">
+  <view class="map" wx:if="{{orderStatus==1 || orderStatus==2}}" style="z-index: 9">
+    <map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 60vh;z-index:999;">
+    </map>
+  </view>
+  <view class="bottom">
+    <view class="top view-top">
+      <view wx:if="{{orderStatus==2}}">骑手派送中</view>
+      <view wx:if="{{orderStatus==1}}">商家已接单</view>
+      <view wx:if="{{orderStatus==0}}" class="view-waitpay">等待支付</view>
+      <view class="iconfont icon-time" wx:if="{{orderStatus==1 || orderStatus==2}}">
+        预计送达
+        <text>19:16</text>
+      </view>
+      <view class="noPay" wx:if="{{orderStatus==0}}">
+        逾期未支付，订单将在{{}}自动取消
       </view>
     </view>
-    <!-- 自取 -->
-    <view class="view-dish">
-      <!-- dish list -->
-      <view class="view-dish-list">
-        <view>商家 ></view>
-        <!-- dish-datail -->
-        <block wx:for="{{order.dish}}">
-          <view class="view-dish-detail">
-            <image class="image-dish" src="../../imgs/food.jpg"></image>
-            <view>
-              <view class="view-dish-value">
-                <text>描述：{{item.name}}</text>
-                <text><text style="font-weight:600;font-size:36rpx">￥</text>{{item.price}}</text>
-              </view>
-              <view class="view-dish-num">x{{item.num}}</view>
-            </view>
+    <view class="bot" wx:if="{{orderStatus==1 || orderStatus==2}}">
+      <view class="cancel" bindtap="modalinput" bindtap="callRider">催单</view>
+      <view class="apply" bindtap="apply" bindtap="cancelApply">申请退款</view>
+    </view>
+    <view class="bot" wx:if="{{orderStatus==0}}">
+      <view class="cancel" bindtap="modalinput" bindtap="callStore">取消订单</view>
+      <view class="apply" bindtap="apply">去支付</view>
+    </view>
+  </view>
+</view>
+<view class="viewline1"></view>
+<view class="orderTop" wx:if="{{orderStatus==2}}">
+  <view class="Title2">
+    <view class="title">配送员信息</view>
+    <view class="name">
+      <view class="Pic">
+        <image src="../../imgs/me.jpg"></image>
+        张三
+      </view>
+      <view class="contact iconfont icon-phone" bindtap="callRider" data-phone="18316588222">
+        联系骑手
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="orderMessage">
+  <view class="Title">
+    <text class="title">订单详情</text>
+  </view>
+  <view class="calling" bindtap="callStore">
+    <view class="S_P">
+      <image src="{{order.storeLogo}}"></image>
+      <text> 快乐星汉堡</text>
+    </view>
+    <view class="iconfont icon-phone">
+      联系商家
+    </view>
+  </view>
+  <view class="food">
+    <block wx:for="{{order.dish}}" wx:key="dish">
+      <view class="list">
+        <view class="listLeft">
+          <view class="foodPic">
+            <image src="{{item.src}}"></image>
           </view>
-        </block>
-      </view>
-      <!-- 包装费 -->
-      <view class="view-wrap">
-        <view class="view-wrap-detail">
-          <text>包装费</text>
-          <text>￥{{order.wrapPrice==null?'0' : order.wrapPrice}}</text>
+          <view class="message">
+            <text>{{item.name}}</text>
+            <text class="price">¥{{item.price}} <text class="oldPrice">¥14.43</text></text>
+          </view>
         </view>
-        <view class="view-wrap-detail" style="text-decoration: {{textdecration}}">
-          <text>配送费</text>
-          <text>￥{{order.sendPrice==null?'0' : order.sendPrice}}</text>
-        </view>
-        <view class="view-wrap-detail">
-          <text style="color:red;font-weight:550" bindtap="gotoCoupin">优惠 ></text>
-          <text>-￥{{order.coupon==null?'0' : order.coupon}}</text>
+        <view class="listRight">
+          x{{item.num}}
         </view>
       </view>
-      <!-- 分割线 -->
-      <view class="viewline"></view>
-      <!-- 合计 -->
-      <view class="view-value-total">
-        <view style="font-size:42rpx;">
-          <text>已优惠</text>
-          <text>￥{{order.coupon==null?'0' : order.coupon}}</text>
-        </view>
-        <view style="font-size:42rpx;">小计￥{{order.totalPrice}}</view>
-      </view>
+    </block>
+  </view>
+
+  <view class="smallBorder">
+    <view class="orherPrice">
+      <text>就餐方式</text>
+      <text>{{order.addr==null?"到店自取":"外卖"}}</text>
+    </view>
+    <view class="orherPrice">
+      <text>餐盒费</text>
+      <text>¥{{order.wrapPrice}}</text>
+    </view>
+  </view>
+  <view class="smallBorder">
+    <view class="orherPrice">
+      <text>配送费</text>
+      <text>¥{{order.sendPrice}}</text>
     </view>
 
+    <view class="orherPrice">
+      <text class="iconfont icon-pag"> <text class="text"> 红包</text></text>
+      <text class="price">{{order.coupon==null?"未使用":"-¥"+order.coupon}}</text>
+    </view>
   </view>
-</scroll-view>
+  <view class="orherPrice">
+    <text class="lightcolor">共100元</text>
+    <text>实付90（已优惠10）</text>
+  </view>
+</view>
+
+<view class="distributionMessage">
+  <view class="Title2">
+    <view class="title">配送信息</view>
+  </view>
+  <view class="messages">
+    <view class="time">期望时间</view>
+    <view class="view-type">立即配送</view>
+  </view>
+  <view class="messages">
+    <view class="time">配送地址</view>
+    <view>
+      <view class="view-type"> {{userInfo.nickName}}({{userInfo.gender==1?"先生":"女士"}}）{{order.tel}}</view>
+      <view class="view-type"> {{order.addr.address}}</view>
+    </view>
+  </view>
+  <view class="messages">
+    <view class="time">配送服务</view>
+    <view class="view-type">{{order.rider !=null?"由山威食光骑手配送":"由山威食光外卖小车配送"}}</view>
+  </view>
+</view>
+
+<view class="distributionMessage ">
+  <view class="Title2">
+    <view class="title">订单信息</view>
+  </view>
+  <view class="messages">
+    <view class="time">订单号码</view>
+    <view style="width:468rpx;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{order._id}}</view>
+  </view>
+  <view class="messages">
+    <view class="time">订单时间</view>
+    <view class="type">{{order.orderTime}}</view>
+  </view>
+  <view class="messages">
+    <view class="time">支付方式</view>
+    <view class="type">在线支付</view>
+  </view>
+</view>
+
+<!--订单完成时才有  -->
+<view class="bottom1" wx:if="{{orderStatus==3}}">
+  <view class="btn" bindtap="again">
+    再来一单
+  </view>
+  <view class="btn" bindtap="toEvaluate">
+    立即评价
+  </view>
+</view>

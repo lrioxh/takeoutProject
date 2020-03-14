@@ -2,7 +2,7 @@
 const db = wx.cloud.database();
 const order = db.collection('order')
 const images = require('../../utils/images.js')
-const app = getApp()
+var app = getApp()
 Page({
   data: {
     searchInfo: null,
@@ -16,23 +16,59 @@ Page({
     haveLoadAll: true,
     // 搜索后
     // 图片地址
-    images:images,
-    openid:null
+    images: images,
   },
 
-  onLoad: function(options) {
-    wx.cloud.callFunction({
-      name: "login",
-      complete: res => {
-        console.log(res.result)
-        this.setData({
-          openid : res.result.openid
-        })
-      }
-    })
+  onLoad: function (options) {
+    // 获取所有订单信息
     this.initorders()
     console.log(this.data.images)
   },
+
+  // 搜索历史订单
+  searchInput: function (e) {
+    this.setData({
+      searchInfo: e.detail.value
+    })
+  },
+  search: function () {
+    wx.showLoading({
+      title: '搜索中',
+    })
+    console.log(app.globalData.openid)
+    order.where({
+      _openid: app.globalData.openid
+    }).where({}).get().then(res => {
+      console.log(res)
+    })
+    wx.hideLoading()
+    wx.navigateTo({
+      url: '../order-search/order-search?info=' + this.data.searchInfo,
+    })
+    this.setData({
+      searchInfo: null
+    })
+  },
+  //-----------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------
+  // 滑动切换tab   
+  bindChange: function (e) {
+    this.setData({
+      currentTab: e.detail.current
+    });
+  },
+  //点击tab切换 
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  },
+  // ---------------------------------------------------------------------------------
   // --------------------------------------------------------------------------------
   // 下拉刷新部分
   initorders: function () {
@@ -46,31 +82,24 @@ Page({
     setTimeout(() => {
       this.setData({
         orders: [],
+        refreshLoading: false,
       })
       order.where({
         _openid: app.globalData.openid
       }).get().then(res => {
-        this.setData({
-          refreshLoading: false,
-        })
+        // console.log(res)
         var that = this;
         let key = "value";
         let value = 0;
         let orderTime = 'orderTime';
-        let sum = "sum";
-        let number = 0;
-        console.log(res.data)
         for (let i = 0; i < res.data.length; i++) {
           // res.data.length
           // 计算菜品总价
           for (let j = 0; j < res.data[i].dish.length; j++) {
             value += res.data[i].dish[j].price
-            number += res.data[i].dish[j].num
             res.data[i][key] = value
-            res.data[i][sum] = number
           }
           value = 0;
-          number = 0;
           // 计算时间，表示成xx-xx-xx形式
           let d = res.data[i].orderTime
           let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
@@ -85,7 +114,7 @@ Page({
           this.pageData.skip = 0
         })
       })
-    }, 500)
+    }, 1000)
   },
   loadmore: function () {
     let _this = this;
@@ -141,66 +170,47 @@ Page({
     })
   },
   // ------------------------------------------------------------------------------
-  // 搜索历史订单
-  searchInput: function (e) {
-    this.setData({
-      searchInfo: e.detail.value
-    })
-  },
-  search: function () {
-    wx.showLoading({
-      title: '搜索中',
-    })
-    order.where({
-      _openid: app.globalData.openid
-    }).get().then(res => {
-      console.log(res)
-    })
-    wx.hideLoading()
-    wx.navigateTo({
-      url: '../order-search/order-search?info=' + this.data.searchInfo,
-    })
-    this.setData({
-      searchInfo: null
-    })
-  },
-  //-----------------------------------------------------------------------------------
-  //-----------------------------------------------------------------------------------
-  // 滑动切换tab   
-  bindChange: function(e) {
-    this.setData({
-      currentTab: e.detail.current
-    });
-  },
-  //点击tab切换 
-  swichNav: function(e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
-  },
-  // ---------------------------------------------------------------------------------
   // ------------------------------------------------------------------------------
   // 页面跳转
-  // 订单详情
-  gotoDetail: function (e) {
-    console.log(e)
-    wx.navigateTo({
-      url: '../order-detail/order-detail?id=' + [e.currentTarget.id],
+  gotopeisongdetail: function () {
+    wx.redirectTo({
+      url: '../order-peisong-detail/order-peisong-detail',
     })
   },
-  // 再来一单
-  orderagain: function(e) {
+  // 立即支付
+  gotosubmitedpay: function (e) {
     console.log(e)
     wx.redirectTo({
-      url: '../order-unpaid-detail/order-unpaid-detail?id=' + [e.target.id],
+      url: '../order-submited-pay/order-submited-pay?id=' + [e.target.id],
     })
   },
-  
+  // 弹窗确认取消订单
+  // 是否取消订单
+  openConfirm: function (e) {
+    console.log(e)
+    wx.showModal({
+      title: '取消订单',
+      content: '您确定要取消订单，并申请退款吗？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.showLoading({
+            title: '返回中'
+          })
+          wx.redirectTo({
+            url: '../order-cancel-cus/order-cancel-cus?id=' + e.target.id,
+          })
+          wx.hideLoading()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  // 查询有多少菜品
+  queryOrder: function () {
+    order.where()
+  },
   // 跳过20个开始加载菜品
   pageData: {
     skip: 20
@@ -210,4 +220,26 @@ Page({
     return s < 10 ? '0' + s : s
   },
 
+  //order页面的函数由component中的dialog执行
+  sendToDialog() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    const id = this.data.tempid
+    setTimeout(function () {
+      wx.redirectTo({
+        url: '../order-cancel-cus/order-cancel-cus?id=' + [id],
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 100)
+    }, 100)
+  },
+  // 订单详情
+  gotoDetail: function (e) {
+    console.log(e)
+    wx.redirectTo({
+      url: '../order-peisong-detail/order-peisong-detail?id=' + [e.currentTarget.id],
+    })
+  },
 })

@@ -4,183 +4,163 @@ const order = db.collection("order")
 const app = getApp();
 Page({
   data: {
-    order: null,
-    view1st: "#eee",
-    view2nd: "red",
-    view1Color: "black",
-    view2Color: "white",
-    textdecration: "none",
-    orderlocation: null,
-    isLocation: false,
-  },
-  pageData: { id: null },
-  money(a) {
-    if (a == null) { return a = 0 } else {
-      return a
-    }
-  },
-
-  onLoad: function (options) {
-    wx.showLoading({
-      title: '数据加载中',
-    })
-    this.pageData.id = options.id
-    order.doc(this.pageData.id).get().then(res => {
-      let key = "totalPrice"
-      let totalPrice = 0;
-      for (let j = 0; j < res.data.dish.length; j++) {
-        totalPrice += res.data.dish[j].price
+    pageid:null,
+    order:null,  // 订单
+    userInfo: '',// 用户 信息
+    orderStatus: 3,   // 0未付款 1已接单 2派送中 3已完成 4订单已取消
+    // 骑手&&客户位置
+    markers: [
+      {
+        iconPath: "../../imgs/qishou.png",
+        id: 0,
+        latitude: 23.099994,
+        longitude: 113.324520,
+        width: 40,
+        height: 40
+      },
+      {
+        iconPath: "../../imgs/me.jpg",
+        id: 1,
+        latitude: 23.090094,
+        longitude: 113.324520,
+        width: 40,
+        height: 40
       }
-      totalPrice = totalPrice + this.money(res.data.wrapPrice) + this.money(res.data.sendPrice) - this.money(res.data.coupon)
-      res.data[key] = totalPrice
+    ],
+    polyline: [{
+      points: [{
+        longitude: 113.324520,
+        latitude: 23.099994
+      }, {
+        longitude: 113.324520,
+        latitude: 23.090094
+      }],
+      color: "#FF0000DD",
+      width: 2,
+      dottedLine: true
+    }],
+  },
+  //获取当前位置
+  onLoad: function (e) {
+    var that = this;
+    this.setData({
+      pageid: e.id
+    })
+    order.doc(e.id).get().then(res=>{
+      console.log(res)
       this.setData({
-        order: res.data
+        order:res.data
       })
-      wx.hideLoading()
     })
-  },
-  onReady: function () { },
-  onShow: function () { },
-  onHide: function () { },
-  onUnload: function () { },
-  onPullDownRefresh: function () { },
-  onReachBottom: function () { },
-  onShareAppMessage: function () { },
-  // 提交订单函数
-  update_set_Order: function () {
-    var _this = this;
-    var time111 = new Date();
-    wx.showLoading({
-      title: '订单提交中',
-    })
-    if (this.data.isLocation == false) {
-      var address = _this.data.orderlocation
-    } else {
-      var address = null
-    }
-    order.doc(_this.pageData.id).set({
-      data: {
-        addr: address,
-        arriveTime: time111,
-        fetchTime: time111,
-        orderTime: time111,
-        store: "泰园餐厅",
-        storeID: "fdfdsfdsgfdsg",
-        comment: "还行，米饭太软了",
-        storeID: null,
-        dishID: ["番茄炒蛋", "水煮牛蛙"],
-        dishnum: [1, 1],
-        price: [15, 50],
-        paid: false,
-        done: false,
-        isTaken: false,
-        wrapPrice: 5,
-        sendPrice: 3,
-        stu: "孔可赛",
-        stuID: "4cgdfg325htg8ct8sfgcvtc834hc8",
-        rate: 4,
-        tel: 15725055202,
-        coupon: 4
-      },
-    }).then(res => {
-      wx.showToast({
-        title: '提价成功',
-      })
-      setTimeout(function () {
-        wx.switchTab({
-          url: '../order/order',
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          userInfo: res.userInfo
         })
-      }, 100)
+      }
     })
-  },
-  // 提交订单
-  submitOrder: function () {
-    if (this.data.isLocation == true || (this.data.isLocation == false && this.data.orderlocation != null)) {
-      this.update_set_Order();
-      console.log("123")
-    }
-    else {
-      wx.showToast({
-        title: ' 请选择地址！ ',
-        image: "../../imgs/img1/about_us.png",
-        duration: 1500
+    if (this.data.orderStatus == 1) {
+      var shopAddress = [
+        {
+          iconPath: "../../imgs/shop.png",
+          id: 0,
+          name: '店家地址',
+          desc: '店家地址',
+          latitude: 23.099994,
+          longitude: 113.324520,
+          width: 40,
+          height: 40,
+          callout: {
+            content: '店家地址',
+            display: 'ALWAYS',
+            borderRadius: 2,
+            bgColor: '#ffe400',
+            padding: 10
+          },
+        }];
+      var callout = [
+        {
+
+        }
+      ]
+      this.setData({
+        markers: shopAddress,
+        polyline: ''
       })
     }
-
-
-  },
-  //--------------------------------------------------------------------------------------------------------------
-  // 选择到店自取or外卖配送
-  // 到店自取
-  choose1st: function () {
-    wx.showLoading({
-      title: '切换中',
-    })
-    let key = "totalPrice"
-    let totalPrice = 0;
-    let order = this.data.order;
-    order.price.forEach(ele => {
-      totalPrice += ele
-    })
-    totalPrice = totalPrice + this.money(order.wrapPrice) - this.money(order.coupon)
-    order[key] = totalPrice
-    this.setData({
-      order: order,
-      view1st: "red",
-      view2nd: "#eee",
-      view1Color: "white",
-      view2Color: "black",
-      textdecration: "line-through",
-      isLocation: true,
-    })
-    wx.hideLoading()
-  },
-  // 外卖配送
-  choose2nd: function () {
-    wx.showLoading({
-      title: '切换中',
-    })
-    let key = "totalPrice"
-    let totalPrice = 0;
-    let order = this.data.order;
-    order.price.forEach(ele => {
-      totalPrice += ele
-    })
-    totalPrice = totalPrice + this.money(order.wrapPrice) + this.money(order.sendPrice) - this.money(order.coupon)
-    order[key] = totalPrice
-    this.setData({
-      order: order,
-      view1st: "#eee",
-      view2nd: "red",
-      view1Color: "black",
-      view2Color: "white",
-      textdecration: "none",
-      isLocation: false,
-    })
-    wx.hideLoading()
-  },
-  //--------------------------------------------------------------------------------------------------------------
-  // 获取优惠券信息
-  gotoCoupin: function () {
-    wx.showActionSheet({
-      itemList: ['A', 'B', 'C', "d", "g", "g"],
-      success(res) {
-        console.log(res.tapIndex)
-      },
-      fail(res) {
-        console.log(res.errMsg)
+    var that = this
+    wx.getLocation({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          hasLocation: true,
+          location: {
+            longitude: res.longitude,
+            latitude: res.latitude
+          }
+        })
       }
     })
   },
-  // 获取地址
-  getLocation: function () {
-    var _this = this
-    wx.chooseLocation({
-      success: function (res) {
-        _this.setData({
-          orderlocation: res
-        })
-      },
+
+  regionchange(e) {
+    console.log(e.type)
+  },
+
+  markertap(e) {
+    console.log(e.markerId)
+  },
+
+  controltap(e) {
+    console.log(e.controlId)
+  },
+
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+// 联系骑手
+callRider:function(){
+  wx.makePhoneCall({
+    phoneNumber: '18316588252',
+    success: function () {
+      console.log("拨打电话成功！")
+    },
+    fail: function () {
+      console.log("拨打电话失败！")
+    }
+  })
+},
+// 联系商家
+callStore: function () {
+  wx.makePhoneCall({
+    phoneNumber: '18316588252',
+    success: function () {
+      console.log("拨打电话成功！")
+    },
+    fail: function () {
+      console.log("拨打电话失败！")
+    }
+  })
+},
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+// 申请退款
+  cancelApply: function () {
+    wx.navigateTo({
+      url: '../cancelorder/applyRefund?id='+this.data.pageid,
+    })
+  },
+// 评价订单
+  toEvaluate: function () {
+    wx.navigateTo({
+      url: '../evaluate/evaluate?id=' + this.data.pageid,
+    })
+  },
+  // 再来一单
+  again:function(){
+    wx.redirectTo({
+      url: '../order-submit/order-submit?id='+this.data.pageid,
     })
   }
 })
+ 

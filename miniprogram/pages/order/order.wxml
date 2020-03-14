@@ -18,28 +18,28 @@
   <!-- 全部 -->
   <swiper-item>
     <list class="list" refresh-loading="{{refreshLoading}}" loading="{{loading}}" bindrefresh="initorders" bindloadmore="loadmore" bind:getHeight="getHeight">
-      <block wx:for="{{orders}}">
-        <!-- 菜品i -->
-        <list-item>
+      <list-item>
+        <block wx:for="{{orders}}">
+          <!-- 菜品i -->
           <view class="view-dish">
             <view class="view-store-detail">
               <image class="image-storeLogo" src="{{images.kfc}}"></image>
               <view class="view-storename">
                 <view class="view-row">
-                  <view style="font-size:38rpx;">{{item.storeID}}></view>
+                <!-- 商家名称 -->
+                  <view style="font-size:38rpx;">{{item.store}}></view>
                   <!-- 订单状态 -->
                   <text>{{item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment ?'已评价':'待评价'}}</text>
                 </view>
-                <view style="font-size:35rpx;">{{item.store}}</view>
+                <!-- 商家所属餐厅 -->
+                <view style="font-size:35rpx;">{{item.hall}}</view>
               </view>
             </view>
-            <!-- 下划线
-            <view class="viewline"></view> -->
             <!-- 订单详情 -->
             <!-- 1/2/3张菜品图片 -->
             <view class="view-order-detail1">
               <view class="view-order-detail">
-                <block wx:for="{{item.dish}}" wx:key wx:if="{{index<3}}">
+                <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                   <view class="view-dish-src_name">
                     <image class="image-dish" src="{{item.src}}"></image>
                     <view style="font-size:32rpx;"> {{item.name}}</view>
@@ -48,19 +48,17 @@
               </view>
               <view class="valueandnum">
                 <view style="font-size:38rpx;">￥{{item.value}}</view>
-                <view style="font-size:32rpx;">共3件</view>
+                <view style="font-size:32rpx;">共{{item.sum}}件</view>
               </view>
             </view>
             <!-- <text>下单时间：{{item.orderTime}}</text> -->
             <view class="view-order-btn">
-              <view bindtap="gotodetail" id="{{item._id}}" style="font-size:32rpx;">查看详情</view>
-              <view bindtap="gotosubmitedpay" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
+              <view bindtap="gotoDetail" id="{{item._id}}" style="font-size:32rpx;">查看详情</view>
+              <view bindtap="orderagain" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
             </view>
-
-
           </view>
-        </list-item>
-      </block>
+        </block>
+      </list-item>
       <view hidden="{{haveLoadAll}}" class="view-nomore">没有多的订单啦~</view>
     </list>
   </swiper-item>
@@ -71,17 +69,17 @@
       <block wx:for="{{orders}}">
         <block wx:if="{{item.paid===false}}">
           <!-- 菜品i -->
-          <view class="view-dish" bindtap="gotoDetail" id="{{item._id}}">
+          <view class="view-dish" id="{{item._id}}">
             <list-item>
               <view class="view-store-detail">
                 <image class="image-storeLogo" src="{{images.kfc}}"></image>
                 <view class="view-storename">
                   <view class="view-row">
-                    <view style="font-size:38rpx;">{{item.storeID}}></view>
+                    <view style="font-size:38rpx;">{{item.store}}></view>
                     <!-- 订单状态 -->
                     <text>待付款</text>
                   </view>
-                  <view style="font-size:35rpx;">{{item.store}}</view>
+                  <view style="font-size:35rpx;">{{item.hall}}</view>
                 </view>
               </view>
               <!-- 下划线
@@ -90,7 +88,7 @@
               <!-- 1/2/3张菜品图片 -->
               <view class="view-order-detail1">
                 <view class="view-order-detail">
-                  <block wx:for="{{item.dish}}" wx:key wx:if="{{index<3}}">
+                  <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                     <view class="view-dish-src_name">
                       <image class="image-dish" src="{{item.src}}"></image>
                       <view style="font-size:32rpx;"> {{item.name}}</view>
@@ -99,13 +97,13 @@
                 </view>
                 <view class="valueandnum">
                   <view style="font-size:38rpx;">￥{{item.value}}</view>
-                  <view style="font-size:32rpx;">共3件</view>
+                  <view style="font-size:32rpx;">共{{item.sum}}件</view>
                 </view>
               </view>
               <!-- <text>下单时间：{{item.orderTime}}</text> -->
               <view class="view-order-btn">
                 <view bindtap="gotodetail" id="{{item._id}}" style="font-size:32rpx;">查看详情</view>
-                <view bindtap="gotosubmitedpay" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
+                <view bindtap="orderagain" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
               </view>
             </list-item>
           </view>
@@ -121,17 +119,17 @@
       <block wx:for="{{orders}}">
         <block wx:if="{{item.paid===true && item.done===false}}">
           <!-- 菜品i -->
-          <view class="view-dish" bindtap="gotoDetail" id="dotodetal">
+          <view class="view-dish" id="dotodetal">
             <list-item>
               <view class="view-store-detail">
                 <image class="image-storeLogo" src="{{images.kfc}}"></image>
                 <view class="view-storename">
                   <view class="view-row">
-                    <view style="font-size:38rpx;">{{item.storeID}}></view>
+                    <view style="font-size:38rpx;">{{item.store}}></view>
                     <!-- 订单状态 -->
                     <text>未完成</text>
                   </view>
-                  <view style="font-size:35rpx;">{{item.store}}</view>
+                  <view style="font-size:35rpx;">{{item.hall}}</view>
                 </view>
               </view>
               <!-- 下划线
@@ -140,7 +138,7 @@
               <!-- 1/2/3张菜品图片 -->
               <view class="view-order-detail1">
                 <view class="view-order-detail">
-                  <block wx:for="{{item.dish}}" wx:key wx:if="{{index<3}}">
+                  <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                     <view class="view-dish-src_name">
                       <image class="image-dish" src="{{item.src}}"></image>
                       <view style="font-size:32rpx;"> {{item.name}}</view>
@@ -149,13 +147,13 @@
                 </view>
                 <view class="valueandnum">
                   <view style="font-size:38rpx;">￥{{item.value}}</view>
-                  <view style="font-size:32rpx;">共3件</view>
+                  <view style="font-size:32rpx;">共{{item.sum}}件</view>
                 </view>
               </view>
               <!-- <text>下单时间：{{item.orderTime}}</text> -->
               <view class="view-order-btn">
                 <view bindtap="gotodetail" id="{{item._id}}" style="font-size:32rpx;">查看详情</view>
-                <view bindtap="gotosubmitedpay" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
+                <view bindtap="orderagain" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
               </view>
             </list-item>
           </view>
@@ -176,11 +174,11 @@
               <image class="image-storeLogo" src="{{images.kfc}}"></image>
               <view class="view-storename">
                 <view class="view-row">
-                  <view style="font-size:38rpx;">{{item.storeID}}></view>
+                  <view style="font-size:38rpx;">{{item.store}}></view>
                   <!-- 订单状态 -->
                   <text>待评价</text>
                 </view>
-                <view style="font-size:35rpx;">{{item.store}}</view>
+                <view style="font-size:35rpx;">{{item.hall}}</view>
               </view>
             </view>
             <!-- 下划线
@@ -189,7 +187,7 @@
             <!-- 1/2/3张菜品图片 -->
             <view class="view-order-detail1">
               <view class="view-order-detail">
-                <block wx:for="{{item.dish}}" wx:key wx:if="{{index<3}}">
+                <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                   <view class="view-dish-src_name">
                     <image class="image-dish" src="{{item.src}}"></image>
                     <view style="font-size:32rpx;"> {{item.name}}</view>
@@ -198,13 +196,13 @@
               </view>
               <view class="valueandnum">
                 <view style="font-size:38rpx;">￥{{item.value}}</view>
-                <view style="font-size:32rpx;">共3件</view>
+                <view style="font-size:32rpx;">共{{item.sum}}件</view>
               </view>
             </view>
             <!-- <text>下单时间：{{item.orderTime}}</text> -->
             <view class="view-order-btn">
               <view bindtap="gotodetail" id="{{item._id}}" style="font-size:32rpx;">查看详情</view>
-              <view bindtap="gotosubmitedpay" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
+              <view bindtap="orderagain" id="{{item._id}}" style="font-size:32rpx;">再来一单</view>
             </view>
           </list-item>
         </view>
