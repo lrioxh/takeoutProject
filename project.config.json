@@ -59,93 +59,23 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/order-peisong-detail/order-peisong-detail",
-					"pathName": "pages/order-peisong-detail/order-peisong-detail",
-					"query": "",
+					"name": "pages/order/order",
+					"pathName": "pages/order/order",
+					"query": "id=11bc40fa-4024-45b8-9330-4e6a1260aaba",
 					"scene": null
 				},
 				{
-					"id": 2,
-					"name": "pages/order-pay/order-pay",
-					"pathName": "pages/order-pay/order-pay",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "pages/order-cancel-store/order-cancel-store",
-					"pathName": "pages/order-cancel-store/order-cancel-store",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/order-cancel-cus/order-cancel-cus",
-					"pathName": "pages/order-cancel-cus/order-cancel-cus",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/order-unpaid-detail/order-unpaid-detail",
-					"pathName": "pages/order-unpaid-detail/order-unpaid-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/order-detail/order-detail",
-					"pathName": "pages/order-detail/order-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": 9,
+					"id": -1,
 					"name": "pages/shop/shop",
 					"pathName": "pages/shop/shop",
 					"query": "id=11bc40fa-4024-45b8-9330-4e6a1260aaba",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/order-search/order-search",
-					"pathName": "pages/order-search/order-search",
-					"query": "id=11bc40fa-4024-45b8-9330-4e6a1260aaba",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order/order",
-					"pathName": "pages/order/order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 10,
-					"name": "pages/evaluate/evaluate",
-					"pathName": "pages/evaluate/evaluate",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
+					"id": 3,
 					"name": "pages/order-submit/order-submit",
 					"pathName": "pages/order-submit/order-submit",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order-peisong-detail/order-peisong-detail",
-					"pathName": "pages/order-peisong-detail/order-peisong-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order-cancel-cus/order-cancel-cus",
-					"pathName": "pages/order-cancel-cus/order-cancel-cus",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"query": "id=11bc40fa-4024-45b8-9330-4e6a1260aaba",
 					"scene": null
 				}
 			]

@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
 /* ---------------------高剑雄部分------------------------------------wxss */
 
 page{

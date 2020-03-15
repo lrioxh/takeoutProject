@@ -22,47 +22,35 @@
 <view class="proMessage">
   <view class="Title">
     <view class="title">
-      <image src="../../imgs/me.jpg"></image>
-      仔仔
+      <image src="{{order.storeLogo}}"></image>
+      {{order.store}}
     </view>
     <view class="iconfont icon-phone" bindtap="calling">联系商家</view>
   </view>
+  <block wx:for="{{order.dish}}" wx:key="dish">
   <view class="list">
     <view class="listLeft">
       <view class="foodPic">
-        <image src="../../imgs/food.jpg"></image>
+        <image src="{{item.src}}"></image>
       </view>
       <view class="message">
-        <text>黄焖鸡米饭</text>
-        <text class="price">¥12.43 <text class="oldPrice">¥14.43</text></text>
+        <text>{{item.name}} {{item.taste==null?"":"("+item.taste+")"}}</text>
+        <text class="price">¥{{item.price}} <text class="oldPrice">¥14.43</text></text>
       </view>
     </view>
     <view class="listRight">
-      X1
+      x{{item.num}}
     </view>
   </view>
-  <view class="list">
-    <view class="listLeft">
-      <view class="foodPic">
-        <image src="../../imgs/food.jpg"></image>
-      </view>
-      <view class="message">
-        <text>黄焖鸡米饭</text>
-        <text class="price">¥12.43 <text class="oldPrice">¥14.43</text></text>
-      </view>
-    </view>
-    <view class="listRight">
-      X1
-    </view>
-  </view>
+  </block>
   <view class="orherPrice">
     <text>餐盒费</text>
-    <text>¥1</text>
+    <text>¥{{order.wrapPrice==null ? "0" : order.wrapPrice}}</text>
   </view>
   <view class="smallBorder">
     <view class="orherPrice">
       <text>配送</text>
-      <text>¥3</text>
+      <text>¥{{order.sendPrice==null ?"0":order.sendPrice}}</text>
     </view>
     <view class="orherPrice" bindtap="toMyPackage">
       <text class="iconfont icon-pag">红包</text>

@@ -1,6 +1,6 @@
 // page/windows/windows.js
 const db = wx.cloud.database();
-// const store = db.collection("store");
+const store = db.collection("store");
 Page({
 
 	/**
@@ -19,7 +19,7 @@ Page({
 			dinningHall:options.id
 		})
 		this.getdata(console.log(this.data.windows))
-		console.log(options.id)
+		console.log("========================================")
 	
 	},
 
@@ -81,10 +81,11 @@ Page({
 		wx.showLoading({
 			title: '数据加载中',
 		})
-		let store = db.collection(this.data.dinningHall)
 		console.log(this.data.dinningHall)
 		let _this=this
-		store.skip(this.pagedata.skip).get().then(res => {
+		store.where({
+			place:this.data.dinningHall
+		}).skip(this.pagedata.skip).get().then(res => {
 			console.log(res);
 			this.setData({
 				windows: this.data.windows.concat(res.data)

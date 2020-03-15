@@ -79,6 +79,7 @@
           <text class="v">↓</text>
         </view>
       </view>
+			<windows windows="{{shops}}"></windows>
       <view>
         <template is="abc" data="{{windows}}"></template>
       </view>

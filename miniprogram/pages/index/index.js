@@ -178,7 +178,7 @@ Page({
 		],
 		discount_img: '/imgs/index/fastfood.jpg',
 		choice: '/imgs/index/fastfood.jpg',
-		shops: app.globalData.shops
+		shops: []
 	},
 	onLoad: function () {
 		var self = this;
@@ -187,24 +187,9 @@ Page({
 			success: function (res) {
 				var latitude = res.latitude;
 				var longitude = res.longitude;
-				// server.getJSON('/waimai/api/location.php', {
-				// 	latitude: latitude,
-				// 	longitude: longitude
-				// }, function (res) {
-				// 	console.log(res)
-				// 	if (res.data.status != -1) {
-				// 		// console.log(res.data)
-				// 		self.setData({
-				// 			address: res.data.result.address_component.street_number
-				// 		});
-				// 	} else {
-				// 		self.setData({
-				// 			address: '定位失败'
-				// 		});
-				// 	}
-				// });						定位用的。。。。。。。。。。还是自己写吧
 			}
 		})
+		this.getdata()
 	},
 	onShow: function () {
 	},
@@ -237,6 +222,7 @@ Page({
 		})
 	},
 	tapFilter: function (e) {
+		console.log(e)
 		switch (e.target.dataset.id) {
 			case '1':
 				this.data.shops.sort(function (a, b) {
@@ -301,7 +287,7 @@ Page({
 	},
 	query:function(){
 		let _this=this
-		db.collection("xinyuan").where({
+		db.collection("store").where({
 			name: new db.RegExp({
 				regexp:_this.data.query,
 				options: 'i'
@@ -313,6 +299,29 @@ Page({
 		wx.navigateTo({
 				url: '../search/search',
 		})})
+	},
+	getdata: function (callback) {
+		if (!callback) {
+			callback = res => { }
+		}
+		wx.showLoading({
+			title: '数据加载中',
+		})
+		let store = db.collection('store')
+		let _this = this
+		store.skip(this.pagedata.skip).get().then(res => {
+			console.log(res);
+			this.setData({
+				shops: this.data.shops.concat(res.data)
+			}),
+				this.pagedata.skip = this.pagedata.skip + 20;
+			wx.hideLoading();
+			callback();
+			console.log(_this.data.shops)
+		})
+	},
+	pagedata: {
+		skip: 0
 	}
 });
 

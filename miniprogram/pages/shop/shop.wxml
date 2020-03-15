@@ -3,68 +3,149 @@
   <view class="header {{scrollDown?'hidden':''}}">
     <image class="logo" src="{{window.img}}" />
     <view class="name ellipsis">{{window.name}}</view>
-    <view class="welcome ellipsis"><text>欢迎光临本店铺</text></view>
+    <view class="welcome ellipsis">
+      <text>欢迎光临本店铺</text>
+    </view>
     <view class="follow" bindtap="follow">{{followed?'已收藏':'收藏'}}</view>
     <view class="line"></view>
     <view class="desc">{{shop.desc}}</view>
   </view>
-	<view class="swiper-tab">
-		<view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">菜品</view>
-		<view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">商家信息</view>
-		<view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">评价</view>
-	</view>
-  <!-- 左右滚动栏 -->
-  <view class="content-container">
-    <!-- 左边分类栏 -->
-    <scroll-view class="classify-container" scroll-y="true">
-      <view class="classify {{classifySeleted==classify.id?'active':''}}" wx:for="{{category}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
-        <view class="name">{{classify}}</view>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">菜品</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">商家信息</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">评价</view>
+  </view>
+  <swiper current="{{currentTab}}" class="swiper-box" bindchange="bindChange">
+    <!----------------------------------------------------------------- 菜品 --------------------------------------------------------->
+    <!-- 左右滚动栏 -->
+    <swiper-item>
+      <view class="content-container">
+        <!-- 左边分类栏 -->
+        <scroll-view class="classify-container" scroll-y="true">
+          <view class="classify {{classifySeleted==classify.id?'active':''}}" wx:for="{{category}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
+            <view class="name">{{classify}}</view>
+          </view>
+        </scroll-view>
+        <!-- 右边菜品栏 -->
+        <scroll-view class="goods-container" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
+          <view wx:for="{{category}}" wx:for-item="classify" wx:key="id2" id="{{classify.id}}">
+            <view class="title">{{classify}}</view>
+            <view class="goods" wx:for="{{goods}}" wx:for-item="good" wx:key="*this">
+              <block wx:if="{{good.category}}=={{classify}}">
+                <image class="pic" src="{{good.src}}"></image>
+                <view class="name ellipsis">{{good.name}}</view>
+                <view class="sold">月售{{good.sale}}</view>
+                <view class="price">￥{{good.price}}</view>
+                <view class="addCart" bindtap="tapAddCart" data-id="{{good.id}}">
+                  <image src="/imgs/shop/plus.png"></image>
+                </view>
+              </block>
+            </view>
+          </view>
+        </scroll-view>
       </view>
-    </scroll-view>
-    <!-- 右边菜品栏 -->
-    <scroll-view class="goods-container" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
-      <view wx:for="{{category}}" wx:for-item="classify" wx:key="id2" id="{{classify.id}}">
-        <view class="title">{{classify}}</view>
-        <view class="goods" wx:for="{{goods}}" wx:for-item="good" wx:key="*this">
-					<block wx:if="{{good.category}}=={{classify}}">
-						  <image class="pic" src="{{goods[id].pic}}"></image>
-            <view class="name ellipsis">{{good.name}}</view>
-            <view class="sold">月售{{good.sale}}</view>
-            <view class="price">￥{{good.price}}</view>
-            <view class="addCart" bindtap="tapAddCart" data-id="{{good.id}}">
-            <image src="/imgs/shop/plus.png"></image>
-        		</view>
-					</block>
-          
-
+      <!-- 购物车详情，只有当购物车中有东西才可以点 -->
+      <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
+        <view class="mask" bindtap="hideCartDetail"></view>
+        <view class="list">
+          <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="index">
+            <view class="name ellipsis">{{goods[id].name}}</view>
+            <view class="total">￥{{goods[id].price*cart.list[id]}}</view>
+            <view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">-</view>
+            <view class="num">{{num==null?'0':num}}</view>
+            <view class="add" data-id="{{id}}" bindtap="tapAddCart">+</view>
+          </view>
         </view>
       </view>
-    </scroll-view>
-  </view>
-  <!-- 购物车详情，只有当购物车中有东西才可以点 -->
-  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
-    <view class="mask" bindtap="hideCartDetail"></view>
-    <view class="list">
-      <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="index">
-        <view class="name ellipsis">{{goods[id].name}}</view>
-        <view class="total">￥{{goods[id].price*cart.list[id]}}</view>
-        <view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">-</view>
-        <view class="num">{{num==null?'0':num}}</view>
-        <view class="add" data-id="{{id}}" bindtap="tapAddCart">+</view>
+      <!-- 底部购物车 -->
+      <view class="cart">
+        <view class="data" bindtap="showCartDetail">
+          <view class="icon">
+            <image src="/imgs/shop/cart.png"></image>
+            <view class="count">{{cart.count}}</view>
+          </view>
+          <view class="total">￥{{cart.total}}</view>
+        </view>
+        <!--<view formType="submit" class="submit">去结算</view>-->
+        <button style="width:250rpx;height:150rpx;" class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}" bindtap="submit">去结算</button>
       </view>
-    </view>
-  </view>
-  <!-- 底部购物车 -->
-  <view class="cart">
-    <view class="data" bindtap="showCartDetail">
-      <view class="icon">
-        <image src="/imgs/shop/cart.png"></image>
-        <view class="count">{{cart.count}}</view>
-      </view>
-      <view class="total">￥{{cart.total}}</view>
-    </view>
-      <!--<view formType="submit" class="submit">去结算</view>-->
-      <button class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}" bindtap="submit">去结算</button>
-
-  </view>
+    </swiper-item>
+    <!----------------------------------------------------------------- 商家信息----------------------------------------------------->
+    <swiper-item>
+      <scroll-view class="storeInfo" scroll-y="true">
+        <swiper class="environment" indicator-dots="true">
+          <swiper-item>
+            <image class="pic" src="{{inner}}">店内环境</image>
+          </swiper-item>
+          <swiper-item>
+            <image class="pic" src="{{inner}}">店内环境</image>
+          </swiper-item>
+          <swiper-item>
+            <image class="pic" src="{{inner}}">店内环境</image>
+          </swiper-item>
+        </swiper>
+        <view class="storeStory">
+					<text>商家故事</text>
+          <text>{{story}}</text>
+        </view>
+        <view class="locationTel">
+          <view class="location">
+            <mp-icon type="field" icon="location" color="black" size="{{25}}"></mp-icon>
+            <text>商家地点：</text>
+            <text>{{location}}</text>
+          </view>
+          <view class="tel">
+            <mp-icon type="field" icon="bellring-on" color="black" size="{{25}}"></mp-icon>
+            <text>商家电话：</text>
+            <text>{{tel}}</text>
+          </view>
+        </view>
+        <view class="serviceTime">
+          <view class="service">
+            <mp-icon type="field" icon="sticker" color="black" size="{{25}}"></mp-icon>
+            <text>配送服务：</text>
+            <text>{{service}}</text>
+          </view>
+          <view class="time">
+            <mp-icon type="field" icon="time" color="black" size="{{25}}"></mp-icon>
+            <text>营业时间：</text>
+            <text>{{worktime}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!----------------------------------------------------------------- 评价 --------------------------------------------------------->
+    <swiper-item>
+      <scroll-view class="rateInfo" scroll-y="true">
+        <!-- <canvas canvas-id="columnCanvas"></canvas> -->
+        <!-- 基本口碑信息 -->
+        <view class="koubei">
+          <view class="rank">{{window.rank}}</view>
+          <view class="rate">
+            <view class="pingfen">评分</view>
+            <view class="star">{{window.rate}}★</view>
+          </view>
+        </view>
+        <!-- 评价内容 -->
+        <block wx:for="{{comment}}" wx:key="index">
+          <view class="comment">
+            <view class="rateCoupon">
+              <view class="stu">{{item.stu}}</view>
+              <view class='commentRate'>本次订单评分：{{item.rate}}★</view>
+              <view class="coupon">使用优惠券金额：￥{{item.coupon}}</view>
+            </view>
+            <view class="comment_store"><mp-icon type="field" icon="comment" color="black" size="{{20}}"></mp-icon>菜品评价：
+              <view> {{item.comment_store}}</view>
+            </view>
+            <view class="reply"><mp-icon type="field" icon="at" color="black" size="{{20}}"></mp-icon>商家回复：
+              <view>{{item.reply}}</view>
+            </view>
+            <view class="comment_rider"><mp-icon type="field" icon="contacts" color="black" size="{{20}}"></mp-icon>配送评价：
+              <view> {{item.comment_rider}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 </view>

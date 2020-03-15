@@ -211,7 +211,8 @@ page {
 }
 .submit {
   padding: 40rpx;
-  background: #ffe400;
+  color:white;
+  background: #ff893b;
 }
 .orderType {
   padding: 30rpx 40rpx;
