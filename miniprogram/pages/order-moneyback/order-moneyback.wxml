@@ -23,7 +23,7 @@
   </view>
   <view class="reason2">
     <text>退款金额</text>
-    <text class="price">¥{{totalMoney}}</text>
+    <text class="price">¥{{order.payPrice}}</text>
   </view>
   <view class="reason3">
     <text>退款说明</text> 

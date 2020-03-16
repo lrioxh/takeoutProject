@@ -22,11 +22,11 @@
     </view>
     <view class="bot" wx:if="{{orderStatus==1 || orderStatus==2}}">
       <view class="cancel" bindtap="modalinput" bindtap="callRider">催单</view>
-      <view class="apply" bindtap="apply" bindtap="cancelApply">申请退款</view>
+      <view class="apply"  bindtap="cancelApply">申请退款</view>
     </view>
     <view class="bot" wx:if="{{orderStatus==0}}">
-      <view class="cancel" bindtap="modalinput" bindtap="callStore">取消订单</view>
-      <view class="apply" bindtap="apply">去支付</view>
+      <view class="cancel" bindtap="modalinput" bindtap="cancel">取消订单</view>
+      <view class="apply" bindtap="gotoapply">去支付</view>
     </view>
   </view>
 </view>
@@ -68,7 +68,7 @@
           </view>
           <view class="message">
             <text>{{item.name}}</text>
-            <text class="price">¥{{item.price}} <text class="oldPrice">¥14.43</text></text>
+            <text class="price"> ¥{{item.price}}</text>
           </view>
         </view>
         <view class="listRight">
@@ -100,8 +100,8 @@
     </view>
   </view>
   <view class="orherPrice">
-    <text class="lightcolor">共100元</text>
-    <text>实付90（已优惠10）</text>
+    <text class="lightcolor">共{{order.totalPrice}}元</text>
+    <text>实付{{order.payPrice}}元（已优惠{{order.coupon}}元）</text>
   </view>
 </view>
 

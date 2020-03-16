@@ -37,7 +37,8 @@
   background: white;
   width: 100%;
   padding-left: 8rpx;
-  padding-top: 8rpx;
+  padding-top: 10rpx;
+  padding-bottom: 5rpx;
   padding-right: 15rpx;
 }
 
@@ -109,8 +110,9 @@
 /* 订单详情 */
 
 .view-order-detail1 {
+  padding: 20rpx;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 

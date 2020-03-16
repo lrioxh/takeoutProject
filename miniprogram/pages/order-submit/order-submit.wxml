@@ -1,19 +1,19 @@
 <view class="orderBlock">
   <view class="head" wx:if="{{!restaurant}}">
-    <view class="address" bindtap="toMyAddress">
+    <view class="address" bindtap="chooseAddress">
       <view class="map">
-        <view class="iconfont icon-map2">启梦创业广场 1A158-159</view>
+        <view class="iconfont icon-map2">{{addressInfo.detailInfo}}</view>
         <view class="name">
-          <text>李四先生</text>
-          <text class="phone">18316588222</text>
+          <text>{{addressInfo.userName}}</text>
+          <text class="phone">{{addressInfo.telNumber}}</text>
         </view>
       </view>
       <view class="iconfont icon-more"></view>
-    </view>    
+    </view>
     <view class="time">
       <view class="iconfont icon-time">
         <text>立即送出</text>
-        <text>（约16:10送达）</text>
+        <text>（约{{predictTime}}送达）</text>
       </view>
     </view>
   </view>
@@ -28,20 +28,21 @@
     <view class="iconfont icon-phone" bindtap="calling">联系商家</view>
   </view>
   <block wx:for="{{order.dish}}" wx:key="dish">
-  <view class="list">
-    <view class="listLeft">
-      <view class="foodPic">
-        <image src="{{item.src}}"></image>
+    <view class="list">
+      <view class="listLeft">
+        <view class="foodPic">
+          <image src="{{item.src}}"></image>
+        </view>
+        <view class="message">
+          <text>{{item.name}} {{item.taste==null?"":"("+item.taste+")"}}</text>
+          <view class="listRight"> x{{item.num}} </view>
+        </view>
       </view>
-      <view class="message">
-        <text>{{item.name}} {{item.taste==null?"":"("+item.taste+")"}}</text>
-        <text class="price">¥{{item.price}} <text class="oldPrice">¥14.43</text></text>
+      <view>
+        <text style="font-size:40rpx;"> ¥{{item.price }} </text>
+        <!-- <text class="oldPrice">¥14.43</text> -->
       </view>
     </view>
-    <view class="listRight">
-      x{{item.num}}
-    </view>
-  </view>
   </block>
   <view class="orherPrice">
     <text>餐盒费</text>
@@ -54,12 +55,12 @@
     </view>
     <view class="orherPrice" bindtap="toMyPackage">
       <text class="iconfont icon-pag">红包</text>
-      <text class="price iconfont icon-more">2张可用</text>
+      <text class="price iconfont icon-more">{{couponflag!=null? "-￥"+ couponprice :couponnum+"张可用"}}</text>
     </view>
   </view>
   <view class="orherPrice">
-    <text>共100元</text>
-    <text>实付90（已优惠10）</text>
+    <text>共{{order.totalPrice}}元</text>
+    <text>实付{{totalPrice}}元（已优惠{{couponprice!=0?couponprice:"0"}}元）</text>
   </view>
 </view>
 
@@ -71,14 +72,14 @@
 <view class="other">
   <view>
     <text>订单备注</text>
-    <textarea placeholder="请输入您的要求" />
+    <textarea bindinput="textareainput" placeholder="请输入您的要求" />
   </view>
 </view>
 
 <view class="submitOrder">
-  <text class="discount">已优惠¥32</text>
-  <text>实付 <text class="price">¥36</text></text>
-  <text class="submit" bindtop="submitOrder">提交订单</text>
+  <text class="discount">已优惠¥{{couponprice!=0?couponprice:"0"}}</text>
+  <text>实付 <text class="price">¥{{totalPrice}}</text></text>
+  <text class="submit" bindtap="submitOrder">提交订单</text>
 </view>
 <view class="padding">
 

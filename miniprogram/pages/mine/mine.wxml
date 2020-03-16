@@ -18,7 +18,6 @@
         </view>
         <view class="myitem-name flex-item">
           <text>代金券</text>
-
         </view>
       </view>
       <view class="my-item flex-wrp" bindtap="toCollect">

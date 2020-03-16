@@ -48,17 +48,25 @@ Page({
   // 弹窗dialog确认是否取消订单
   openConfirm: function (e) {
     console.log(e)
+    var _this = this
     wx.showModal({
       title: '取消订单',
       content: '您确定要取消订单，并申请退款吗？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          order.doc(_this.pageData.id).update({
+            data: {
+              cancel: true
+            },
+            success: console.log,
+            fail:console.log
+          })
           wx.showLoading({
-            title: '返回中'
+            title: '订单取消中'
           })
           wx.redirectTo({
-            url: '../order-cancel-cus/order-cancel-cus?id=' + e.target.id,
+            url: '../order-detail/order-detail?id=' + e.target.id,
           })
           wx.hideLoading()
         } else if (res.cancel) {

@@ -2,13 +2,14 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -19,8 +20,7 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"appid": "wx6215f62d732daf5c",
 	"projectname": "%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%A2%E5%8D%95",
@@ -75,7 +75,41 @@
 					"id": 3,
 					"name": "pages/order-submit/order-submit",
 					"pathName": "pages/order-submit/order-submit",
-					"query": "id=11bc40fa-4024-45b8-9330-4e6a1260aaba",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-detail/order-detail",
+					"pathName": "pages/order-detail/order-detail",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-unpaid-detail/order-unpaid-detail",
+					"pathName": "pages/order-unpaid-detail/order-unpaid-detail",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-moneyback/order-moneyback",
+					"pathName": "pages/order-moneyback/order-moneyback",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-pay/order-pay",
+					"pathName": "pages/order-pay/order-pay",
+					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-pay-success/order-pay-success",
+					"pathName": "pages/order-pay-success/order-pay-success",
 					"scene": null
 				}
 			]

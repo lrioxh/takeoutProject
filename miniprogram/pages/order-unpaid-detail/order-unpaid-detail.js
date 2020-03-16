@@ -2,6 +2,7 @@
 const db = wx.cloud.database();
 const order = db.collection("order")
 const app = getApp();
+const utils = require('../../utils/util.js')
 Page({
   data: {
     order: null,
@@ -27,6 +28,7 @@ Page({
     }
   },
   onLoad: function(options) {
+
     wx.showLoading({
       title: '数据加载中',
     })
@@ -66,6 +68,10 @@ Page({
       wx.hideLoading()
       console.log(this.data.order)
     }
+    var oTime = new Date();
+    var fdfsf = utils.formatTime(oTime)
+    console.log(oTime+40)
+    console.log(fdfsf+40)
   },
   // 提交订单函数
   update_set_Order: function() {

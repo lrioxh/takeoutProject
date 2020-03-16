@@ -1,5 +1,5 @@
-const bd = wx.cloud.database();
-const order = bd.collection("order")
+const db = wx.cloud.database();
+const order = db.collection("order")
 const app = getApp();
 Page({
   data:{
@@ -12,9 +12,13 @@ Page({
     temp: [],
     totalMoney: 0,
     order:null,// 订单
+    orderid:null,
   },
   onLoad: function(e) {
     console.log(e.id)
+    this.setData({
+      orderid:e.id
+    })
     order.doc(e.id).get().then(res => {
       console.log(res)
       this.setData({
@@ -113,15 +117,31 @@ Page({
     }
   },
   toSubmit: function() {
-    wx.uploadFile({
-      url: '',
-      filePath: this.data.imgPath,
-      name: 'file',
-      formData: {
-      },
-      success: function (res) {
-        console.log(res);
+
+    db.collection("order").doc(this.data.orderid).update({
+      data: {
+        // doneTime: event.doneTime,//订单完成时间
+        cancel: true//订单状态
       }
     })
+    setTimeout(function () {
+      wx.showLoading({
+        title: '提交中',
+      })
+
+      wx.switchTab({
+        url: "../order/order"
+      })
+    }, 500)
+    // wx.uploadFile({
+    //   url: '',
+    //   filePath: this.data.imgPath,
+    //   name: 'file',
+    //   formData: {
+    //   },
+    //   success: function (res) {
+    //     console.log(res);
+    //   }
+    // })
   }
 })

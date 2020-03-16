@@ -23,13 +23,13 @@
           <!-- 菜品i -->
           <view class="view-dish">
             <view class="view-store-detail">
-              <image class="image-storeLogo" src="{{images.kfc}}"></image>
+              <image class="image-storeLogo" src="{{item.storeLogo}}"></image>
               <view class="view-storename">
                 <view class="view-row">
                 <!-- 商家名称 -->
                   <view style="font-size:38rpx;">{{item.store}}></view>
                   <!-- 订单状态 -->
-                  <text>{{item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment ?'已评价':'待评价'}}</text>
+                  <text>{{item.cancel==true?"已取消":item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment_store==null ?'已评价':'待评价'}}</text>
                 </view>
                 <!-- 商家所属餐厅 -->
                 <view style="font-size:35rpx;">{{item.hall}}</view>
@@ -67,7 +67,7 @@
   <swiper-item>
     <list class="list" refresh-loading="{{refreshLoading}}" loading="{{loading}}" bindrefresh="initorders" bindloadmore="loadmore" bind:getHeight="getHeight">
       <block wx:for="{{orders}}">
-        <block wx:if="{{item.paid===false}}">
+        <block wx:if="{{item.paid===false&&item.cancel==false}}">
           <!-- 菜品i -->
           <view class="view-dish" id="{{item._id}}">
             <list-item>
@@ -117,7 +117,7 @@
   <swiper-item>
     <list class="list" refresh-loading="{{refreshLoading}}" loading="{{loading}}" bindrefresh="initorders" bindloadmore="loadmore" bind:getHeight="getHeight">
       <block wx:for="{{orders}}">
-        <block wx:if="{{item.paid===true && item.done===false}}">
+        <block wx:if="{{item.paid===true && item.done===false && item.cancel==false}}">
           <!-- 菜品i -->
           <view class="view-dish" id="dotodetal">
             <list-item>
@@ -167,7 +167,9 @@
   <swiper-item>
     <list class="list" refresh-loading="{{refreshLoading}}" loading="{{loading}}" bindrefresh="initorders" bindloadmore="loadmore" bind:getHeight="getHeight">
       <block wx:for="{{orders}}">
+      <block wx:if="{{item.paid===true && item.done===true}}">
         <!-- 菜品i -->
+        <!-- &&item.cancel==false -->
         <view class="view-dish">
           <list-item>
             <view class="view-store-detail">
@@ -206,6 +208,7 @@
             </view>
           </list-item>
         </view>
+        </block>
       </block>
       <view hidden="{{haveLoadAll}}" class="view-nomore">没有多的订单啦~</view>
     </list>

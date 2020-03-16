@@ -11,14 +11,13 @@
             "pages/dish/dish",
             "pages/onsale/onsale",
             
+
     "pages/order-moneyback/order-moneyback",
     "pages/order-submit/order-submit",
-    "pages/evaluate/evaluate",
+    "pages/order-submit-coupon/order-submit-coupon",
+    "pages/order-evaluate/order-evaluate",
     "pages/order-search/order-search",
-    "pages/order-pay-success/order-pay-success",
     "pages/order-pay/order-pay",
-    "pages/order-cancel-store/order-cancel-store",
-    "pages/order-cancel-cus/order-cancel-cus",
     "pages/order-unpaid-detail/order-unpaid-detail",
     "pages/order-detail/order-detail",
 
@@ -77,6 +76,5 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }

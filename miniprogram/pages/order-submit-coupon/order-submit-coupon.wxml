@@ -1,0 +1,41 @@
+<!--pages/order-submit-coupon/order-submit-coupon.wxml-->
+<view class="nomsg">什么也没有~</view>
+<view class='container' wx:if="{{coupon.length > 0}}">
+  <view class='store-content'>
+
+    <block wx:for="{{coupon}}" wx:for-index="idx">
+      <view class="store">
+        <view class="coupon-info">
+          <view class="store-info">
+            <image src="{{item.img}}" class="store-img"></image>
+            <view class="store-name" style="font-size:34rpx">{{item.name}}</view>
+          </view>
+          <view class="store-rate">
+            <!-- <text class="store-text"> -->
+            有效期至：{{item.dateEnd}}
+            <!-- </text> -->
+          </view>
+        </view>
+        <view class="right">
+          <image src="../../imgs/yuan.png" class="yuan"></image>
+          {{item.amount}}
+          <button style="font-size:36rpx;" wx:if="{{item.dateNum > date}}" data-couponid='{{item._id}}' bindtap='onItemClick' class='able'> 立即使用 </button>
+          <button wx:else class="unable"> 已失效 </button>
+        </view>
+      </view>
+    </block>
+<view class="store">
+        <view class="coupon-info">
+          <view class="store-info">
+            <image src="{{}}" class="store-img"></image>
+            <view class="store-name" style="font-size:34rpx">{{}}</view>
+          </view>
+          <view class="store-rate">
+          </view>
+        </view>
+        <view class="right1">
+          <button style="width:100%;" data-couponid='null' bindtap='onItemClick' class='able'> 不使用优惠券 </button>
+        </view>
+      </view>
+  </view>
+</view>

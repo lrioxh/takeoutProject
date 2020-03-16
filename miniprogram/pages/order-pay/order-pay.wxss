@@ -46,6 +46,8 @@
   flex-direction: column;
 }
 .view-name view{
+  padding-left: 30rpx;
+  font-size: 40rpx;
   display: flex;
   align-items: center;
   width: 120rpx;

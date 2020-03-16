@@ -30,27 +30,30 @@ Page({
         })
       }
     })
-    this.initorders()
-    console.log(this.data.images)
+    var _this = this
+    _this.initorders()
+    console.log(_this.data.images)
   },
   // --------------------------------------------------------------------------------
   // 下拉刷新部分
   initorders: function () {
+    var _this = this
     wx.showLoading({
       title: '数据加载中',
     })
-    this.setData({
+    _this.setData({
       refreshLoading: true,
       haveLoadAll: true
     })
     setTimeout(() => {
-      this.setData({
+      _this.setData({
         orders: [],
       })
+      console.log(app.globalData.openid)
       order.where({
         _openid: app.globalData.openid
-      }).get().then(res => {
-        this.setData({
+      }).orderBy('orderTime', 'desc').get().then(res => {
+        _this.setData({
           refreshLoading: false,
         })
         var that = this;
@@ -85,7 +88,7 @@ Page({
           this.pageData.skip = 0
         })
       })
-    }, 500)
+    }, 1200)
   },
   loadmore: function () {
     let _this = this;
@@ -197,7 +200,7 @@ Page({
   orderagain: function(e) {
     console.log(e)
     wx.redirectTo({
-      url: '../order-unpaid-detail/order-unpaid-detail?id=' + [e.target.id],
+      url: '../order-submit/order-submit?id=' + [e.target.id],
     })
   },
   
