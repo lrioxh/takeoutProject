@@ -22,8 +22,8 @@ Page({
     totalPrice: null, // 实际付出价格
     predictTime: null, //预计送达时间
     note: null, // 备注内容
-    sendPrice:null,
-    wrapPrice:null,
+    sendPrice: null,
+    wrapPrice: null,
   },
   login() {
     let _this = this;
@@ -113,7 +113,7 @@ Page({
         hours += 1
       }
       let predictTime = hours + ':' + minutes
-      let canceltime = hours +":"+minutes2
+      let canceltime = hours + ":" + minutes2
       // 格式为数据库中需要的格式
       var dish = [];
       for (let i = 0; i < orderdata.list.length; i++) {
@@ -223,21 +223,44 @@ Page({
       key: 'WBSBZ-2BIKX-LWG4R-7YG6W-3FPDT-NWFNU'
     });
     // 调用接口
-    console.log(_this.data.addressInfo.detailInfo)
-    qqmapsdk.geocoder({
-      address: _this.data.addressInfo.detailInfo, //地址参数，例：固定地址，address: '北京市海淀区彩和坊路海淀西大街74号'
-      success: function(res) { //成功后的回调
-        console.log(res);
-        var res = res.result;
-        var latitude = res.location.lat;
-        var longitude = res.location.lng;
-        _this.addressdata.address = _this.data.addressInfo.detailInfo,
-          _this.addressdata.latitude = latitude,
-          _this.addressdata.longitude = longitude
-        console.log(_this.addressdata)
-        _this.orderadd()
-      }
-    })
+    if (_this.data.addressInfo.telNumber == null) {
+      wx.hideLoading()
+      wx.showModal({
+        title: '收货信息有误',
+        content: '请选您的收货信息',
+      })
+    } else {
+      var detailInfo = _this.data.addressInfo.detailInfo
+      var cityName = _this.data.addressInfo.cityName
+      var countyName = _this.data.addressInfo.countyName
+      console.log(cityName + countyName + detailInfo)
+      qqmapsdk.geocoder({
+        address: cityName + countyName + detailInfo, //地址参数，例：固定地址，address: '北京市海淀区彩和坊路海淀西大街74号'
+        success: function(res) { //成功后的回调
+          console.log(res);
+          var res = res.result;
+          var latitude = res.location.lat;
+          var longitude = res.location.lng;
+          _this.addressdata.address = _this.data.addressInfo.detailInfo,
+            _this.addressdata.latitude = latitude,
+            _this.addressdata.longitude = longitude
+          console.log(_this.addressdata)
+          _this.orderadd()
+        },
+        fail: function(error) {
+          console.error(error);
+        },
+        complete: function(res) {
+          console.log(res);
+          if (res.status == 347) {
+            wx.showModal({
+              title: '地址未识别',
+              content: '请重新选择您的地址',
+            })
+          }
+        }
+      })
+    }
     // if (_this.data.couponid != null) {
     //   coupon.where({
     //     _id: _this.data.couponid
@@ -264,7 +287,7 @@ Page({
         stu: _this.data.addressInfo.userName,
         stuID: app.globalData.openid,
         tel: _this.data.addressInfo.telNumber, //客户的tel
-        store_tel: _order.tel,//商家电话
+        store_tel: _order.tel, //商家电话
         hall: _order.hall, // 餐厅名
         store: _order.store, // 商家名
         storeID: _order.storeID, // 商家id
@@ -272,20 +295,20 @@ Page({
         sendPrice: _order.sendPrice, // 配送费
         wrapPrice: _order.wrapPrice, // 打包费
         totalPrice: _order.totalPrice, // 不计算红包价格
-        payPrice: _this.data.totalPrice,//实际支付
-        coupon: _this.data.couponprice,//优惠金额
+        payPrice: _this.data.totalPrice, //实际支付
+        coupon: _this.data.couponprice, //优惠金额
         note: _this.data.note, //顾客备注
         comment_rider: null,
         comment_store: null,
         eta: _this.data.predictTime,
         canceltime: _this.data.canceltime,
         paid: false,
-        isTaken_store: false,//商家是否接单
-        isTaken_rider: false,//骑手是否接单
-        isSending:false,//骑手是否派送
+        isTaken_store: false, //商家是否接单
+        isTaken_rider: false, //骑手是否接单
+        isSending: false, //骑手是否派送
         done: false,
         cancel: false,
-        rider_Detail:null,//骑手信息
+        rider_Detail: null, //骑手信息
       },
       success: function(res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
@@ -297,7 +320,7 @@ Page({
     wx.showToast({
       title: '提交成功',
     })
-    setTimeout(function () {
+    setTimeout(function() {
       wx.switchTab({
         url: "../order/order"
       })
