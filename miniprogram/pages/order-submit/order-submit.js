@@ -269,13 +269,13 @@ Page({
         payPrice: _this.data.totalPrice,
         coupon: _this.data.couponprice,
         note: _this.data.note, //顾客备注
-        comment_rider: null,
-        comment_store: null,
+        comment_rider: {},
+        comment_store: {},
         paid: false,
         isTaken: false,
         done: false,
         cancel: false,
-        rider:{},
+        rider_Detail:{},
       },
       success: function(res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id

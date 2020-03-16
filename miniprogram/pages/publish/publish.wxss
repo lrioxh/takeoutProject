@@ -18,7 +18,7 @@ textarea {
 .image-group {
   display: flex;
   white-space: nowrap;
-  margin-top: 30px;
+  margin-top: 60rpx;
 }
 
 .image-group view{
@@ -53,23 +53,23 @@ textarea {
 }
 
 .btn-img {
-  width: 220px;
-  height: 45px;
-  line-height: 45px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  width: 440rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
   background-color: #ecf3f4;
   color: #465461;
-  border-radius: 50px;
+  border-radius: 100rpx;
   border: #ff7f2a solid 2rpx;
 }
 
 .btn {
-  width: 220px;
-  height: 45px;
-  line-height: 45px;
+  width: 440rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   background-color: #ff8534;
   color: #fff;
-  border-radius: 50px;
-  margin-bottom: 20px;
+  border-radius: 100rpx;
+  margin-bottom: 40rpx;
 }

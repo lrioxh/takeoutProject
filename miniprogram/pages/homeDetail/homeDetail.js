@@ -1,6 +1,7 @@
 // pages/homeDetail/homeDetail.js
 var that
 const db = wx.cloud.database();
+const app = getApp();
 Page({
 
   /**
@@ -11,6 +12,8 @@ Page({
     id: '',
     openid: '',
     isLike: false,
+    show:false,
+    isMine:false
   },
 
   /**
@@ -26,8 +29,12 @@ Page({
       success: function (res) {
         console.log(res)
         that.topic = res.data;
+        if (res.data._openid == app.globalData.openid){
+          that.isMine=true
+        }
         that.setData({
           topic: that.topic,
+          isMine: that.isMine
         })
       }
     })
@@ -147,5 +154,32 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+ * 删帖
+ */
+  select: function (e) {
+    this.setData({
+      show: !this.data.show
+    })
+  },
+  onItemClick: function () {
+    this.setData({
+      show: false
+    })
+  },
+  delatePo: function () {
+    db.collection('topicPo').doc(that.data.id).remove()
+    .then(
+      wx.showToast({
+        title: '删除成功',
+      }),
+      setTimeout(function () {
+        wx.reLaunch({
+          url: "../community/community",
+        })
+      }, 600) //延迟0.6秒
+      
+    )
+  },
 })

@@ -1,19 +1,20 @@
 /* pages/homeDetail/homeDetail.wxss */
+
 /* .page{
   height: auto;
 } */
+
 .container {
   display: flex;
   flex-direction: column;
   height: auto;
-
 }
 
 .container-content {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 16px 16px;
+  padding: 32rpx 32rpx;
   margin: 0 auto;
 }
 
@@ -25,9 +26,9 @@
 }
 
 .user-head {
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 72rpx;
+  height: 72rpx;
+  line-height: 72rpx;
   border-radius: 50%;
   background-color: #ccc;
 }
@@ -35,19 +36,19 @@
 .user-name-time {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin-top: 5px;
-  margin-left: 10px;
+  width: 70%;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
 }
 
 .user-name {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #333;
   font-weight: bold;
 }
 
 .user-publish-time {
-  font-size: 15px;
+  font-size: 30rpx;
   color: #999;
 }
 
@@ -55,7 +56,7 @@
   display: flex;
   flex-direction: column;
   margin-right: 10%;
-  margin-top: 14px;
+  margin-top: 28rpx;
 }
 
 /* .content-scroll {
@@ -65,25 +66,25 @@
 } */
 
 .content-text {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #666;
-  margin-left: 10px;
+  margin-left: 20rpx;
 }
 
 .content-img {
   width: 100%;
-  min-height: 100px;
-  margin-left: 10px;
-  margin-top: 10px;
+  min-height: 200rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
   background-color: #999;
 }
 
 .line {
   width: 100%;
-  height: 1px;
-  margin-top: 20px;
+  height: 2rpx;
+  margin-top: 40rpx;
   background-color: #ccc;
-  font-size: 16px;
+  font-size: 32rpx;
   text-align: center;
   vertical-align: middle;
   position: relative;
@@ -101,14 +102,13 @@
   bottom: 0;
 }
 
-
 .like-icon {
   width: 100rpx;
   height: 100rpx;
   margin: 40rpx;
 }
 
-.btn-class{
+.btn-class {
   margin: 40rpx;
   background-color: #fd7d28;
   color: white;
@@ -126,7 +126,7 @@
   font-weight: bold;
 }
 
-.replay_content{
+.replay_content {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -134,22 +134,46 @@
   width: 80%;
 }
 
-.tip-text{
+.tip-text {
   display: flex;
   flex-direction: row;
-  margin:20rpx; 
+  margin: 20rpx;
   background-color: #ccc;
   height: 2rpx;
 }
-.avatarUrl{
+
+.avatarUrl {
   width: 60rpx;
   height: 60rpx;
   display: inline-block;
   border-radius: 50%;
   overflow: hidden;
 }
-.re-text{
+
+.re-text {
   font-size: 28rpx;
   color: #666;
   margin: 0 0 0 80rpx;
+}
+
+.mine {
+  z-index: 99;
+  float: right;
+  background-color: #ccc;
+  position: fixed;
+  right: 10rpx;
+  transform: translate(0,120rpx)
+}
+
+.mine .selection {
+  background-color: #fff;
+  padding: 10rpx;
+  color: red;
+  font-size: 28rpx;
+}
+
+.search-right image {
+  width: 80rpx;
+  height: 50rpx;
+  padding: 10rpx;
 }

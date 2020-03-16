@@ -10,12 +10,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 16px 16px;
+  padding: 32rpx 32rpx;
   margin: 0 auto;
 }
 .container-line{
   width: 100%;
-  height: 1px;
+  height: 2rpx;
   background-color: #ccc;
 }
 
@@ -27,9 +27,9 @@
 }
 
 .user-head {
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 72rpx;
+  height: 72rpx;
+  line-height: 72rpx;
   border-radius: 50%;
   background-color: #ccc;
 }
@@ -38,18 +38,18 @@
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin-top: 5px;
-  margin-left: 10px;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
 }
 
 .user-name {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #333;
   font-weight: bold;
 }
 
 .user-publish-time {
-  font-size: 15px;
+  font-size: 30rpx;
   color: #999;
 }
 
@@ -57,7 +57,7 @@
   display: flex;
   flex-direction: column;
   margin-right: 5%;
-  margin-top: 14px;
+  margin-top: 18rpx;
 }
 
 .content-scroll {
@@ -67,16 +67,16 @@
 }
 
 .content-text {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #666;
-  margin-left: 10px;
+  margin-left: 20rpx;
 }
 
 .content-img {
-  width: 100px;
-  height: 100px;
-  margin-left: 10px;
-  margin-top: 10px;
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
   background-color: #999;
 }
 

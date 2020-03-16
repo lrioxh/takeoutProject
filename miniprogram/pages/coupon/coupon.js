@@ -77,7 +77,7 @@ Page({
   onItemClick: function (e) {
     var id = e.currentTarget.dataset.storeid;
     console.log(e);
-    wx.navigateTo({
+    wx.redirectTo({
       url: "?id=" + id
     })
   },

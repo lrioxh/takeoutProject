@@ -1,11 +1,19 @@
 <!--pages/homeDetail/homeDetail.wxml-->
-<view class='container' bindtap='onItemClick'>
+<view class="mine" wx:if="{{show}}">
+  <view class="selection" bindtap="delatePo">
+    <text>删除本贴</text>
+  </view>
+</view>
+<view class='container' bindtouchmove='onItemClick'>
   <view class='container-content'>
     <view class='user-info'>
       <image class='user-head' src='{{topic.user.avatarUrl}}' mode='aspectFill'></image>
       <view class='user-name-time'>
         <view class='user-name'>{{topic.user.nickName}}</view>
         <view class='user-publish-time'>{{topic.date}}</view>
+      </view>
+      <view class="search-right" bindtap="select" wx:if='{{isMine}}'>
+        <image src="../../imgs/more.png"></image>
       </view>
     </view>
     <view class='content'>
@@ -33,14 +41,14 @@
     <view class='tip-text'></view>
     <block wx:for="{{replays}}" wx:for-index="idx">
       <!-- <view class="reContainer"> -->
-        <view class="user-info">
-          <image src="{{item.reuser.avatarUrl}}" class="avatarUrl"></image>
-          <view class="user-name-time">
+      <view class="user-info">
+        <image src="{{item.reuser.avatarUrl}}" class="avatarUrl"></image>
+        <view class="user-name-time">
           <view class="user-name" style="font-size:24rpx">{{item.reuser.nickName}}</view>
           <view class="user-publish-time" style="font-size:20rpx">{{item.date}}</view>
-          </view>
         </view>
-        <view class="re-text">{{item.content}}</view>
+      </view>
+      <view class="re-text">{{item.content}}</view>
       <!-- </view> -->
     </block>
   </view>

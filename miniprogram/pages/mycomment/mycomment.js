@@ -29,14 +29,17 @@ Page({
     db.collection('order')
       .where({
         stuID: app.globalData.openid,
+        comment_store: _.gt('')  //评价非空
       })
-      .orderBy('fetchTime', 'desc')
+      .orderBy('orderTime', 'desc')
       .field({
-        comment: 1,
+        comment_rider: 1,
+        comment_store: 1,
         dishID: 1,
-        fetchTime: 1,
+        orderTime: 1,
         rate: 1,
         storeID: 1,
+        reply:1,
       })
       .get({
         success: function (res) {
@@ -63,7 +66,7 @@ Page({
       .doc(storeId)
       .get({
         success: function (res) {
-          that.data.comment[i].time = that.data.comment[i].fetchTime.toDateString();
+          that.data.comment[i].time = that.data.comment[i].orderTime.toDateString();
           that.data.comment[i].name = res.data.name;
           that.data.comment[i].img = res.data.img;
           // console.log('1', that.data.comment)

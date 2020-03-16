@@ -71,13 +71,16 @@ margin-left: 20rpx;
 }
 
 .store-rate {
-  font-size: 30rpx;
+  font-size: 24rpx;
   margin: 0 0 10rpx 130rpx;
 }
 
 
 .store-text {
-  margin: 0 0 0 30rpx;
+  margin: 0 0 0 60rpx;
+}
+.store-mes{
+  font-size: 32rpx;
 }
 
 .place {
@@ -95,4 +98,19 @@ font-size: 26rpx;
 }
 .under{
 font-size: 26rpx;
+}
+.reply{
+  border-radius: 6rpx;
+  background-color:#f7f7f7;
+  margin: 10rpx;
+  padding: 10rpx;
+font-size: 28rpx;
+}
+
+.tip-text{
+  display: flex;
+  flex-direction: row;
+  margin: 0 30rpx 0 0;
+  background-color: #ccc;
+  height: 2rpx;
 }

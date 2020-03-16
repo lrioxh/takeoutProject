@@ -42,8 +42,7 @@
   color: #333;
   font-weight: bold;
   margin: auto;
-margin-left: 20rpx;
-
+  margin-left: 20rpx;
 }
 
 .content {
@@ -78,7 +77,7 @@ margin-left: 20rpx;
 }
 
 .right {
-  font-size:110rpx;
+  font-size: 110rpx;
   color: red;
 }
 
@@ -89,11 +88,12 @@ margin-left: 20rpx;
 
 .able {
   background-color: #ff893b;
-color: #fff;
-
+  color: #fff;
 }
+
 button {
   width: 200rpx;
   margin: 0 15rpx 15rpx 0;
-
+  font-size: 35rpx;
+  font-weight: 600;
 }

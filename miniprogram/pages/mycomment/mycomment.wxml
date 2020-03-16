@@ -1,6 +1,6 @@
 <!--pages/mycomment/mycomment.wxml-->
-<view class="nomsg">什么也没有~</view>
-<view class='container' wx:if="{{comment.length > 0}}">
+<view class="nomsg">竟然一条评价都没有~</view>
+<view class='container' wx:if="{{comment}}">
   <view class='store-content'>
 
     <block wx:for="{{comment}}" wx:for-index="idx">
@@ -20,7 +20,13 @@
             </view>
           </view>
           <view class="store-rate">
-            <view class="store-mes">"{{item.comment}}"</view>
+            商家评价<text class='tip-text'></text>
+            <view class="store-mes">"{{item.comment_store}}"</view>
+            <view class="reply">商家回复：{{item.reply}}</view>
+            <view wx:if="{{item.comment_rider}}">
+              配送评价<view class='tip-text'></view>
+              <view class="store-mes">"{{item.comment_rider}}"</view>
+            </view>
           </view>
         </view>
 

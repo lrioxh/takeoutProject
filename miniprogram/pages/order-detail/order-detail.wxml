@@ -122,7 +122,7 @@
   </view>
   <view class="messages">
     <view class="time">配送服务</view>
-    <view class="view-type">{{order.rider !=null?"由山威食光骑手配送":"由山威食光外卖小车配送"}}</view>
+    <view class="view-type">{{order.rider_Detail !=null?"由山威食光骑手配送":"由山威食光外卖小车配送"}}</view>
   </view>
 </view>
 
