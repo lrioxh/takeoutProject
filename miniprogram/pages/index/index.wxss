@@ -11,6 +11,13 @@ scroll-view {
 	height:200rpx;
 	display: flex
 }
+button{
+	width:40rpx;
+	border-left: 0rpx;
+}
+.query{
+	font-size: 20rpx
+}
 .dinninghall_icon{
 	justify-content: center;
 	/* float: left; */

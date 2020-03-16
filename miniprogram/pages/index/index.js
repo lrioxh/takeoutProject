@@ -13,28 +13,28 @@ Page({
 				id: 1,
 				img: '/imgs/index/icon_8.jpg',
 				url: '',
-				name1: 'xinyuan',
+				name1: '馨园',
 				name2:'馨园餐厅'
 			},
 			{
 				id: 2,
 				img: '/imgs/index/icon_8.jpg',
 				url: '',
-				name1: 'huiyuan',
+				name1: '荟园',
 				name2:'荟园餐厅'
 			},
 			{
 				id: 3,
 				img: '/imgs/index/icon_8.jpg',
 				url: '',
-				name1: 'queyuan',
+				name1: '雀园',
 				name2:'雀园餐厅'
 			},
 			{
 				id: 4,
 				img: '/imgs/index/icon_8.jpg',
 				url: '',
-				name1: 'taiyuan',
+				name1: '泰园',
 				name2:'泰园餐厅'
 			}
 		],

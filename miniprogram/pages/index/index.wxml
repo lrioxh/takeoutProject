@@ -9,7 +9,7 @@
     <view class="search">
       <image class="icon" src="/imgs/index/icon_search.png" />
       <input class="fa fa-home" bindblur="onBindblur" type="text"></input>
-      <button size="mini" plain="{{ture}}" bindtap="query">搜索</button>
+      <button size="mini" plain="{{ture}}" bindtap="query"><text class="query">搜索</text></button>
     </view>
   </view>
 
