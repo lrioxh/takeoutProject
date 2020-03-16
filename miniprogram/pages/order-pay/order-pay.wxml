@@ -2,7 +2,7 @@
 <view class="view-total">
   <view class="view-submited">订单已提交！</view>
   <view class="view-paytime">您需要在
-    <text style="color:blue">{{order.orderTime}}</text> 前完成支付,</view>
+    <text style="color:rgb(0, 171, 245)">{{order.orderTime}}</text> 前完成支付,</view>
   <view class="view-notice">超时订单将自动取消.</view>
   <view class="view-choose-pay-method">请选择支付方式:</view>
   <view class="view-kind-of-pay">
@@ -18,8 +18,8 @@
       </radio-group>
     </view>
   </view>
-  <view class="view-pay-now">
-    <view bindtap="payJustNow">立即支付</view>
+  <view class="view-pay-now" bindtap="payJustNow">
+    <view>立即支付</view>
   </view>
   <view class="view-adjust">
     <view bindtap="openConfirm" id="{{order._id}}">取消订单</view>

@@ -22,6 +22,8 @@ Page({
     totalPrice: null, // 实际付出价格
     predictTime: null, //预计送达时间
     note: null, // 备注内容
+    sendPrice:null,
+    wrapPrice:null,
   },
   login() {
     let _this = this;
@@ -105,11 +107,13 @@ Page({
       let d = new Date();
       let hours = this.p(d.getHours())
       let minutes = this.p(d.getMinutes() + 40)
+      let minutes2 = this.p(d.getMinutes() + 15)
       if (minutes > 60) {
         minutes -= 60
         hours += 1
       }
       let predictTime = hours + ':' + minutes
+      let canceltime = hours +":"+minutes2
       // 格式为数据库中需要的格式
       var dish = [];
       for (let i = 0; i < orderdata.list.length; i++) {
@@ -133,6 +137,7 @@ Page({
       var userinfo = app.globalData.userInfo;
       this.setData({
         predictTime: predictTime,
+        canceltime: canceltime,
         info: userinfo,
         order: {
           dish: dish,
@@ -273,6 +278,7 @@ Page({
         comment_rider: {},
         comment_store: {},
         eta: _this.data.predictTime,
+        canceltime: _this.data.canceltime,
         paid: false,
         isTaken_store: false,//商家是否接单
         isTaken_rider: false,//骑手是否接单

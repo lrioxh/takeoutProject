@@ -2,9 +2,12 @@
 <view class="orderType" wx:if="{{orderStatus==3}}">
   订单已完成
 </view>
+<view class="orderType" wx:if="{{orderStatus==5}}">
+  等待商家处理订单
+</view>
 <view class="Map" wx:if="{{orderStatus==1 || orderStatus==2 || orderStatus==0}}">
   <view class="map" wx:if="{{orderStatus==1 || orderStatus==2}}" style="z-index: 9">
-    <map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 60vh;z-index:999;">
+    <map id="map" longitude="{{location.longitude}}" latitude="{{location.latitude}}" scale="14" controls="{{controls}}" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}"  show-location style="width: 100%; height: 60vh;z-index:999;">
     </map>
   </view>
   <view class="bottom">
@@ -13,11 +16,11 @@
       <view wx:if="{{orderStatus==1}}">商家已接单</view>
       <view wx:if="{{orderStatus==0}}" class="view-waitpay">等待支付</view>
       <view class="iconfont icon-time" wx:if="{{orderStatus==1 || orderStatus==2}}">
-        预计送达
-        <text>19:16</text>
+        预计
+        <text>{{order.eta}} </text>送达
       </view>
       <view class="noPay" wx:if="{{orderStatus==0}}">
-        逾期未支付，订单将在{{}}自动取消
+        逾期未支付，订单将在{{order.canceltime}}自动取消
       </view>
     </view>
     <view class="bot" wx:if="{{orderStatus==1 || orderStatus==2}}">

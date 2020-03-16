@@ -88,7 +88,7 @@ Page({
           this.pageData.skip = 0
         })
       })
-    }, 1200)
+    }, 1000)
   },
   loadmore: function () {
     let _this = this;

@@ -20,6 +20,7 @@
 }
 /* 选择支付方式 */
 .view-choose-pay-method{
+  font-size: 40rpx;
   margin-bottom: 30rpx;
 }
 

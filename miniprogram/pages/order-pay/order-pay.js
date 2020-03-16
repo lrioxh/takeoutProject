@@ -112,5 +112,19 @@ Page({
     wx.navigateTo({
       url: '../order-detail/order-detail?id=' + [this.pageData.id],
     })
-  }
+  },
+  // 立即付款
+  payJustNow:function(){
+    wx.showLoading({
+      title: '付款中',
+    })
+    order.doc(this.pageData.id).update({
+      data: {
+        paid: true
+      }
+    })
+    wx.redirectTo({
+      url: '../order-detail/order-detail?id=' + this.pageData.id,
+    })
+  },
 })

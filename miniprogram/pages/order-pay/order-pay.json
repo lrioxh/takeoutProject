@@ -1,4 +1,5 @@
 {
   "usingComponents": {
-  }
+  },
+  "navigationBarTitleText": "立即支付"
 }

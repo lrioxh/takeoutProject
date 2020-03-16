@@ -79,10 +79,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "pages/order-detail/order-detail",
 					"pathName": "pages/order-detail/order-detail",
-					"query": "id=1583497900239_0.6884125519925897_33556502",
+					"query": "id=1584338804132_0.8127624100908564_33559149",
 					"scene": null
 				},
 				{
@@ -110,6 +110,7 @@
 					"id": -1,
 					"name": "pages/order-pay-success/order-pay-success",
 					"pathName": "pages/order-pay-success/order-pay-success",
+					"query": "",
 					"scene": null
 				}
 			]
