@@ -11,12 +11,17 @@ scroll-view {
 	height:200rpx;
 	display: flex
 }
-button{
-	width:40rpx;
-	border-left: 0rpx;
-}
 .query{
-	font-size: 20rpx
+	height:50rpx;
+	width:80rpx;
+	font-size: 30rpx;
+	background-color: rgb(248, 246, 246);
+	border-radius: 15rpx;
+	margin-right: 0rpx;
+	text-align: center;
+	align-items: center;
+	color:#000;
+	flex:2
 }
 .dinninghall_icon{
 	justify-content: center;
@@ -56,6 +61,10 @@ button{
 	width: 40rpx;
 	height: 40rpx;
 	vertical-align: top;
+	flex:1
+}
+.input{
+	flex:8
 }
 .header .location {
 	color: #fff;
@@ -79,12 +88,6 @@ button{
 	background: rgba(0,0,0,0.3);
 	display: flex;
 	/*border-bottom: 1rpx solid #aaa;*/
-}
-.header .search button{
-	height:50rpx;
-	width:80rpx;
-	font-size: 80%;
-	
 }
 .banner {
 	height: 330rpx;

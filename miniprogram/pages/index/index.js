@@ -294,7 +294,7 @@ Page({
 			})
 		}).get().then(res => {
 			console.log(res),
-			app.globalData.queryDishes[0]=res.data[0],
+			app.globalData.queryDishes=res.data,
 			console.log(app.globalData)
 		wx.navigateTo({
 				url: '../search/search',

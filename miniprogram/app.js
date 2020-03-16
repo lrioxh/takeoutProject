@@ -41,7 +41,8 @@ App({
       openid: null,
       userInfo: null,
       isLogin: false,
-      evn: 'test'
+      evn: 'test',
+			queryDishes:null
     }
   }
 })

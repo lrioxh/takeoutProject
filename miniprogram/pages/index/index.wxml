@@ -8,8 +8,8 @@
     <!-- 搜索 -->
     <view class="search">
       <image class="icon" src="/imgs/index/icon_search.png" />
-      <input class="fa fa-home" bindblur="onBindblur" type="text"></input>
-      <button size="mini" plain="{{ture}}" bindtap="query"><text class="query">搜索</text></button>
+      <input class="input" bindblur="onBindblur" type="text"></input>
+      <view class="query" plain="{{ture}}" bindtap="query">搜索</view>
     </view>
   </view>
 
@@ -48,12 +48,12 @@
     </swiper>
 
     <!-- 优惠专区 -->
-    <navigator url="../onsale/onsale">
+
       <view class="section section-big discount">
         <view class="title">优惠专区</view>
-        <image class="content" src="{{discount_img}}" />
+        <image bindtap="gotoWindows" class="content" src="{{discount_img}}" />
       </view>
-    </navigator>
+
 
 
     <view class="section section-big preferred">

@@ -72,7 +72,7 @@ Page({
         // console.log(user)
         user.get()
         .then(res => {
-          user.update({ data: userInfo })
+					user.update({ data: userInfo})
           // console.log(res.data.addr);
           // addressInfo.detailInfo=res.data.addr;
           this.setData({
@@ -81,7 +81,7 @@ Page({
           })
         .catch(res => {
           console.log('newUser')
-          user.set({ data: userInfo })
+					user.set({ data: Object.assign(userInfo, { collectStore: [] }) })
           })
         
         // console.log(userInfo.openid);

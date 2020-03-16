@@ -87,9 +87,18 @@ Page({
   // -------------------------------------------------------------
   // 收藏商家
   follow: function() {
-    this.setData({
-      followed: !this.data.followed
-    });
+		db.collection("student").doc(app.globalData.openid).get().then(res=>{
+			let collectStore=res.data.collectStore;
+			console.log("学生是",res.data)
+			db.collection("student").doc(app.globalData.openid).update({
+				data: {
+					collectStore: collectStore.concat(this.data.window_id)
+				},
+				success: console.log,
+				fail: console.error
+			})		
+		})
+		
   },
   // 右边菜品栏
   onGoodsScroll: function(e) {
