@@ -10,7 +10,7 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   try {
     //这里的update依据是event._id
-    return await db.collection("order").doc(event._id).update({
+    return await db.collection("order").doc(event.id).update({
       data: {
         // doneTime: event.doneTime,//订单完成时间
         cancel: true//订单状态

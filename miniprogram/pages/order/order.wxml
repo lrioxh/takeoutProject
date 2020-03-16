@@ -23,7 +23,7 @@
           <!-- 菜品i -->
           <view class="view-dish">
             <view class="view-store-detail">
-              <image class="image-storeLogo" src="{{item.storeLogo}}"></image>
+              <image lazy-load class="image-storeLogo" src="{{item.storeLogo}}"></image>
               <view class="view-storename">
                 <view class="view-row">
                 <!-- 商家名称 -->
@@ -41,7 +41,7 @@
               <view class="view-order-detail">
                 <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                   <view class="view-dish-src_name">
-                    <image class="image-dish" src="{{item.src}}"></image>
+                    <image lazy-load class="image-dish" src="{{item.src}}"></image>
                     <view style="font-size:32rpx;"> {{item.name}}</view>
                   </view>
                 </block>
@@ -72,7 +72,7 @@
           <view class="view-dish" id="{{item._id}}">
             <list-item>
               <view class="view-store-detail">
-                <image class="image-storeLogo" src="{{images.kfc}}"></image>
+                <image lazy-load class="image-storeLogo" src="{{images.kfc}}"></image>
                 <view class="view-storename">
                   <view class="view-row">
                     <view style="font-size:38rpx;">{{item.store}}></view>
@@ -90,7 +90,7 @@
                 <view class="view-order-detail">
                   <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                     <view class="view-dish-src_name">
-                      <image class="image-dish" src="{{item.src}}"></image>
+                      <image lazy-load class="image-dish" src="{{item.src}}"></image>
                       <view style="font-size:32rpx;"> {{item.name}}</view>
                     </view>
                   </block>
@@ -122,7 +122,7 @@
           <view class="view-dish" id="dotodetal">
             <list-item>
               <view class="view-store-detail">
-                <image class="image-storeLogo" src="{{images.kfc}}"></image>
+                <image  lazy-load class="image-storeLogo" src="{{images.kfc}}"></image>
                 <view class="view-storename">
                   <view class="view-row">
                     <view style="font-size:38rpx;">{{item.store}}></view>
@@ -140,7 +140,7 @@
                 <view class="view-order-detail">
                   <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                     <view class="view-dish-src_name">
-                      <image class="image-dish" src="{{item.src}}"></image>
+                      <image lazy-load class="image-dish" src="{{item.src}}"></image>
                       <view style="font-size:32rpx;"> {{item.name}}</view>
                     </view>
                   </block>
@@ -173,7 +173,7 @@
         <view class="view-dish">
           <list-item>
             <view class="view-store-detail">
-              <image class="image-storeLogo" src="{{images.kfc}}"></image>
+              <image  lazy-load class="image-storeLogo" src="{{images.kfc}}"></image>
               <view class="view-storename">
                 <view class="view-row">
                   <view style="font-size:38rpx;">{{item.store}}></view>
@@ -191,7 +191,7 @@
               <view class="view-order-detail">
                 <block wx:for="{{item.dish}}" wx:if="{{index<3}}">
                   <view class="view-dish-src_name">
-                    <image class="image-dish" src="{{item.src}}"></image>
+                    <image lazy-load class="image-dish" src="{{item.src}}"></image>
                     <view style="font-size:32rpx;"> {{item.name}}</view>
                   </view>
                 </block>

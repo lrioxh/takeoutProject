@@ -275,8 +275,8 @@ Page({
         payPrice: _this.data.totalPrice,//实际支付
         coupon: _this.data.couponprice,//优惠金额
         note: _this.data.note, //顾客备注
-        comment_rider: {},
-        comment_store: {},
+        comment_rider: null,
+        comment_store: null,
         eta: _this.data.predictTime,
         canceltime: _this.data.canceltime,
         paid: false,
@@ -285,7 +285,7 @@ Page({
         isSending:false,//骑手是否派送
         done: false,
         cancel: false,
-        rider_Detail:{},//骑手信息
+        rider_Detail:null,//骑手信息
       },
       success: function(res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
@@ -331,7 +331,6 @@ Page({
             couponprice: res.data[0].amount
           })
         }
-
         console.log(_this.data.couponprice) // 打印优惠券金额
         var n_price = _this.data.order.totalPrice; // 定义一个中间变量
         n_price -= _this.data.couponprice // 价格减去优惠券数量
