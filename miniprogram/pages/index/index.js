@@ -226,17 +226,17 @@ Page({
 		switch (e.target.dataset.id) {
 			case '1':
 				this.data.shops.sort(function (a, b) {
-					return a.id > b.id;
+					return b.rate-a.rate;
 				});
 				break;
 			case '2':
 				this.data.shops.sort(function (a, b) {
-					return a.sales < b.sales;
+					return b.sales - a.sales;
 				});
 				break;
 			case '3':
 				this.data.shops.sort(function (a, b) {
-					return a.distance > b.distance;
+					return a.sendtime-b.sendtime;
 				});
 				break;
 		}
@@ -275,7 +275,7 @@ Page({
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
-		
+		this.getdata(console.log("触底了"));
 	},
 	onBindblur:function(event){
 		let _this=this

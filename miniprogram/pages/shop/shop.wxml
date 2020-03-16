@@ -67,7 +67,7 @@
           <view class="total">￥{{cart.total}}</view>
         </view>
         <!--<view formType="submit" class="submit">去结算</view>-->
-        <button style="width:250rpx;height:150rpx;" class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}" bindtap="submit">去结算</button>
+        <button class="yellow {{cart.count?'':'disabled'}}" form-type="submit" disabled="{{!cart.count}}" bindtap="submit">去结算</button>
       </view>
     </swiper-item>
     <!----------------------------------------------------------------- 商家信息----------------------------------------------------->

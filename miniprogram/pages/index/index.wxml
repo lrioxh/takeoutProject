@@ -1,5 +1,5 @@
-<import src="../../template_d/windows/windows.wxml"></import>
-<view class="container">
+<import src="../../template/windows/windows.wxml"></import>
+<view class="containera">
   <view class="header {{scrollDown?'scrolled':''}}">
     <!-- 定位 -->
     <view class="location ellipsis" bindtap="location">
@@ -13,7 +13,7 @@
     </view>
   </view>
 
-  <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
+  <scroll-view style="back-ground:#fff" scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
     <!-- 轮播图 -->
     <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
       <block wx:for="{{banners}}" wx:key="id">
@@ -69,7 +69,7 @@
     <view id="nearby" class="section section-big nearby">
       <view class="title">附近商家</view>
       <view class="filters">
-        <view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">综合排序
+        <view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">评分最高
           <text class="v">↓</text>
         </view>
         <view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">销量最高
@@ -90,6 +90,5 @@
 				</navigator>
 			</view> -->
     </view>
-    <view class="loading">努力加载中…</view>
   </scroll-view>
 </view>

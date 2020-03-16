@@ -1,7 +1,7 @@
 <template name="abc"> 
 <scroll-view scroll-y="{{true}}">
 	<block wx:for="{{windows}}" wx:key="index" class="blcok">
-		<navigator url="/page/shop/shop?id={{item.id}}">
+		<navigator url="/pages/shop/shop?id={{item.id}}">
 			<view class="view-style">
 				<!-- 窗口图片 -->
 				<image src="{{item.img}}" mode="aspectFit"></image>
@@ -19,7 +19,7 @@
 						<view>人均￥</view>
 					</view>
 					<view class="third_line">{{item.rank}}</view>
-					<view class="forth_line">{{item.desc}}</view>
+					<view class="forth_line">{{item.mes}}</view>
 					<view></view>
 				</view>
 			</view>

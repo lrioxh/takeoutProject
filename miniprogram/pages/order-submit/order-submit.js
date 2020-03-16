@@ -272,6 +272,7 @@ Page({
         note: _this.data.note, //顾客备注
         comment_rider: {},
         comment_store: {},
+        eta: _this.data.predictTime,
         paid: false,
         isTaken_store: false,//商家是否接单
         isTaken_rider: false,//骑手是否接单

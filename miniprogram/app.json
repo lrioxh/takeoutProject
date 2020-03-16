@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/order/order",
     "pages/index/index",
+    "pages/order/order",
+
     "pages/community/community",
     "pages/mine/mine",
     
@@ -18,7 +19,6 @@
     "pages/order-evaluate/order-evaluate",
     "pages/order-search/order-search",
     "pages/order-pay/order-pay",
-    "pages/order-unpaid-detail/order-unpaid-detail",
     "pages/order-detail/order-detail",
 
             "pages/publish/publish",

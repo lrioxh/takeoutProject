@@ -3,7 +3,7 @@ var server = require('../../utils/server');
 const db = wx.cloud.database();
 Page({
   data: {
-    list:[],
+    list: [],
     classifyViewed: null,
     window_id: null,
     goods: [],
@@ -26,49 +26,40 @@ Page({
     showCartDetail: false,
     skip: 0
   },
-  onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: "addMyDish",
-      complete: res => {
-        console.log(res.result)
-        this.setData({
-          openid: res.result.openid
-        })
-      }
-    })
+  onLoad: function(options) {
     console.log("options.id:", options.id)
     this.setData({
       window_id: options.id
     })
   },
-  onShow: function () {
+  onShow: function() {
     this.setData({
       classifySeleted: this.data.category[0]
     });
     this.getdata(console.log(this.data.goods))
   },
-  onReachBotton: function () {
+  onReachBotton: function() {
     this.getdata();
   },
   // 添加
-  tapAddCart: function (e) {
+  tapAddCart: function(e) {
     this.addCart(e.target.dataset.id);
     this.data.goods[parseInt(e.target.dataset.id)].num += 1
     console.log(this.data.goods[parseInt(e.target.dataset.id)])
   },
   // 减少
-  tapReduceCart: function (e) {
+  tapReduceCart: function(e) {
     this.reduceCart(e.target.dataset.id);
     this.data.goods[parseInt(e.target.dataset.id)].num -= 1
   },
   // 添加函数
-  addCart: function (id) {
-    var num = this.data.cart.list[id] || 0;//this.data.cart.list[id]获取到牛扒咖喱饭这个对象
+  addCart: function(id) {
+    var num = this.data.cart.list[id] || 0; //this.data.cart.list[id]获取到牛扒咖喱饭这个对象
     this.data.cart.list[id] = num + 1;
     this.countCart();
   },
   // 减少函数
-  reduceCart: function (id) {
+  reduceCart: function(id) {
     var num = this.data.cart.list[id] || 0;
     if (num <= 1) {
       delete this.data.cart.list[id];
@@ -78,7 +69,7 @@ Page({
     this.countCart();
   },
   // 购物车清算
-  countCart: function () {
+  countCart: function() {
     var count = 0,
       total = 0;
     for (var id in this.data.cart.list) {
@@ -95,13 +86,13 @@ Page({
   //-----购物车中添加菜品的操作（上方）----------------------------------------------------------------
   // -------------------------------------------------------------
   // 收藏商家
-  follow: function () {
+  follow: function() {
     this.setData({
       followed: !this.data.followed
     });
   },
   // 右边菜品栏
-  onGoodsScroll: function (e) {
+  onGoodsScroll: function(e) {
     if (e.detail.scrollTop > 10 && !this.data.scrollDown) {
       this.setData({
         scrollDown: true
@@ -113,14 +104,14 @@ Page({
     }
   },
   // 左边分类栏
-  tapClassify: function (e) {
+  tapClassify: function(e) {
     var id = e.target.dataset.id;
     console.log(e)
     this.setData({
       classifyViewed: id
     });
     var self = this;
-    setTimeout(function () {
+    setTimeout(function() {
       self.setData({
         classifySeleted: id
       });
@@ -128,13 +119,13 @@ Page({
   },
   //-----------------购物车（下方代码）----------------------------------
   // 显示购物车
-  showCartDetail: function () {
+  showCartDetail: function() {
     this.setData({
       showCartDetail: !this.data.showCartDetail
     });
   },
   // 隐藏购物车
-  hideCartDetail: function () {
+  hideCartDetail: function() {
     this.setData({
       showCartDetail: false
     });
@@ -142,9 +133,9 @@ Page({
   //-----------------购物车----------------------------------
 
   // 获取商家菜品-------------
-  getdata: function (callback) {
+  getdata: function(callback) {
     if (!callback) {
-      callback = res => { }
+      callback = res => {}
     }
     wx.showLoading({
       title: '数据加载中',
@@ -157,7 +148,7 @@ Page({
     ).get().then(res => {
       console.log(res);
       console.log("goods跳转过来是", this.data.goods)
-      if (_this.data.goods.length == res.data.dish.length) { } else {
+      if (_this.data.goods.length == res.data.dish.length) {} else {
         this.setData({
           goods: res.data.dish,
           window: res.data,
@@ -193,11 +184,10 @@ Page({
       // this.data.skip = this.data.skip + 20;
       wx.hideLoading();
       callback();
-      console.log("结算之前的goods是", _this.data.goods)
     })
   },
   // 去结算，对应的跳转到下单界面
-  submit: function (e) {
+  submit: function(e) {
     var i = 0;
     var list = []
     for (i = 0; i < this.data.goods.length; i++) {
@@ -206,7 +196,7 @@ Page({
       }
     }
     this.setData({
-      list:list
+      list: list
     })
     wx.navigateTo({
       url: '../order-submit/order-submit?data=' + JSON.stringify(this.data),
@@ -219,18 +209,17 @@ Page({
     })
   },
   // spider组件的滑动
-  swichNav: function (e) {
+  swichNav: function(e) {
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
-    }
-    else {
+    } else {
       that.setData({
         currentTab: e.target.dataset.current
       })
     }
   },
-  bindChange: function (e) {
+  bindChange: function(e) {
     this.setData({
       currentTab: e.detail.current
     });

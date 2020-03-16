@@ -10,7 +10,7 @@
 					<view class="first_line">
 						<view>★{{item.rate}}</view>
 						<view>月售:{{item.sales}}</view>
-						<view>{{item.time}}min</view>
+						<view>{{item.sendtime}}min</view>
 					</view>
 					<view class="second_line">
 						<view>起送￥</view>
