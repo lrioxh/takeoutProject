@@ -29,7 +29,7 @@
                 <!-- 商家名称 -->
                   <view style="font-size:38rpx;">{{item.store}}></view>
                   <!-- 订单状态 -->
-                  <text>{{item.cancel==true?"已取消":item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment_store==null ?'已评价':'待评价'}}</text>
+                  <text>{{item.cancel==true?"已取消":item.paid===false ? '待付款' : item.done===false?'未完成' :item.comment_store==null ?'待评价':'已评价'}}</text>
                 </view>
                 <!-- 商家所属餐厅 -->
                 <view style="font-size:35rpx;">{{item.hall}}</view>

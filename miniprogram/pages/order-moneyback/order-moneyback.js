@@ -117,18 +117,16 @@ Page({
     }
   },
   toSubmit: function() {
-
-    db.collection("order").doc(this.data.orderid).update({
-      data: {
-        // doneTime: event.doneTime,//订单完成时间
-        cancel: true//订单状态
-      }
-    })
+    // db.collection("order").doc(this.data.orderid).update({
+    //   data: {
+    //     // doneTime: event.doneTime,//订单完成时间
+    //     cancel: true//订单状态
+    //   }
+    // })
     setTimeout(function () {
       wx.showLoading({
         title: '提交中',
       })
-
       wx.switchTab({
         url: "../order/order"
       })
