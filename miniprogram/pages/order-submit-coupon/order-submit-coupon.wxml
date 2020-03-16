@@ -1,5 +1,5 @@
 <!--pages/order-submit-coupon/order-submit-coupon.wxml-->
-<view class="nomsg">什么也没有~</view>
+<view class="nomsg" style="padding:30rpx">什么也没有~</view>
 <view class='container' wx:if="{{coupon.length > 0}}">
   <view class='store-content'>
 

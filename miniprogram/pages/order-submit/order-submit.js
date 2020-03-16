@@ -259,6 +259,7 @@ Page({
         stu: _this.data.addressInfo.userName,
         stuID: app.globalData.openid,
         tel: _this.data.addressInfo.telNumber, //客户的tel
+        store_tel: _order.tel,//商家电话
         hall: _order.hall, // 餐厅名
         store: _order.store, // 商家名
         storeID: _order.storeID, // 商家id
@@ -266,16 +267,18 @@ Page({
         sendPrice: _order.sendPrice, // 配送费
         wrapPrice: _order.wrapPrice, // 打包费
         totalPrice: _order.totalPrice, // 不计算红包价格
-        payPrice: _this.data.totalPrice,
-        coupon: _this.data.couponprice,
+        payPrice: _this.data.totalPrice,//实际支付
+        coupon: _this.data.couponprice,//优惠金额
         note: _this.data.note, //顾客备注
         comment_rider: {},
         comment_store: {},
         paid: false,
-        isTaken: false,
+        isTaken_store: false,//商家是否接单
+        isTaken_rider: false,//骑手是否接单
+        isSending:false,//骑手是否派送
         done: false,
         cancel: false,
-        rider_Detail:{},
+        rider_Detail:{},//骑手信息
       },
       success: function(res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
