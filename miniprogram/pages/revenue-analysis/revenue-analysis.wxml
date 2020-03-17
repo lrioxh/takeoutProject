@@ -1,0 +1,27 @@
+<!--pages/revenue-analysis/revenue-analysis.wxml-->
+<scroll-view class="revenue_analysis bg" scroll-y="true">
+  <view class="shop_name">{{store}}</view>
+  <view class="data_block">
+    <view class="money_block">
+      <view class="money_block_details middle_line">
+        <text class="top_text">今日收款{{today_num_bill}}笔\n</text>
+        <view class="num_revenue">
+          <text class="rmb">￥</text>
+          <text>{{today_revenue}}</text>
+        </view>
+      </view>
+      <view class="money_block_details">
+        <text class="top_text">本月收入\n</text>
+        <view class="num_revenue">
+          <text class="rmb">￥</text>
+          <text>{{month_revenue}}</text>
+        </view>
+      </view>
+    </view>
+    <navigator class="details" url="../revenue_details/revenue_details">查看明细</navigator>
+  </view>
+  <view class='chart'>
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+  </view>
+</scroll-view>
+

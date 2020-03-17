@@ -1,0 +1,71 @@
+/* miniprogram/pages/revenue_details/revenue_details.wxss */
+.check_details_scroll{
+  margin-top:8vh;
+  height:92vh;
+}
+
+
+
+.check_details_container{
+  background: white;
+  margin: 30rpx;
+  padding: 30rpx;
+  height: 220rpx;
+  border-radius: 20rpx;
+}
+
+
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+ margin-top: 20rpx;
+ margin-bottom: 20rpx;
+}
+
+
+
+.second_layer{
+  display: flex;
+  
+}
+
+
+.second_layer view{
+  height: 140rpx;
+  width: 100%;
+}
+
+.first_part{
+  padding-left: 20rpx;
+}
+
+.user_name{
+  font-size: 40rpx;
+  color: #FF893B;
+}
+
+.time{
+  color: #666;
+  font-size: 30rpx;
+}
+
+.second_part{
+  text-align: center;
+}
+
+.second_part > .price{
+  font-size: 50rpx;
+  color: #FF893B;
+}
+
+.sign{
+  font-size: 50rpx;
+  color: #FF893B;
+}
+
+
+.second_part > .status{
+  font-size: 30rpx;
+  color: #666;
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ec-canvas":"../../components/echarts-for-weixin/ec-canvas/ec-canvas/"
+  }
+}

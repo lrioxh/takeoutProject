@@ -1,0 +1,73 @@
+/* miniprogram/pages/mystore/mystore.wxss */
+.store_scroll{
+  margin-top:8vh;
+  height:85vh;
+}
+
+.dish{
+  background: white;
+  margin: 30rpx;
+  border-radius: 20rpx;
+  display: flex;
+  padding: 20rpx;
+}
+
+.dish_right{
+  margin-left: 20rpx;
+}
+
+.dishname{
+  font-size: 40rpx;
+}
+
+.sale{
+  background: white;
+  border: none;
+  text-align: left;
+  margin: 0px;
+  border-radius: 0;
+  padding: 0px 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 100%;
+  
+}
+
+.on{
+  color:#f2656d;
+}
+
+.off{
+  color:#777;
+}
+
+.rmb{
+
+}
+
+.price{
+  color:#FF893B;
+  font-size: 35rpx;
+}
+
+.dish_top{
+  display: flex;
+}
+
+/* .top van-icon{
+  margin-right: 50rpx;
+} */
+
+.addDish_label{
+  font-size: 35rpx;
+  color: white;
+  line-height: 60rpx;
+}
+
+.addDish{
+  background: #f2656d;
+  display: flex;
+  justify-content: center;
+  height: 60rpx;
+}
+

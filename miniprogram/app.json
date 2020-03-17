@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/order/order",
-
     "pages/community/community",
     "pages/mine/mine",
     
@@ -31,7 +30,16 @@
             "pages/coupon/coupon",
             "pages/mycomment/mycomment",
             "pages/feedback/feedback",
-            "pages/service/service"
+            "pages/service/service",
+    "pages/all-index/index",
+    "pages/mystore/mystore",
+    "pages/addDish/addDish",
+    "pages/addMyStore/addMyStore",
+    "pages/store-personal/personal",
+    "pages/store-order/order",
+    "pages/revenue_details/revenue_details",
+    "pages/revenue-analysis/revenue-analysis",
+    "pages/reviews/reviews"
   ],
   "window": {
     "backgroundColor": "#eee",

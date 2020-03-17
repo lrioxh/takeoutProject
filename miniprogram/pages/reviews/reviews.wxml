@@ -1,0 +1,32 @@
+<!--pages/reviews/reviews.wxml-->
+<view class="wrap">
+  <view class="top">
+    <text class="topic">收到评价</text>
+  </view>
+  <scroll-view  class="review-scroll bg" scroll-y="true">
+    <block wx:for="{{orderDetails}}" wx:key="order_keys">
+      <view wx:if="{{item.comment_store != null }}" class='review-content'>
+        <view class='review-time'>
+          <text>{{item.orderTime[0]}} </text>
+          <text>{{item.orderTime[1]}}</text>
+        </view>
+        <view>
+          <text class="costu-name">{{item.stu}}</text>
+          <i-rate class="stars" bind:change="onChange5 " count="{{5}} " value="{{item.rate}}" size="25">
+          </i-rate>
+        </view>
+        <text class="comment">{{item.comment_store}}</text>
+        <!-- <block wx:for="{{review_img}}">
+          <image class="review-img" src="{{item.img}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+        </block> -->
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+  
+
+
+
+
+

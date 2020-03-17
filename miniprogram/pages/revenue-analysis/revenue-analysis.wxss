@@ -1,0 +1,75 @@
+/* pages/revenue-analysis/revenue-analysis.wxss */
+.bg{
+  background:#FF893B;
+}
+ec-canvas {
+  width: 700rpx;
+  height: 700rpx;
+}
+
+.chart{
+  margin: 20rpx;
+  width: 700rpx;
+  height: 700rpx;
+}
+
+.shop_name{
+  color: white;
+  font-size: 40rpx;
+  display: block;
+  margin: 20rpx;
+}
+
+.revenue_analysis{
+  height: 100vh;
+}
+
+.data_block{
+  background: white;
+  margin-left:40rpx;
+  margin-right: 40rpx;
+  border-radius: 10rpx;
+}
+
+.money_block{
+  display: flex;
+  justify-content: center;
+  border-bottom: 2rpx solid #ddd;
+}
+
+.money_block_details{
+  height: 150rpx;
+  width: 50%;
+  
+}
+
+.details{
+  display: flex;
+  justify-content: center;
+  margin: 20rpx;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: #226ddd;
+
+}
+
+.top_text{
+  display: flex;
+  justify-content: center;
+  margin: 10rpx;
+  font-size: 25rpx;
+  color: #666;
+}
+
+.num_revenue{
+  text-align: center;
+  font-size: 50rpx;
+}
+
+.middle_line{
+  border-right: 2rpx solid #ddd;
+}
+
+.rmb{
+  font-size: 30rpx;
+}

@@ -1,0 +1,68 @@
+<!--pages/personal/personal.wxml-->
+<view wx:if="{{isHide}}">
+  <view wx:if="{{canIUse}}">
+    <view class='header'>
+      <image src='cloud://test-wyzd6.7465-test-wyzd6-1301103501/weixin_1.png'></image>
+    </view>
+    <view class='login_content'>
+      <view>申请获取以下权限</view>
+      <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+      授权登录
+    </button>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>
+
+<!-- 登录后显示的个人界面 -->
+<view wx:else class="mine-wrapper">
+  <view class="avatar-wrapper">
+    <view>
+      <view class="avatar">
+        <open-data  class="profile" type="userAvatarUrl"></open-data>
+      </view>
+      <view class="text">
+        <open-data type="userNickName"></open-data>
+      </view>
+    </view>
+  </view>
+  <view class="list-wrapper">
+    <view class="alllists">
+      <block wx:for="{{menuitems}}" wx:key="menu_for">
+        <view wx:if="{{item.text == '反馈'}}" class='feedback'>
+          <van-icon name="envelop-o" size="40rpx"/>
+          <button open-type="feedback" ><text>反馈</text>
+          </button>
+        </view>
+
+        <view wx:elif="{{item.text == '联系客服'}}" class="feedback">
+          <van-icon name="service-o" size="40rpx"/>
+          <button  open-type="contact">
+            <text>联系客服</text>
+          </button>
+        </view>
+        
+        <view wx:else>
+          <navigator wx:if="{{mystore == true}}" url="{{item.url}}" class="lists">
+          <view class='content'>
+            <van-icon name="{{item.icon}}" size="40rpx"/>
+            <view class="listtext">{{item.text}}</view>
+            <!-- <view class="listicon">{{item.tips}}</view>
+            <view class="arrows">
+              <image src="{{item.arrows}}"></image>
+            </view> -->
+          </view>
+          </navigator>
+        </view>
+        <!-- 分割线 -->
+        <view class="divLine"></view>
+      </block>
+    </view>
+  </view>
+</view>
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
+  <van-tabbar-item icon="shop-o">店铺菜品</van-tabbar-item>
+  <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+</van-tabbar>  

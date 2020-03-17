@@ -52,6 +52,25 @@ page{
   text-align: center;
   z-index: -1;
 }
+.top{
+  background:#FF893B;
+  height: 8vh;
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  top:0;
+}
+.topic{
+  color:white;
+  display: inline-block;
+  text-align: center;
+  line-height: 8vh;
+  width: 100vh;
+  font-size: 22px;
+}
+.bg{
+  background: #ddd;
+}
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;

@@ -1,0 +1,104 @@
+
+<view wx:if="{{edit == false}}" class="top">
+  <text class="topic">添加菜品</text>
+</view>
+
+<view wx:else class="top">
+  <text class="topic">修改菜品</text>
+</view>
+
+<scroll-view scroll-y="true" class="addDish_scroll">
+  <form bindsubmit="submit">
+    <view class="content">
+  
+    <!-- 基本信息 -->
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">基本信息</van-divider>
+
+    <view style="height: 80rpx;margin-bottom: 40rpx">
+      <input name="dishName" value="{{dishName}}" placeholder="菜品名称（必填）" bindinput="inputdishName" class="textareaStyle"></input>
+    </view>
+    
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="dishCalorie" value="{{dishCalorie}}" placeholder="卡路里（必填）" bindinput="inputdishCalorie" class="textareaStyle"></input>
+    </view>
+
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="inputdishIngredient" value="{{dishIngredient}}" placeholder="配料与制作方法（选填）" bindinput="inputdishIngredient" class="textareaStyle"></input>
+    </view>
+  
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="inputdishBrief" value="{{dishBrief}}" placeholder="菜品简介（选填）" bindinput="inputdishBrief" class="textareaStyle"></input>
+    </view>
+
+    <!-- 优惠信息 -->
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">优惠信息</van-divider>
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="inputdishPrice" value="{{dishPrice}}" placeholder="菜品原价（必填）" bindinput="inputdishPrice" class="textareaStyle"></input>
+    </view>
+    <view style="margin-bottom:20rpx">是否有优惠</view>
+    <van-radio-group name="discount" value="{{wetherdiscounts}}" bind:change="whetherDiscount">
+      <van-radio  name="1"  checked-color="#07c160">有优惠</van-radio>
+      <van-radio  name="0"  checked-color="#07c160">没有优惠</van-radio>
+    </van-radio-group>
+
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="inputdishDiscountPrice" placeholder="菜品优惠后价格" 
+      bindinput="inputdishDiscountPrice"
+      class="textareaStyle"
+      disabled="{{wetherdiscounts !=1}}"
+      style="margin-top: 20rpx" 
+    ></input>
+    </view>
+  
+
+  <!-- 供应时间 -->
+    <van-divider  contentPosition="center" fontSize="20" textColor="#FF893B">供应时间</van-divider>
+      <van-checkbox-group value="{{result}}" bind:change="offerTime">
+        <van-checkbox name="breakfast" class="checkbox" checked-color="#07c160">早餐</van-checkbox>
+        <van-checkbox name="lunch" class="checkbox" checked-color="#07c160">晚餐</van-checkbox>
+        <van-checkbox name="diner" class="checkbox" checked-color="#07c160">午餐</van-checkbox>
+      </van-checkbox-group>
+
+  
+  <!-- 类别 -->
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">选择菜品分类</van-divider>
+    <van-cell title="请选择菜品分类" is-link bind:click="showPopup" />
+    <van-popup name="categories" show="{{ show }}" bind:close="onClose"  custom-style="height: 40%;  width: 80%;">
+      <van-picker
+      show-toolbar
+      title="标题"
+      columns="{{ categories }}"
+      bind:cancel="onCancel"
+      bind:confirm="onConfirm"
+      bind:change = "onChange"
+    />
+    </van-popup>
+    <van-cell title="菜品分类" value="{{category}}" size="large" />
+
+    <!-- 添加图片 -->
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">添加菜品图片</van-divider>
+    <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="1"/>
+  
+
+  
+    <!-- button -->
+    <view wx:if="{{idName == '' }}" style="margin-top: 40rpx">
+      <button 
+      disabled="{{category ==null || fileList == 0 || result == 0 || dishName== 0 || dishPrice == 0 || dishCalorie == 0 || dishCalorie == 0 ||result == [] }}"
+      form-type="submit"
+      class="btn {{category===null || fileList === null || result === [] || dishName=== null || dishPrice === null || dishCalorie === null || dishCalorie === null ? '' : 'btn-primary'}}"
+      >添加菜品</button>
+    </view>
+    <view wx:else style="margin-top: 40rpx">
+      <button 
+      disabled="{{category ==null || fileList == 0 || result == 0 || dishName== 0 || dishPrice == 0 || dishCalorie == 0 || dishCalorie == 0 ||result == [] }}"
+      form-type="submit"
+      class="btn {{category===null || fileList === null || result === [] || dishName=== null || dishPrice === null || dishCalorie === null || dishCalorie === null ? '' : 'btn-primary'}}"
+      >修改菜品</button>
+    </view>
+  </view>
+  </form>
+</scroll-view>
+
+
+

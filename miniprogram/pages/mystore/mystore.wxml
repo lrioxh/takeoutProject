@@ -1,0 +1,57 @@
+<!--miniprogram/pages/mystore/mystore.wxml-->
+<view class="top">
+  <text class="topic">我的店铺</text>
+</view>
+<scroll-view scroll-y="true" class="store_scroll bg">
+  <view class="addDish">
+    <navigator url="../addDish/addDish">
+      <van-icon name="add-o" size="35rpx" color="white"/>
+      <text class="addDish_label">添加菜品</text>
+    </navigator>
+  </view>
+  <block wx:for="{{store.dish}}" >
+    <view class="dish">
+      <view>
+        <van-image
+  width="100"
+  height="100"
+  lazy-load
+  src="{{item.src}}"
+/>
+      </view>
+      <view class="dish_right">
+        <view class="dish_top">
+          <text class="dishname">{{item.name}}</text>
+          <van-icon  name="edit" size="40rpx" bind:click="edit" 
+          data-category="{{item.category}}"
+          data-dishname="{{item.name}}"
+          data-calorie="{{item.calorie}}"
+          data-ingredient="{{item.ingredient}}"
+          data-brief="{{item.brief}}"
+          data-price="{{item.price}}"
+          data-discountPrice="{{item.discountPrice}}"
+          data-wetherdiscounts="{{item.wetherdiscounts}}"
+          data-time="{{item.time}}"
+          data-src="{{item.src}}"
+          data-index="{{index}}" />
+        </view>
+        <view wx:if="{{item.onsale}}">
+          <button class="sale off" bindtap="saleoff" data-index="{{index}}">取消供应</button>
+        </view>
+        <view wx:else>
+          <button class="sale on" bindtap="saleon" data-index="{{index}}">开启供应</button>
+        </view>
+        <view class="price">
+          <text>￥</text>
+          <text class="price">{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+
+<van-tabbar active="{{active}}" bind:change="onChange">
+  <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
+  <van-tabbar-item icon="shop-o">店铺菜品</van-tabbar-item>
+  <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+</van-tabbar>  

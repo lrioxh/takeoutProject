@@ -1,0 +1,11 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class="index">
+  <view class="title">
+    <text>请选择身份</text>
+  </view>
+  <view class="button_container">
+    <button class="student" bindtap="goToCus">我是学生</button>
+    <button class="store" bindtap="goToStore">我是商家</button>
+    <button class="rider">我是骑手</button>
+  </view>
+</view>

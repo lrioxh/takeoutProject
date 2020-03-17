@@ -1,0 +1,69 @@
+/* pages/addMyStore/addMyStore.wxss */
+page {
+ width: 100%;
+ height: 100%
+}
+.container {
+  width: 100%;
+  height: 100%
+}
+
+.content {
+  padding: 40rpx 56rpx
+}
+
+.illustration {
+  margin: 95rpx 30rpx;
+  width: 304rpx;
+  height: 200rpx
+}
+
+.textareaStyle {
+  margin-left: 42rpx;
+  width: 80%;
+  height: 44rpx;
+  padding: 16rpx 24rpx; 
+  border: 1px solid #ccc;
+  border-radius: 6rpx;
+  font-size: 30rpx;
+}
+
+.imageView {
+  padding-left: 30rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.image {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 100%;
+  margin-right: 30rpx
+}
+
+.btn {
+  /* background: #d9d9d9;  */
+  height: 80rpx; 
+  line-height: 80rpx;
+  font-size: 30rpx; 
+  margin-bottom: 42rpx
+}
+
+.btn-primary {
+  background: #1b9aee;
+  color: #fff
+}
+
+.checkbox{
+  item-height: 50rpx
+}
+
+.category{
+  margin-top: 40rpx
+}
+
+.uploadImage{
+  margin-left: 42rpx;
+}

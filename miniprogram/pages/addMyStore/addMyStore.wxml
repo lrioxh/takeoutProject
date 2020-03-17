@@ -1,0 +1,72 @@
+<!-- 基本信息 -->
+<scroll-view scroll-y="true">
+  <form bindsubmit="submit"       
+      data-place="{{address}}"
+      data-img="{{fileList[0].url}}"
+      data-inner="{{inner_fileList[0].url}}">
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">基本信息</van-divider>
+
+    <view style="height: 80rpx;margin-bottom: 30rpx" >
+      <input name="storeName" placeholder="店铺名称（必填）" bindinput="inputstoreName" class="textareaStyle"></input>
+    </view>
+
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="storeBrief" placeholder="店铺简介（必填）" bindinput="inputstorBrief" class="textareaStyle"></input>
+    </view>
+
+    <view style="height: 80rpx;smargin-bottom: 40rpx" >
+      <input name="managerName" placeholder="店铺负责人姓名（必填）" bindinput="inputmanagerName" class="textareaStyle"></input>
+    </view>
+
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="managerID" placeholder="负责人身份证号（必填）" bindinput="inputmanagerID" class="textareaStyle" type="idcard"></input>
+    </view>
+  
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="phoneNumber" placeholder="手机号码（必填）" bindinput="inputphoneNumber" class="textareaStyle"></input>
+    </view>
+
+    <view name="time" style="height: 80rpx;margin-bottom: 40rpx" >
+      <input placeholder="配送时间（必填）" bindinput="inputtime" class="textareaStyle"></input>
+    </view>
+
+  <!-- 店铺地址选择 -->
+  <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">选择店铺地址</van-divider>
+    <van-cell title="请选择店铺地址" is-link bind:click="showPopup" />
+    <van-popup show="{{ show }}" bind:close="onClose" custom-style="height: 40%;  width: 80%;">
+      <van-picker
+      
+      show-toolbar
+      title="标题"
+      columns="{{ places }}"
+      bind:cancel="onCancel"
+      bind:confirm="onConfirm"
+      />
+    </van-popup>
+    <van-cell title="店铺地址" value="{{address}}" size="large" />
+
+    <view style="height: 80rpx;margin-bottom: 40rpx" >
+      <input name="location" placeholder="具体位置（选填）" class="textareaStyle"></input>
+    </view>
+
+<!-- 店铺头像 -->
+    <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">添加店铺头像</van-divider>
+    <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" class="uploadImage" max-count="1"/>
+
+     <van-divider contentPosition="center" fontSize="20" textColor="#FF893B">添加店内照片</van-divider>
+    <van-uploader file-list="{{ inner_fileList }}" bind:after-read="inner_afterRead" class="uploadImage" max-count="1"/>
+
+
+    <!-- button -->
+    <view style="margin-top: 40rpx">
+     <button 
+      disabled="{{storeName===null || storBrief === null || managerName === null || managerID=== null || phoneNumber === null || address === null || time === null || fileList === null || inner_fileList === null}}"
+      form-type="submit"
+      class="btn {{storeName===null || storBrief === null || managerName === null || managerID=== null || phoneNumber === null || address === null || time === null || fileList === null || inner_fileList === null ? '' : 'btn-primary'}}"
+
+
+      >申请餐厅</button>
+    </view>
+  </form>
+</scroll-view>
+  

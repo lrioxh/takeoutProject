@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-image": "../../miniprogram_npm/@vant/weapp/image/index",
+    "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+    "van-icon": "../../miniprogram_npm/@vant/weapp/icon/index",
+    "van-tabbar": "../../miniprogram_npm/@vant/weapp/tabbar/index",
+    "van-tabbar-item": "../../miniprogram_npm/@vant/weapp/tabbar-item/index"
+  }
+}

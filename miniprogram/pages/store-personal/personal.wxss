@@ -1,0 +1,135 @@
+/* pages/personal/personal.wxss */
+.feedback{
+  display: flex;
+  justify-content: flex-start;
+  width: 400rpx;
+  
+}
+.feedback van-icon{
+  /* background: blue; */
+  line-height: 100%;
+}
+
+.feedback button{
+  /* display: inline-block; */
+  /* width: 100rpx; */
+  background: white;
+  border: none;
+  text-align: left;
+  margin: 0px;
+  border-radius: 0;
+  padding: 0px 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 100%;
+}
+
+.feedback button::after{
+  border: none;
+  border-radius: 0;
+}
+
+.feedback text{
+  font-size: 30rpx;
+  font-weight: normal;
+}
+
+
+.header {
+  margin: 90rpx 0 90rpx 50rpx;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+
+.header image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.login_content {
+  margin-left: 50rpx;
+  margin-bottom: 90rpx;
+}
+
+.login_content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+
+.bottom {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}
+
+.profile{
+  overflow:hidden;
+  border-radius:50%;
+  height:200rpx;
+  width:200rpx;
+
+}
+.avatar-wrapper {
+  background: #FF893B;
+  padding: 25px 0;
+}
+ 
+.avatar-wrapper .avatar {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+ 
+.avatar-wrapper .text {
+  margin-top: 20rpx;
+  text-align: center;
+  color: #fff;
+}
+ 
+.listimg image {
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+ 
+.content{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40rpx;
+  line-height: 100%;
+}
+
+.content van-icon{
+  margin-right: 13rpx;
+}
+ 
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+}
+ 
+.arrows image {
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin-left: 500rpx;
+}
+
+/* .alllists button{
+  width: 100vw;
+  background: #FF893B;
+  color: white;
+  font-weight: normal;
+  margin-top: 30rpx;
+} */
+
+

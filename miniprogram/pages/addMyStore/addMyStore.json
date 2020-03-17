@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-checkbox": "../../miniprogram_npm/@vant/weapp/checkbox/index",
+    "van-checkbox-group": "../../miniprogram_npm/@vant/weapp/checkbox-group/index",
+    "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-picker": "../../miniprogram_npm/@vant/weapp/picker/index",
+    "van-toast": "../../miniprogram_npm/@vant/weapp/toast/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+    "van-uploader": "../../miniprogram_npm/@vant/weapp/uploader/index"}
+}

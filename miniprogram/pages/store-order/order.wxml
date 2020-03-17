@@ -1,0 +1,198 @@
+<!--pages/order/order.wxml-->
+
+<view class="top">
+  <text class="topic">订单</text>
+</view>
+<view class="swiper-tab">  
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">新订单</view>  
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已完成</view>  
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">未完成</view>  
+</view>  
+  
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:86vh;" bindchange="bindChange">  
+  <!-- 新订单 -->
+  <swiper-item>  
+    <scroll-view scroll-y="true" class="order_scroll bg">
+      <block wx:for="{{orderDetails}}" wx:key="order_keys">
+        <view wx:if="{{item.done == '待完成' && item.cancel == false}}" class="order_container">
+          <view>
+            <text class='order_label'>下单时间：</text>
+            <text class='time'>{{item.orderTime}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货人：</text>
+            <text decode="true">{{item.stu}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            <text class='order_label'>电话：</text>
+            <text>{{item.tel}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货地址：</text>
+            <text>{{item.addr.address}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>商品:</text>
+            <block wx:for="{{item.dish}}" wx:for-item="dish" wx:key="dish_keys">
+              <view class='list'>
+                <text decode="true">{{dish.name}}&nbsp;&nbsp;&nbsp;</text>
+                <text class='rmb' >￥</text>
+                <text decode="true" class='num'>{{dish.price}}&nbsp;&nbsp;</text>
+                <text class='num'>×{{dish.num}}</text>                
+              </view>
+            </block>
+            <view class="total">
+              <text>\n共</text>
+              <text class='num'>{{num_total[index]}}</text>
+              <text>件</text>
+            </view>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>包装费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.wrapPrice}}\n</text>
+            <text class='order_label'>配送费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.sendPrice}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view class="total">
+            <text>总计:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{price_total[index]}}</text>
+          </view>
+          <view class='button'>
+            <button wx:if="{{item.isTaken_store}}"  disabled="true" data-id="{{item._id}}">已接受</button>
+            <button wx:else class="take" bindtap="take" data-id="{{item._id}}">接受订单</button>
+            <button class='cancel' bindtap="cancel" data-id="{{item._id}}">取消订单</button>
+              
+          </view>
+        </view>
+      </block>
+  </scroll-view>
+    </swiper-item>  
+    <!-- 已完成 -->  
+    <swiper-item>  
+      <scroll-view scroll-y="true" class="order_scroll bg">
+      <block wx:for="{{orderDetails}}" wx:key="order_keys">
+        <view wx:if="{{item.done == '已完成'}}" class="order_container">
+          <view>
+            <text class='order_label'>下单时间：</text>
+            <text class='time'>{{item.orderTime}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货人：</text>
+            <text decode="true">{{item.stu}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            <text class='order_label'>电话：</text>
+            <text>{{item.tel}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货地址：</text>
+            <text>{{item.addr.address}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>商品:</text>
+            <block wx:for="{{item.dish}}" wx:for-item="dish" wx:key="dish_keys">
+              <view class='list'>
+                <text decode="true">{{dish.name}}&nbsp;&nbsp;&nbsp;</text>
+                <text class='rmb' >￥</text>
+                <text decode="true" class='num'>{{dish.price}}&nbsp;&nbsp;</text>
+                <text class='num'>×{{dish.num}}</text>
+                
+              </view>
+            </block>
+            <view class="total">
+              <text>\n共</text>
+              <text class='num'>{{num_total[index]}}</text>
+              <text>件</text>
+            </view>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>包装费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.wrapPrice}}\n</text>
+            <text class='order_label'>配送费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.sendPrice}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view class="total">
+            <text>总计:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{price_total[index]}}</text>
+          </view>
+        </view>
+      </block>
+  </scroll-view>
+    </swiper-item>  
+    <!-- 未完成 -->  
+    <swiper-item>  
+      <scroll-view scroll-y="true" class="order_scroll bg">
+      <block wx:for="{{orderDetails}}" wx:key="order_keys">
+        <view wx:if="{{item.cancel == true }}" class="order_container">
+          <view class="cancel_title">已取消！</view>
+          <view>
+            <text class='order_label'>下单时间：</text>
+            <text class='time'>{{item.orderTime}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货人：</text>
+            <text decode="true">{{item.stu}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            <text class='order_label'>电话：</text>
+            <text>{{item.tel}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>收货地址：</text>
+            <text>{{item.addr.address}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>商品:</text>
+            <block wx:for="{{item.dish}}" wx:for-item="dish" wx:key="dish_keys">
+              <view class='list'>
+                <text decode="true">{{dish.name}}&nbsp;&nbsp;&nbsp;</text>
+                <text class='rmb' >￥</text>
+                <text decode="true" class='num'>{{dish.price}}&nbsp;&nbsp;</text>
+                <text class='num'>×{{dish.num}}</text>
+                
+              </view>
+            </block>
+            <view class="total">
+              <text>\n共</text>
+              <text class='num'>{{num_total[index]}}</text>
+              <text>件</text>
+            </view>
+          </view>
+          <view class="divLine"></view>
+          <view>
+            <text class='order_label'>包装费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.wrapPrice}}\n</text>
+            <text class='order_label'>配送费:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{item.sendPrice}}</text>
+          </view>
+          <view class="divLine"></view>
+          <view class="total">
+            <text>总计:</text>
+            <text class='rmb'>￥</text>
+            <text class='num'>{{price_total[index]}}</text>
+          </view>
+        </view>
+      </block>
+  </scroll-view>
+    </swiper-item>  
+</swiper>
+<van-tabbar active="{{active}}" bind:change="onChange">
+  <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
+  <van-tabbar-item icon="shop-o">店铺菜品</van-tabbar-item>
+  <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+</van-tabbar>  

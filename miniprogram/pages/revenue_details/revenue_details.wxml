@@ -1,0 +1,27 @@
+<!--miniprogram/pages/revenue_details/revenue_details.wxml-->
+<view class="top">
+  <text class="topic">账单明细</text>
+</view>
+
+<scroll-view  class="check_details_scroll bg" scroll-y="true">
+  <block wx:for="{{orderDetails}}" wx:if="{{item.done == '已完成' || item.done == '已退款'}}" wx:key="order_keys">
+    <view class="check_details_container">
+      <view class="time">
+        <text>{{item.orderTime[0]}}</text>
+      </view>
+      <view class="divLine"></view>
+      <view class='second_layer'>
+        <view class='first_part'>
+          <text class='user_name'>{{item.stu}}\n</text>
+          <text class='time'>{{item.orderTime[1]}}</text>
+        </view>
+        <view class='second_part'>
+          <text wx:if="{{item.done == '已完成'}}" class='sign'>+</text>
+          <text wx:if="{{item.done == '已退款'}}" class='sign'>-</text>
+          <text class='price'>{{revenue[index]}}\n</text>
+          <text class='status'>{{item.done}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

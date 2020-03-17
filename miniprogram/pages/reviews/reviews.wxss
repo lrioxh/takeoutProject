@@ -1,0 +1,31 @@
+/* pages/reviews/reviews.wxss */
+.review-content{
+  background: white;
+  margin: 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+}
+
+.review-scroll{
+  margin-top:8vh;
+  height:92vh;
+}
+
+.review-time{
+  margin-bottom:10rpx;
+}
+
+.costu-name{
+  font-size:40rpx;
+  
+}
+
+.stars{
+  display:inline-block;
+  margin-left: 10rpx;
+}
+
+.comment{
+  display: block;
+  margin-top: 20rpx;
+}
