@@ -70,6 +70,7 @@ Page({
       .where({
         t_id: that.data.id
       })
+      .orderBy('realDate','desc')
       .get({
         success: function (res) {
           // res.data 包含该记录的数据

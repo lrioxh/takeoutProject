@@ -7,7 +7,6 @@ const db = wx.cloud.database();
 Page({
   data: {
     userInfo: app.globalData.userInfo,
-    totalCount: 0,
     topics: {},
     show:false
 
@@ -46,9 +45,10 @@ Page({
    * 
    */
   getData: function() {
-
     db.collection('topicPo')
       .orderBy('realDate', 'desc')
+      .skip(that.data.topics.length)
+      .limit(10)
       .get({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
@@ -97,9 +97,12 @@ Page({
   onReachBottom: function() {
     var temp = [];
     // 获取后面十条
-    if (this.data.topics.length < this.data.totalCount) {
+    // if (this.data.topics.length < this.data.totalCount) {
       const db = wx.cloud.database();
-      db.collection('topicPo').get({
+      db.collection('topicPo')
+      .orderBy('realDate', 'desc')
+      .skip(that.data.topics.length)
+      .get({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
           if (res.data.length > 0) {
@@ -123,11 +126,11 @@ Page({
           }
         },
       })
-    } else {
-      wx.showToast({
-        title: '没有更多数据了',
-      })
-    }
+    // } else {
+    //   wx.showToast({
+    //     title: '没有更多数据了',
+    //   })
+    // }
 
   },
   //菜单

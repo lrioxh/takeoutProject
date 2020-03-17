@@ -20,7 +20,7 @@
         <text>{{order.eta}} </text>送达
       </view>
       <view class="noPay" wx:if="{{orderStatus==0}}">
-        逾期未支付，订单将在{{order.canceltime}}自动取消
+        逾期未支付，订单将在 <text style="color:rgb(0, 171, 245)">{{order.canceltime}}</text> 自动取消
       </view>
     </view>
     <view class="bot" wx:if="{{orderStatus==1 || orderStatus==2}}">
@@ -39,8 +39,8 @@
     <view class="title">配送员信息</view>
     <view class="name">
       <view class="Pic">
-        <image src="../../imgs/me.jpg"></image>
-        张三
+        <image src="cloud://test-wyzd6.7465-test-wyzd6-1301103501/骑手.jpg"></image>
+        {{rider.name==null?"小车配送":rider.name}}
       </view>
       <view class="contact iconfont icon-phone" bindtap="callRider" data-phone="18316588222">
         联系骑手
@@ -119,7 +119,7 @@
   <view class="messages">
     <view class="time">配送地址</view>
     <view>
-      <view class="view-type"> {{userInfo.nickName}}({{userInfo.gender==1?"先生":"女士"}}）{{order.tel}}</view>
+      <view class="view-type"> {{order.stu}}({{userInfo.gender==1?"先生":"女士"}}）{{order.tel}}</view>
       <view class="view-type"> {{order.addr.address}}</view>
     </view>
   </view>

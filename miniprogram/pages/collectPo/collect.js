@@ -1,4 +1,4 @@
-// pages/collect/collect.js
+// pages/collectPo/collect.js
 var that
 const db = wx.cloud.database()
 const app = getApp()
@@ -35,6 +35,7 @@ Page({
       .where({
         _openid: app.globalData.openid, // 填入当前用户 openid
       })
+      .orderBy('realDate', 'desc')
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组

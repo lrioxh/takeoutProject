@@ -23,7 +23,6 @@ page{
   font-size: 14rpx;
   color: #000;
 }
-
 .container.withtab{
   margin: 105rpx 0 0 0;
   /*top: 105rpx;*/

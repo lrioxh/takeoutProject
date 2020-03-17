@@ -33,12 +33,6 @@ Page({
     order.doc(options.id)
       .get()
       .then(res => {
-        let orderTime = 'orderTime';
-        let d = res.data.orderTime
-        // let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
-        var hours = this.p(d.getHours() + 1)
-        let resTime = this.h(hours) + ':' + this.p(d.getMinutes())
-        res.data[orderTime] = resTime
         this.setData({
           order: res.data
         })

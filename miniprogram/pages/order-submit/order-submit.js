@@ -106,14 +106,15 @@ Page({
       // 计算时间，表示成xx-xx-xx形式 
       let d = new Date();
       let hours = this.p(d.getHours())
+      let hours2 = this.p(d.getHours())
       let minutes = this.p(d.getMinutes() + 40)
       let minutes2 = this.p(d.getMinutes() + 15)
       if (minutes > 60) {
         minutes -= 60
         hours += 1
       }
-      let predictTime = hours + ':' + minutes
-      let canceltime = hours + ":" + minutes2
+      let predictTime = _this.h(hours) + ':' + _this.p(minutes)
+      let canceltime = _this.h(hours2) + ":" + _this.p(minutes2)
       // 格式为数据库中需要的格式
       var dish = [];
       for (let i = 0; i < orderdata.list.length; i++) {
@@ -147,13 +148,13 @@ Page({
           store: orderdata.window.name, // 商家名
           storeID: orderdata.window._id, // 商家id
           storeLogo: orderdata.window.img, // 商家logo
-          sendPrice: orderdata.sendPrice, // 配送费
-          wrapPrice: orderdata.wrapPrice, // 打包费
+          sendPrice: sendPrice, // 配送费
+          wrapPrice: wrapPrice, // 打包费
           totalPrice: money, // 不计算红包价格
         },
         totalPrice: money // 支付价格
       })
-      // console.log(this.data.info)
+      console.log(this.data)
       // console.log(this.data.totalPrice)
       // console.log(this.data.order.totalPrice)
       console.log(this.data.order.storeID)
@@ -226,8 +227,11 @@ Page({
     if (_this.data.addressInfo.telNumber == null) {
       wx.hideLoading()
       wx.showModal({
-        title: '收货信息有误',
-        content: '请选您的收货信息',
+        title: '收货信息不全',
+        content: '亲，您的收货信息缺少您的联系方式~',
+        showCancel: false,
+        confirmText: "前往修改",
+        confirmColor: "#feb70f" 
       })
     } else {
       var detailInfo = _this.data.addressInfo.detailInfo
@@ -235,8 +239,8 @@ Page({
       var countyName = _this.data.addressInfo.countyName
       console.log(cityName + countyName + detailInfo)
       qqmapsdk.geocoder({
-        address: cityName + countyName + detailInfo, //地址参数，例：固定地址，address: '北京市海淀区彩和坊路海淀西大街74号'
-        success: function(res) { //成功后的回调
+        address: cityName + countyName + detailInfo, 
+        success: function(res) {
           console.log(res);
           var res = res.result;
           var latitude = res.location.lat;
@@ -254,8 +258,11 @@ Page({
           console.log(res);
           if (res.status == 347) {
             wx.showModal({
-              title: '地址未识别',
-              content: '请重新选择您的地址',
+              title: '地址无法识别',
+              content: '亲，无法实别您的收货地址，请重新选择~',
+              showCancel: false,
+              confirmText: "前往修改",
+              confirmColor: "#feb70f" 
             })
           }
         }

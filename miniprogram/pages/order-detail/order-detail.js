@@ -6,6 +6,7 @@ const app = getApp();
 
 Page({
   data: {
+    rider:null,
     location: {},
     pageid: null,
     order: null, // 订单
@@ -13,39 +14,39 @@ Page({
     orderStatus: 1, // 0未付款 1已接单 2派送中 3已完成 4订单已取消 5等待商家接单
     // 骑手0&&1客户位置
     markers: [{
-        iconPath: "../../imgs/qishou.png",
-        id: 0,
-        latitude: 31.5,
+      iconPath: "../../imgs/qishou.png",
+      id: 0,
+      latitude: 31.5,
+      longitude: 120.30,
+      width: 40,
+      height: 40
+    },
+    {
+      id: 1,
+      latitude: 31.49,
+      longitude: 120.306122,
+      width: 40,
+      height: 40
+    }
+    ],
+    polyline: [{
+      points: [{
+        latitude: 31.60,
         longitude: 120.30,
-        width: 40,
-        height: 40
-      },
-      {
-        id: 1,
+      }, {
         latitude: 31.49,
         longitude: 120.306122,
-        width: 40,
-        height: 40
-      }
-    ],
-    // polyline: [{
-    //   points: [{
-    //     latitude: 31.60,
-    //     longitude: 120.30,
-    //   }, {
-    //     latitude: 31.49,
-    //     longitude: 120.306122,
-    //   }],
-    //   color: "#FF0000DD",
-    //   width: 2,
-    //   dottedLine: true
-    // }],
+      }],
+      color: "#FF0000DD",
+      width: 2,
+      dottedLine: true
+    }],
   },
   // x >>>>>>>>0x
   p(s) {
     return s < 10 ? '0' + s : s
   },
-  onLoad: function(e) {
+  onLoad: function (e) {
     var that = this;
     this.setData({
       pageid: e.id
@@ -73,42 +74,67 @@ Page({
       }
       let d = res.data.orderTime
       let resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
-      let resTime = "-" + this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
+      let resTime = "   " + this.p(d.getHours()) + ':' + this.p(d.getMinutes()) + ':' + this.p(d.getSeconds())
       res.data.orderTime = resDate + resTime
       this.setData({
         order: res.data,
         orderStatus: stss
       })
+      rider.where({ openid: this.data.order.rider_Detail}).get().then(res => {
+        console.log(res.data[0])
+        this.setData({
+          rider:res.data[0]
+        })
+        console.log(this.data.rider.name)
+        wx.getLocation({
+          success: function (res) {
+            console.log(res)
+            var riderlongitude = res.longitude + 0.01
+            var riderlatitude = res.latitude + 0.01
+            console.log(riderlongitude)
+            console.log(riderlatitude)
+            that.setData({
+              hasLocation: true,
+              location: {
+                longitude: res.longitude,
+                latitude: res.latitude
+              },
+              markers: [{
+                iconPath: "../../imgs/qishou.png",
+                id: 0,
+                latitude: riderlatitude,
+                longitude: riderlongitude,
+                width: 40,
+                height: 40
+              }, {
+                id: 1,
+                latitude: res.latitude,
+                longitude: res.longitude,
+                width: 40,
+                height: 40
+              }],
+              polyline: [{
+                points: [{
+                  latitude: riderlatitude,
+                  longitude: riderlongitude,
+                }, {
+                  latitude: res.latitude,
+                  longitude: res.longitude,
+                }],
+                color: "#ffa844",
+                width: 3,
+              }]
+            })
+          }
+        })
+        console.log(this.data)
+      })
     })
     wx.getUserInfo({
-      success: function(res) {
+      success: function (res) {
         console.log(res)
         that.setData({
           userInfo: res.userInfo
-        })
-      }
-    })
-    if (this.data.orderStatus == 2) {
-      this.data.order.rider_Detail
-    }
-    var that = this
-    wx.getLocation({
-      success: function(res) {
-        console.log(res)
-        that.setData({
-          hasLocation: true,
-          location: {
-            longitude: res.longitude,
-            latitude: res.latitude
-          },
-          'markers[1]':{
-            id: 1,
-            latitude: res.latitude,
-            longitude: res.longitude,
-            width: 40,
-            height: 40
-          }
-          
         })
       }
     })
@@ -124,25 +150,25 @@ Page({
   //--------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------
   // 联系骑手
-  callRider: function() {
+  callRider: function () {
     wx.makePhoneCall({
       phoneNumber: '18316588252',
-      success: function() {
+      success: function () {
         console.log("拨打电话成功！")
       },
-      fail: function() {
+      fail: function () {
         console.log("拨打电话失败！")
       }
     })
   },
   // 联系商家
-  callStore: function() {
+  callStore: function () {
     wx.makePhoneCall({
       phoneNumber: this.data.order.store_tel,
-      success: function() {
+      success: function () {
         console.log("拨打电话成功！")
       },
-      fail: function() {
+      fail: function () {
         console.log("拨打电话失败！")
       }
     })
@@ -150,7 +176,7 @@ Page({
   //--------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------
   // 取消订单
-  cancel: function() {
+  cancel: function () {
     wx.showModal({
       title: '取消订单',
       content: '您确定要取消订单嘛',
@@ -163,7 +189,7 @@ Page({
               cancel: true //订单状态
             }
           })
-          setTimeout(function() {
+          setTimeout(function () {
             wx.showLoading({
               title: '订单取消中',
             })
@@ -178,25 +204,25 @@ Page({
     })
   },
   // 去支付
-  gotoapply: function() {
+  gotoapply: function () {
     wx.navigateTo({
       url: '../order-pay/order-pay?id=' + this.data.pageid,
     })
   },
   // 申请退款
-  cancelApply: function() {
+  cancelApply: function () {
     wx.navigateTo({
       url: '../order-moneyback/order-moneyback?id=' + this.data.pageid,
     })
   },
   // 评价订单
-  toEvaluate: function() {
+  toEvaluate: function () {
     wx.navigateTo({
       url: '../order-evaluate/order-evaluate?id=' + this.data.pageid,
     })
   },
   // 再来一单
-  again: function() {
+  again: function () {
     wx.redirectTo({
       url: '../order-submit/order-submit?id=' + this.data.pageid,
     })
