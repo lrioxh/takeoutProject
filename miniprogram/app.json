@@ -49,36 +49,5 @@
       "desc": "授权当前位置"
     }
   },
-  "tabBar": {
-    "color": "#000000",
-    "selectedColor": "#ff893b",
-    "backgroundColor": "#F6F6F6",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "imgs/tabBar/home-default.png",
-        "selectedIconPath": "imgs/tabBar/home-active.png"
-      },
-      {
-        "pagePath": "pages/community/community",
-        "text": "社区",
-        "iconPath": "imgs/tabBar/com_def.png",
-        "selectedIconPath": "imgs/tabBar/com_act.png"
-      },
-      {
-        "pagePath": "pages/order/order",
-        "text": "订单",
-        "iconPath": "imgs/tabBar/buy-list-default.png",
-        "selectedIconPath": "imgs/tabBar/buy-list-active.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的",
-        "iconPath": "imgs/tabBar/my-default.png",
-        "selectedIconPath": "imgs/tabBar/my-active.png"
-      }
-    ]
-  },
   "sitemapLocation": "sitemap.json"
 }

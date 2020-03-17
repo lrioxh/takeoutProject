@@ -6,6 +6,46 @@ const db = wx.cloud.database();
 
 Page({
   data: {
+    tabBar: {
+      "color": "#9E9E9E",
+      "selectedColor": "#f00",
+      "backgroundColor": "#fff",
+      "borderStyle": "#ccc",
+      "list": [{
+        "pagePath": "../index/index",
+        "text": "首页",
+        "iconPath": "../../imgs/tabBar/home-default.png",
+        "selectedIconPath": "../../imgs/tabBar/home-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../community/community",
+        "text": "社区",
+        "iconPath": "../../imgs/tabBar/com_def.png",
+        "selectedIconPath": "../../imgs/tabBar/com_act.png",
+        "selectedColor": "#FF893B",
+        "active": true
+      },
+      {
+        "pagePath": "../order/order",
+        "text": "订单",
+        "iconPath": "../../imgs/tabBar/buy-list-default.png",
+        "selectedIconPath": "../../imgs/tabBar/buy-list-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../mine/mine",
+        "text": "我的",
+        "iconPath": "../../imgs/tabBar/my-default.png",
+        "selectedIconPath": "../../imgs/tabBar/my-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      }
+      ],
+      "position": "bottom"
+    },
     userInfo: app.globalData.userInfo,
     topics: {},
     show: false

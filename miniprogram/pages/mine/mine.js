@@ -5,21 +5,63 @@ const db = wx.cloud.database();
 
 Page({
   data: {
+    tabBar: {
+      "color": "#9E9E9E",
+      "selectedColor": "#f00",
+      "backgroundColor": "#fff",
+      "borderStyle": "#ccc",
+      "list": [{
+        "pagePath": "../index/index",
+        "text": "首页",
+        "iconPath": "../../imgs/tabBar/home-default.png",
+        "selectedIconPath": "../../imgs/tabBar/home-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../community/community",
+        "text": "社区",
+        "iconPath": "../../imgs/tabBar/com_def.png",
+        "selectedIconPath": "../../imgs/tabBar/com_act.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../order/order",
+        "text": "订单",
+        "iconPath": "../../imgs/tabBar/buy-list-default.png",
+        "selectedIconPath": "../../imgs/tabBar/buy-list-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../mine/mine",
+        "text": "我的",
+        "iconPath": "../../imgs/tabBar/my-default.png",
+        "selectedIconPath": "../../imgs/tabBar/my-active.png",
+        "selectedColor": "#FF893B",
+        "active": true
+      }
+      ],
+      "position": "bottom"
+    },
     userInfo: app.globalData.userInfo,
-//    logged: false,
-//    takeSession: false,
-//    requestResult: '',
-    addressInfo: { detailInfo: "点击选择" },
+    //    logged: false,
+    //    takeSession: false,
+    //    requestResult: '',
+    addressInfo: {
+      detailInfo: "点击选择"
+    },
     isLogin: app.globalData.isLogin,
 
   },
 
-  onLoad: function () {
+  onLoad: function() {
     // console.log('mine',userinfo)
-    
+
   },
 
-  onShow: function () {
+  onShow: function() {
     this.setData({
       userInfo: app.globalData.userInfo
     })
@@ -35,9 +77,9 @@ Page({
   },
 
   /**
-     * 监听授权的点击事件
-     */
-  authorizeClick: function (event) {
+   * 监听授权的点击事件
+   */
+  authorizeClick: function(event) {
     let _this = this;
     // console.log(event);
     //1.授权之后将数据存放在app.js中
@@ -58,38 +100,44 @@ Page({
   login() {
     let _this = this;
     let userInfo = app.globalData.userInfo;
-    let user=null;
+    let user = null;
     // //openid
     // wx.cloud.callFunction({
     //   name:"login",
     //   // data: {data: userInfo},
     //   complete: res => {
-        
+
     //     app.globalData.openid = res.result.openid;
-        //注册/更新本地userInfo
-        user=db.collection('student').doc(app.globalData.openid)
-        // console.log(userInfo);
-        // console.log(user)
-        user.get()
-        .then(res => {
-					user.update({ data: userInfo})
-          // console.log(res.data.addr);
-          // addressInfo.detailInfo=res.data.addr;
-          this.setData({
-            ['addressInfo.detailInfo']: res.data.addr
-          })
-          })
-        .catch(res => {
-          console.log('newUser')
-					user.set({ data: Object.assign(userInfo, { collectStore: [] }) })
-          })
-        
-        // console.log(userInfo.openid);
-        app.globalData.isLogin = true;
-        _this.setData({
-          isLogin: true,
+    //注册/更新本地userInfo
+    user = db.collection('student').doc(app.globalData.openid)
+    // console.log(userInfo);
+    // console.log(user)
+    user.get()
+      .then(res => {
+        user.update({
+          data: userInfo
         })
-      // }
+        // console.log(res.data.addr);
+        // addressInfo.detailInfo=res.data.addr;
+        this.setData({
+          ['addressInfo.detailInfo']: res.data.addr
+        })
+      })
+      .catch(res => {
+        console.log('newUser')
+        user.set({
+          data: Object.assign(userInfo, {
+            collectStore: []
+          })
+        })
+      })
+
+    // console.log(userInfo.openid);
+    app.globalData.isLogin = true;
+    _this.setData({
+      isLogin: true,
+    })
+    // }
     // })
 
   },
@@ -104,68 +152,67 @@ Page({
         })
         // console.log(res);
         db.collection('student').doc(app.globalData.openid).update({
-          data:{
+          data: {
             addr: res.detailInfo,
             tel: res.telNumber,
             name: res.userName
           }
         }).then(console.log)
       },
-      fail: function (err) {
+      fail: function(err) {
         console.log(err)
       }
     })
   },
   //路由
-  toCoupon: function () {
+  toCoupon: function() {
     wx.navigateTo({
       url: '../coupon/coupon'
     })
   },
-  toAnalysis: function () {
+  toAnalysis: function() {
     wx.navigateTo({
       url: '../analysis/analysis'
     })
   },
-  toCollect: function () {
+  toCollect: function() {
     wx.navigateTo({
       url: '../collectstore/collect'
     })
   },
-  toComment: function () {
+  toComment: function() {
     wx.navigateTo({
       url: '../mycomment/mycomment'
     })
   },
-  toFeedback: function () {
+  toFeedback: function() {
     wx.navigateTo({
       url: '../feedback/feedback'
     })
   },
-  toOrder: function () {
+  toOrder: function() {
     wx.switchTab({
       url: '../order/order'
     })
   },
-  toService: function () {
+  toService: function() {
     wx.navigateTo({
       url: '../service/service'
     })
   },
 
   //退出
-logout:function(){
-  // wx.navigateTo({
-  //   url: '../index/index'
-  // })
-  app.globalData.userInfo=null;
-  this.setData({
-    userInfo:null
-  })
-  wx.switchTab({
-    url: '../index/index'
-  })
-}
+  logout: function() {
+    // wx.navigateTo({
+    //   url: '../index/index'
+    // })
+    app.globalData.userInfo = null;
+    this.setData({
+      userInfo: null
+    })
+    wx.switchTab({
+      url: '../index/index'
+    })
+  }
 
 })
-

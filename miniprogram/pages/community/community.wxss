@@ -125,8 +125,8 @@
   position: fixed;
   width: 120rpx;
   height: 120rpx;
-  bottom: 30rpx;
-  right: 30rpx;
+  bottom: 150rpx;
+  right: 50rpx;
 }
 
 .mine {

@@ -1,4 +1,5 @@
 <import src="../../template/authorize.wxml"></import>
+<import src="../../template/template.wxml"></import>
 <block wx:if="{{userInfo}}">
   <view class="container more">
     <view class="user flex-wrp">
@@ -88,3 +89,4 @@
   <!-- 使用授权页面 -->
   <template is="authorize" data="{{btnClick: 'authorizeClick'}}" />
 </block>
+<template is="tabBar" data="{{tabBar}}" />

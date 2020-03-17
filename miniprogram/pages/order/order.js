@@ -5,6 +5,47 @@ const images = require('../../utils/images.js')
 const app = getApp()
 Page({
   data: {
+    tabBar: {
+      "color": "#9E9E9E",
+      "selectedColor": "#f00",
+      "backgroundColor": "#fff",
+      "borderStyle": "#ccc",
+      "list": [{
+        "pagePath": "../index/index",
+        "text": "首页",
+        "iconPath": "../../imgs/tabBar/home-default.png",
+        "selectedIconPath": "../../imgs/tabBar/home-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../community/community",
+        "text": "社区",
+        "iconPath": "../../imgs/tabBar/com_def.png",
+        "selectedIconPath": "../../imgs/tabBar/com_act.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      },
+      {
+        "pagePath": "../order/order",
+        "text": "订单",
+        "iconPath": "../../imgs/tabBar/buy-list-default.png",
+        "selectedIconPath": "../../imgs/tabBar/buy-list-active.png",
+        "selectedColor": "#FF893B",
+        "active": true
+      },
+      {
+        "pagePath": "../mine/mine",
+        "text": "我的",
+        "iconPath": "../../imgs/tabBar/my-default.png",
+        "selectedIconPath": "../../imgs/tabBar/my-active.png",
+        "selectedColor": "#FF893B",
+        "active": false
+      }
+      ],
+      "position": "bottom"
+    },
+    userInfo: app.globalData.userInfo,
     searchInfo: null,
     // 搜索信息
     loading: false, //上拉加载更多的loading
@@ -17,22 +58,36 @@ Page({
     // 搜索后
     // 图片地址
     images:images,
-    openid:null
+    openid: app.globalData.openid
   },
 
   onLoad: function(options) {
-    wx.cloud.callFunction({
-      name: "login",
-      complete: res => {
-        console.log(res.result)
+    // wx.cloud.callFunction({
+    //   name: "login",
+    //   complete: res => {
+    //     console.log(res.result)
         this.setData({
-          openid : res.result.openid
+          openid: app.globalData.openid
         })
-      }
-    })
+    //   }
+    // })
     var _this = this
     _this.initorders()
     console.log(_this.data.images)
+  },
+  authorizeClick: function (event) {
+    let _this = this;
+    // console.log(event);
+    //1.授权之后将数据存放在app.js中
+    let userInfo = event.detail.userInfo;
+    if (userInfo) {
+      app.globalData.userInfo = userInfo;
+      //2.刷新界面
+      // console.log(app.globalData.userInfo, this.data.userInfo)
+      //3.实现登陆功能
+      app.globalData.isLogin = true;
+    }
+
   },
   // --------------------------------------------------------------------------------
   // 下拉刷新部分

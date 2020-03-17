@@ -1,5 +1,8 @@
 <!--pages/order/order.wxml-->
 <!-- <image src="{{images.kfc}}"></image> -->
+<import src="../../template/authorize.wxml"></import>
+<import src="../../template/template.wxml"></import>
+<!-- <block wx:if="{{userInfo}}"> -->
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
@@ -214,3 +217,10 @@
     </list>
   </swiper-item>
 </swiper>
+<!-- </block> -->
+
+<!-- <block wx:else> -->
+  <!-- 使用授权页面 -->
+  <!-- <template is="authorize" data="{{btnClick: 'authorizeClick'}}" /> -->
+<!-- </block> -->
+<template is="tabBar" data="{{tabBar}}" />

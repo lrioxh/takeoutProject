@@ -36,6 +36,7 @@ App({
         })
     }
 
+
     this.globalData = {
       windowName:null,
       openid: null,
@@ -44,5 +45,26 @@ App({
       evn: 'test',
 			queryDishes:null
     }
+  },
+  editTabBar: function (that) {
+
+    var tabBar = that.data.tabBar;
+
+    var pages = getCurrentPages() //获取加载的页面
+    var currentPage = pages[pages.length - 1] //获取当前页面的对象
+    var url = '/' + currentPage.route //当前页面url
+
+
+    for (var i = 0; i < tabBar.list.length; i++) {
+      tabBar.list[i].active = false;
+      if (tabBar.list[i].pagePath == url) {
+        tabBar.list[i].active = true;//根据页面地址设置当前页面状态  
+      }
+    }
+
+    that.setData(that.data);
+    //that.setData(tabBar); 这样页面不会渲染新数据
+    //console.log(that.data);
+
   }
 })

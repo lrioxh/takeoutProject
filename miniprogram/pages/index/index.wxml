@@ -1,4 +1,5 @@
 <import src="../../template/windows/windows.wxml"></import>
+<import src="../../template/template.wxml"></import>
 <view class="containera">
   <view class="header {{scrollDown?'scrolled':''}}">
     <!-- 定位 -->
@@ -49,10 +50,10 @@
 
     <!-- 优惠专区 -->
 
-      <view class="section section-big discount">
-        <view class="title">优惠专区</view>
-        <image bindtap="gotoWindows" class="content" src="{{discount_img}}" />
-      </view>
+    <view class="section section-big discount">
+      <view class="title">优惠专区</view>
+      <image bindtap="gotoWindows" class="content" src="{{discount_img}}" />
+    </view>
 
 
 
@@ -79,7 +80,7 @@
           <text class="v">↓</text>
         </view>
       </view>
-			<windows windows="{{shops}}"></windows>
+      <windows windows="{{shops}}"></windows>
       <view>
         <template is="abc" data="{{windows}}"></template>
       </view>
@@ -90,5 +91,8 @@
 				</navigator>
 			</view> -->
     </view>
+
   </scroll-view>
+
 </view>
+<template is="tabBar" data="{{tabBar}}" />
