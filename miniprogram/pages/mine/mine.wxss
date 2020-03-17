@@ -67,8 +67,31 @@
   font-size: 0.80rem;
   float: right;
 }
-button{
+.logout{
   color: #fff;
   background-color: #ff893b;
   margin-bottom: 105rpx;
 }
+.feedback button{
+  /* display: inline-block; */
+  /* width: 100rpx; */
+  background: white;
+  border: none;
+  text-align: left;
+  margin: 0px;
+  border-radius: 0;
+  padding: 0px 0px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+  line-height: 100%;
+}
+
+.feedback button::after{
+  border: none;
+  border-radius: 0;
+}
+
+/* .feedback text{
+  font-size: 30rpx;
+  font-weight: normal;
+} */

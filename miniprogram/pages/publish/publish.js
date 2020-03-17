@@ -127,7 +127,7 @@ Page({
     wx.showToast({
       title: '新增记录成功',
     })
-    wx.switchTab({
+    wx.redirectTo({
       url: '../community/community',
     })
     this.setData({

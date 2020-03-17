@@ -63,24 +63,24 @@
           <text>我的评价</text>
         </view>
       </view>
-      <view class="my-item flex-wrp" bindtap="toService">
+      <view class="my-item flex-wrp feedback">
         <view class="myitem-icon flex-item">
           <image src="../../imgs/draft.png"></image>
         </view>
-        <view class="myitem-name flex-item">
+        <button open-type="contact" class="myitem-name flex-item">
           <text>联系客服</text>
-        </view>
+        </button>
       </view>
-      <view class="my-item flex-wrp" bindtap="toFeedback">
+      <view class="my-item flex-wrp feedback">
         <view class="myitem-icon flex-item">
           <image src="../../imgs/draft.png"></image>
         </view>
-        <view class="myitem-name flex-item">
+        <button open-type="feedback" class="myitem-name flex-item">
           <text>反馈</text>
-        </view>
+        </button>
       </view>
 
-      <button bindtap="logout">退出登录</button>
+      <button bindtap="logout" class="logout">退出登录</button>
     </view>
   </view>
 </block>
