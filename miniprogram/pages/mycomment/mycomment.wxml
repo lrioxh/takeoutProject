@@ -15,14 +15,14 @@
               <view class="under">
                 <image src="../../imgs/star3.png" class="star"></image>
                 {{item.rate}}/5
-                <text class="store-text">{{item.dishID}}</text>
+                <text class="store-text">{{item.dishes}}</text>
               </view>
             </view>
           </view>
           <view class="store-rate">
             商家评价<text class='tip-text'></text>
             <view class="store-mes">"{{item.comment_store}}"</view>
-            <view class="reply">商家回复：{{item.reply}}</view>
+            <!-- <view class="reply">商家回复：{{item.reply}}</view> -->
             <view wx:if="{{item.comment_rider}}">
               配送评价<view class='tip-text'></view>
               <view class="store-mes">"{{item.comment_rider}}"</view>

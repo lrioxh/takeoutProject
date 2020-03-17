@@ -12,8 +12,8 @@ Page({
     id: '',
     openid: '',
     isLike: false,
-    show:false,
-    isMine:false
+    show: false,
+    isMine: false
   },
 
   /**
@@ -29,8 +29,8 @@ Page({
       success: function (res) {
         console.log(res)
         that.topic = res.data;
-        if (res.data._openid == app.globalData.openid){
-          that.isMine=true
+        if (res.data._openid == app.globalData.openid) {
+          that.isMine = true
         }
         that.setData({
           topic: that.topic,
@@ -43,7 +43,7 @@ Page({
     db.collection('collectPo')
       .where({
         _openid: that.data.openid,
-        _id: that.data.id
+        topicid: that.data.id
 
       })
       .get({
@@ -70,7 +70,7 @@ Page({
       .where({
         t_id: that.data.id
       })
-      .orderBy('realDate','desc')
+      .orderBy('realDate', 'desc')
       .get({
         success: function (res) {
           // res.data 包含该记录的数据
@@ -122,7 +122,7 @@ Page({
     db.collection('collectPo').add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        _id: that.data.id,
+        topicid: that.data.id,
         date: new Date(),
       },
       success: function (res) {
@@ -135,10 +135,19 @@ Page({
    * 从收藏集合中移除
    */
   removeFromCollectServer: function (event) {
-    db.collection('collectPo').doc(that.data.id).remove({
+    db.collection('collectPo')
+      .where({
+        topicid: that.data.id,
+        _openid: that.data.openid
+      })
+      .get()
+      .then(res => {
+        console.log(res)
+        db.collection('collectPo').doc(res.data[0]._id).remove({
+          success: that.refreshLikeIcon(false),
+        });
+      })
 
-      success: that.refreshLikeIcon(false),
-    });
   },
 
   /**
@@ -157,8 +166,8 @@ Page({
 
   },
   /**
- * 删帖
- */
+   * 删帖
+   */
   select: function (e) {
     this.setData({
       show: !this.data.show
@@ -171,16 +180,16 @@ Page({
   },
   delatePo: function () {
     db.collection('topicPo').doc(that.data.id).remove()
-    .then(
-      wx.showToast({
-        title: '删除成功',
-      }),
-      setTimeout(function () {
-        wx.reLaunch({
-          url: "../community/community",
-        })
-      }, 600) //延迟0.6秒
-      
-    )
+      .then(
+        wx.showToast({
+          title: '删除成功',
+        }),
+        setTimeout(function () {
+          wx.reLaunch({
+            url: "../community/community",
+          })
+        }, 600) //延迟0.6秒
+
+      )
   },
 })

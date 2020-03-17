@@ -23,9 +23,6 @@ Page({
     that.getData(that.data.page);
   },
 
-  onShow: function () {
-
-  },
   /**
    * 获取列表数据
    * 
@@ -54,14 +51,14 @@ Page({
     var tempTopics = {};
     // for (var i = 0; i < that.data.collects.length; i++) {
     for (var i in that.data.collects) {
-      var topicId = that.data.collects[i]._id;
+      var topicId = that.data.collects[i].topicid;
       db.collection('topicPo')
         .doc(topicId)
         .get({
           success: function (res) {
             // console.log('i', i)
             that.data.topics.push(res.data);
-            console.log('1',that.data.topics)
+            // console.log('1', that.data.topics)
             that.setData({
               topics: that.data.topics,
             })

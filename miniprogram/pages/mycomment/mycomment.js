@@ -35,17 +35,21 @@ Page({
       .field({
         comment_rider: 1,
         comment_store: 1,
-        dishID: 1,
+        dish: 1,
         orderTime: 1,
         rate: 1,
         storeID: 1,
-        reply:1,
+        reply: 1,
       })
       .get({
         success: function (res) {
           that.data.comment = res.data;
-          // console.log('2', that.data.comment);
+          console.log('2', that.data.comment);
           for (var i in that.data.comment) {
+            that.data.comment[i].dishes = [];
+            for (var j in that.data.comment[i].dish) {
+              that.data.comment[i].dishes.push(that.data.comment[i].dish[j].name)
+            }
             that.getstoreInfo(i);
           }
           console.log(that.data.comment)
@@ -66,9 +70,11 @@ Page({
       .doc(storeId)
       .get({
         success: function (res) {
+          // console.log(res)
           that.data.comment[i].time = that.data.comment[i].orderTime.toDateString();
           that.data.comment[i].name = res.data.name;
           that.data.comment[i].img = res.data.img;
+
           // console.log('1', that.data.comment)
           that.setData({
             comment: that.data.comment,
@@ -86,53 +92,5 @@ Page({
     wx.navigateTo({
       url: "?id=" + id
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

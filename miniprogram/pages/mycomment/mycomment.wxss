@@ -81,6 +81,7 @@ margin-left: 20rpx;
 }
 .store-mes{
   font-size: 32rpx;
+  padding: 6rpx;
 }
 
 .place {

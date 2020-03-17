@@ -8,7 +8,7 @@ Page({
   data: {
     userInfo: app.globalData.userInfo,
     topics: {},
-    show:false
+    show: false
 
   },
   onLoad: function() {
@@ -23,7 +23,7 @@ Page({
     that.getData();
   },
 
-  authorizeClick: function (event) {
+  authorizeClick: function(event) {
     let _this = this;
     // console.log(event);
     //1.授权之后将数据存放在app.js中
@@ -45,9 +45,9 @@ Page({
    * 
    */
   getData: function() {
+
     db.collection('topicPo')
       .orderBy('realDate', 'desc')
-      .skip(that.data.topics.length)
       .limit(10)
       .get({
         success: function(res) {
@@ -97,11 +97,12 @@ Page({
   onReachBottom: function() {
     var temp = [];
     // 获取后面十条
-    // if (this.data.topics.length < this.data.totalCount) {
-      const db = wx.cloud.database();
-      db.collection('topicPo')
+
+    const db = wx.cloud.database();
+    db.collection('topicPo')
       .orderBy('realDate', 'desc')
       .skip(that.data.topics.length)
+      .limit(10)
       .get({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
@@ -126,30 +127,26 @@ Page({
           }
         },
       })
-    // } else {
-    //   wx.showToast({
-    //     title: '没有更多数据了',
-    //   })
-    // }
+
 
   },
   //菜单
   select: function(e) {
     this.setData({
-      show:!this.data.show
+      show: !this.data.show
     })
   },
-  onPageScroll:function(){
+  onPageScroll: function() {
     this.setData({
       show: false
     })
   },
-  tocollect:function(){
+  tocollect: function() {
     wx.navigateTo({
       url: '../collectPo/collect',
     })
   },
-  tohistory: function () {
+  tohistory: function() {
     wx.navigateTo({
       url: '../historyPo/history',
     })

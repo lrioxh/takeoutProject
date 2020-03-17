@@ -95,7 +95,7 @@ Page({
           .where({
             _openid: app.globalData.openid, // 填入当前用户 openid
           })
-          .skip(5)
+          .skip(that.data.topics.length)
           .limit(that.data.pageSize) // 限制返回数量为 5 条
           .orderBy('realDate', 'desc')
           .get({
