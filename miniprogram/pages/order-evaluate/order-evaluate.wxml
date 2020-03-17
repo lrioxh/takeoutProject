@@ -2,10 +2,24 @@
 <view class="Title">
   <text class="title">商家评价</text>
 </view>
+
 <view class="Block">
   <view class="textarea">
     <textarea placeholder="对本店的口味还满意吗？一起来说说吧！" />
   </view>
+  <view>请打分</view>
+
+
+<view style='margin-top:60px;'>二:显示用户选择的评分</view>
+<block wx:for="{{one}}" wx:key="index">
+<image catchtap='in_xin' id='{{index+1}}' data-in='star3' src='../../imgs/star3.png'></image>
+</block>
+<block wx:for="{{two}}" wx:key="index">
+<image catchtap='in_xin' id='{{index+1}}' data-in='star3' src='../../imgs/star2.png'></image>
+</block>
+<view>{{one}}星</view>
+
+
   <view class="Pic">
     <view class="PicBlock" wx:if="{{imgPath2!=''}}">
       <image src="{{imgPath2}}"></image>

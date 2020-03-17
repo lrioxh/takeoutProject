@@ -1,8 +1,12 @@
 var app = getApp();
 const db = wx.cloud.database();
 const order = db.collection("order")
+
 Page({
   data: {
+    one: 2,
+    two: 3,
+    // 打分
     pageid:null,
     choose: false,
     imgPath: '../../imgs/pic.png',
@@ -52,7 +56,31 @@ Page({
      })
    }
   },
+
+  onChange:function(e){
+    console.log(e)
+  },
+  in_xin: function (e) {
+    var in_xin = e.currentTarget.dataset.in;
+    console.log(e)
+    console.log(e.currentTarget.id)
+    var one;
+    if (in_xin === 'star3') {
+      one = Number(e.currentTarget.id);
+    } else {
+      one = Number(e.currentTarget.id) + this.data.one;
+    }
+    this.setData({
+      one: one,
+      two: 5 - one
+    })
+  },
   onLoad:function(e){
+    this.setData({
+      one_1: this.data.num,
+      two_1: 5 - this.data.num
+    })
+
     this.setData({
       pageid:e.id
     })

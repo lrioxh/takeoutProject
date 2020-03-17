@@ -126,6 +126,13 @@
 					"pathName": "pages/order-detail/order-detail",
 					"query": "id=1584358191581_0.8286922736841624_16791016",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-evaluate/order-evaluate",
+					"pathName": "pages/order-evaluate/order-evaluate",
+					"query": "id=1584358679989_0.020959437082453514_16782375",
+					"scene": null
 				}
 			]
 		}
