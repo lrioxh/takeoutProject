@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "收藏贴子"
+  "navigationBarTitleText": "收藏贴子",
+  "enablePullDownRefresh": true
 }

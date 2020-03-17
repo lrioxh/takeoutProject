@@ -28,11 +28,13 @@ Page({
    * 
    */
   getData: function (page) {
+
+    that.data.topics = [];
     db.collection('collectPo')
       .where({
         _openid: app.globalData.openid, // 填入当前用户 openid
       })
-      .orderBy('realDate', 'desc')
+      .orderBy('date', 'desc')
       .get({
         success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
@@ -67,6 +69,11 @@ Page({
         })
     }
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    console.log('pulldown');
+    that.getData(that.data.page);
+  },
   /**
    * item 点击
    */
@@ -76,12 +83,5 @@ Page({
     wx.navigateTo({
       url: "../homeDetail/homeDetail?id=" + id
     })
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

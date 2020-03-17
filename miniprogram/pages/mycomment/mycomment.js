@@ -90,7 +90,7 @@ Page({
     var id = e.currentTarget.dataset.storeid;
     console.log(e);
     wx.navigateTo({
-      url: "?id=" + id
+      url: "../shop/shop?id=" + id
     })
   }
 })
