@@ -19,8 +19,6 @@ Page({
 			dinningHall:options.id
 		})
 		this.getdata(console.log(this.data.windows))
-		console.log("========================================")
-	
 	},
 
 	/**

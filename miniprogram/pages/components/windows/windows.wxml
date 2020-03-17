@@ -3,7 +3,7 @@
 		<navigator url="/pages/shop/shop?id={{item._id}}">
 			<view class="view-style">
 				<!-- 窗口图片 -->
-				<image src="{{item.img}}" mode="aspectFit"></image>
+				<image src="{{item.img}}" mode="heightFix"></image>
 				<!-- 窗口介绍 -->
 				<view>
 					<view>{{item.name}}</view>
@@ -13,9 +13,9 @@
 						<view>{{item.sendtime}}min</view>
 					</view>
 					<view class="second_line">
-						<view>起送￥</view>
-						<view>配送￥</view>
-						<view>人均￥</view>
+						<view>起送￥{{item.sendLeast}}</view>
+						<view>配送￥{{item.sendFee}}</view>
+						<view>人均￥{{item.average}}</view>
 					</view>
 					<view class="third_line">{{item.rank}}</view>
 					<view class="forth_line">{{item.mes}}</view>
