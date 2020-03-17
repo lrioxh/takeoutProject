@@ -30,17 +30,17 @@
         <scroll-view class="goods-container" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
           <view wx:for="{{category}}" wx:for-item="classify" wx:key="id2" id="{{classify.id}}">
             <view class="title">{{classify}}</view>
-            <view class="goods" wx:for="{{goods}}" wx:for-item="good" wx:key="*this">
-              <block wx:if="{{good.category}}=={{classify}}">
+						<block wx:for="{{goods}}" wx:for-item="good" wx:key="*this">
+            <view class="goods" wx:if="{{good.category==classify}}">              
                 <image class="pic" src="{{good.src}}"></image>
                 <view class="name ellipsis">{{good.name}}</view>
                 <view class="sold">月售{{good.sale}}</view>
                 <view class="price">￥{{good.price}}</view>
                 <view class="addCart" bindtap="tapAddCart" data-id="{{good.id}}">
                   <image src="/imgs/shop/plus.png"></image>
-                </view>
-              </block>
+                </view>              
             </view>
+						</block>
           </view>
         </scroll-view>
       </view>
