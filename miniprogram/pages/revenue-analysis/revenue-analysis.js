@@ -8,7 +8,7 @@ const month = curDate.getMonth()+1
 const date = curDate.getDate()
 const app = getApp()
 
-import * as echarts from '../../components/echarts-for-weixin/ec-canvas/echarts/';
+import * as echarts from '../../ec-canvas/echarts/';
 
 function initChart(canvas, width, height) {
 
